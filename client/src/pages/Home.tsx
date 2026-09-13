@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { HEALTH_CONDITIONS, HealthCondition, HealthKeywordTopic } from "../data/healthData";
 import { Navbar } from "../components/Navbar";
 import { ConditionCard } from "../components/ConditionCard";
@@ -6,231 +6,267 @@ import { KeywordTagBar } from "../components/KeywordTagBar";
 import { KeywordDetailView } from "../components/KeywordDetailView";
 import {
   Activity,
-  HeartPulse,
-  Sparkles,
+  ArrowLeft,
+  CheckCircle2,
+  ChevronRight,
   Info,
-  SlidersHorizontal,
-  ChevronDown,
   Layers,
-  ArrowRight,
-  Stethoscope,
+  Search,
   ShieldCheck,
-  CalendarCheck2,
 } from "lucide-react";
 
-export default function Home() {
-  const [selectedConditionId, setSelectedConditionId] = useState<string | null>("hypertension");
-  const [selectedKeywordId, setSelectedKeywordId] = useState<string | null>("hypertension-exercise");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState<string>("ALL");
+const CATEGORY_TABS = [
+  { id: "ALL", label: "전체" },
+  { id: "심뇌혈관", label: "심뇌혈관" },
+  { id: "내분비", label: "내분비·대사" },
+  { id: "소화기", label: "소화기" },
+  { id: "신장", label: "신장" },
+  { id: "호흡기", label: "호흡기" },
+];
 
-  // Get active condition
-  const selectedCondition = useMemo(() => {
-    return HEALTH_CONDITIONS.find((c) => c.id === selectedConditionId) || null;
-  }, [selectedConditionId]);
-
-  // Get active keyword topic
-  const selectedKeyword = useMemo(() => {
-    if (!selectedCondition) return null;
-    return (
-      selectedCondition.keywords.find((k) => k.id === selectedKeywordId) ||
-      selectedCondition.keywords[0]
-    );
-  }, [selectedCondition, selectedKeywordId]);
-
-  // Filtered conditions for search and category
+function ListView({
+  onSelectCondition,
+  searchQuery,
+  setSearchQuery,
+  categoryFilter,
+  setCategoryFilter,
+}: {
+  onSelectCondition: (condition: HealthCondition) => void;
+  searchQuery: string;
+  setSearchQuery: (value: string) => void;
+  categoryFilter: string;
+  setCategoryFilter: (value: string) => void;
+}) {
   const filteredConditions = useMemo(() => {
     return HEALTH_CONDITIONS.filter((item) => {
-      const matchCategory =
-        categoryFilter === "ALL" || item.category.includes(categoryFilter);
-
-      if (!searchQuery.trim()) return matchCategory;
-
-      const q = searchQuery.toLowerCase().trim();
-      const matchName = item.name.toLowerCase().includes(q);
-      const matchEng = item.englishName.toLowerCase().includes(q);
-      const matchDesc = item.shortDesc.toLowerCase().includes(q);
-      const matchKeywords = item.keywords.some(
-        (kw) =>
-          kw.tag.toLowerCase().includes(q) ||
-          kw.title.toLowerCase().includes(q) ||
-          kw.shortActionSummary.toLowerCase().includes(q)
-      );
-
-      return matchCategory && (matchName || matchEng || matchDesc || matchKeywords);
+      const matchCategory = categoryFilter === "ALL" || item.category.includes(categoryFilter);
+      const q = searchQuery.trim().toLowerCase();
+      if (!q) return matchCategory;
+      const matchesSearch = [
+        item.name,
+        item.englishName,
+        item.shortDesc,
+        ...item.keywords.flatMap((keyword) => [keyword.tag, keyword.title]),
+      ].some((value) => value.toLowerCase().includes(q));
+      return matchCategory && matchesSearch;
     });
   }, [categoryFilter, searchQuery]);
 
-  const handleSelectCondition = (condition: HealthCondition) => {
-    setSelectedConditionId(condition.id);
-    // select first keyword tag automatically
-    if (condition.keywords.length > 0) {
-      setSelectedKeywordId(condition.keywords[0].id);
-    }
-  };
-
-  const handleSelectKeyword = (kw: HealthKeywordTopic) => {
-    setSelectedKeywordId(kw.id);
-  };
-
-  const handleResetToAll = () => {
-    setSelectedConditionId(null);
-    setSelectedKeywordId(null);
-    setSearchQuery("");
-    setCategoryFilter("ALL");
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col gradient-mesh">
-      {/* Top Navigation */}
+    <>
       <Navbar
-        onReset={handleResetToAll}
+        onReset={() => {
+          setSearchQuery("");
+          setCategoryFilter("ALL");
+        }}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        selectedConditionId={selectedConditionId}
+        selectedConditionId={null}
       />
-
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
-        <div className="mb-10 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-teal-100/80 text-teal-800 mb-3 border border-teal-200/60">
-            <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-            <span>건강검진 사후관리 임상 가이드라인 기반</span>
+      <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-7 sm:py-10">
+        <section className="max-w-3xl mb-7 sm:mb-9">
+          <div className="inline-flex items-center gap-2 rounded-full bg-teal-50 border border-teal-200 px-3 py-1.5 text-xs font-bold text-teal-800 mb-4">
+            <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
+            일반건강검진 요관찰자 맞춤 건강관리
           </div>
+          <h1 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">
+            8대 질환 중 관리가 필요한 항목을 선택하세요
+          </h1>
+          <p className="text-sm sm:text-base leading-relaxed text-slate-600">
+            질환을 선택하면 해당 질환의 기준 설명과 생활관리 키워드, 근거 기반 가이드가 한 화면에 순서대로 열립니다.
+          </p>
+        </section>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-            <div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-display mb-2">
-                일반건강검진 요관찰자(B판정) 맞춤 건강
-              </h1>
-              <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
-                검진 결과지에서 ‘질환의심(C)’ 전 단계인 <strong>요관찰(B)</strong> 판정을 받으셨나요?
-                약물 치료 전 생활습관 교정으로 회복 가능한 <strong>8대 핵심 질환</strong>을 클릭하고,
-                의학적 근거가 검증된 실천 가이드와 운동 영상을 확인하세요.
-              </p>
-            </div>
-
-            {/* Quick Stats Pill */}
-            <div className="flex items-center gap-2 self-start lg:self-auto bg-white/90 border border-slate-200/80 rounded-2xl p-2.5 shadow-xs text-xs">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50">
-                <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
-                <span className="font-semibold text-slate-700">관리 대상 8대 질환</span>
-              </div>
-              <div className="h-4 w-px bg-slate-200" />
-              <span className="text-slate-500 px-1">의학 근거 & 영상 100% 탑재</span>
-            </div>
-          </div>
-        </div>
-
-        {/* 8 Conditions Grid Dashboard Section */}
-        <section className="mb-10">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+        <section aria-labelledby="condition-list-title">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-5">
             <div className="flex items-center gap-2">
               <Layers className="w-5 h-5 text-teal-600" />
-              <h2 className="text-xl font-bold text-slate-900">
-                8대 질환 관리 대시보드
-              </h2>
-              <span className="text-xs px-2 py-0.5 rounded-md bg-slate-200 text-slate-700 font-semibold">
-                {filteredConditions.length}개 표시 중
-              </span>
+              <h2 id="condition-list-title" className="text-xl font-bold text-slate-900">8대 질환 목록</h2>
+              <span className="text-xs font-semibold rounded-md bg-slate-200 px-2 py-1 text-slate-700">{filteredConditions.length}개</span>
             </div>
-
-            {/* Category Filter Pills */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-              {[
-                { id: "ALL", label: "전체 질환" },
-                { id: "심뇌혈관", label: "심뇌혈관" },
-                { id: "내분비", label: "내분비·대사" },
-                { id: "소화기", label: "소화기(간)" },
-                { id: "신장", label: "신장" },
-                { id: "호흡기", label: "호흡기" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setCategoryFilter(tab.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition cursor-pointer border ${
-                    categoryFilter === tab.id
-                      ? "bg-slate-900 text-white border-slate-900 shadow-xs"
-                      : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            <div className="relative md:hidden">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="질환 또는 관리법 검색"
+                className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-3 text-sm outline-none focus:border-teal-500 focus:ring-3 focus:ring-teal-500/15"
+              />
             </div>
           </div>
 
-          {/* 8-Grid Dashboard */}
+          <div className="flex gap-2 overflow-x-auto pb-2 mb-4 scrollbar-none">
+            {CATEGORY_TABS.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setCategoryFilter(tab.id)}
+                className={`shrink-0 rounded-xl border px-3.5 py-2 text-xs font-bold transition cursor-pointer ${
+                  categoryFilter === tab.id
+                    ? "border-slate-900 bg-slate-900 text-white"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-teal-300 hover:text-teal-700"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {filteredConditions.map((condition) => (
               <ConditionCard
                 key={condition.id}
                 condition={condition}
-                isSelected={selectedConditionId === condition.id}
-                onSelect={handleSelectCondition}
+                isSelected={false}
+                onSelect={onSelectCondition}
               />
             ))}
           </div>
+
+          {filteredConditions.length === 0 && (
+            <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
+              <Info className="mx-auto mb-2 h-8 w-8 text-slate-400" />
+              <p className="font-semibold text-slate-700">검색 결과가 없습니다.</p>
+              <button onClick={() => setSearchQuery("")} className="mt-3 text-sm font-bold text-teal-700 underline cursor-pointer">검색 초기화</button>
+            </div>
+          )}
         </section>
-
-        {/* Interactive Keyword Tags & Final Detail Flow */}
-        {selectedCondition && (
-          <div className="scroll-mt-24 pt-4" id="detail-section">
-            {/* Tag Selection Bar */}
-            <KeywordTagBar
-              condition={selectedCondition}
-              selectedKeywordId={selectedKeyword?.id || null}
-              onSelectKeyword={handleSelectKeyword}
-              onResetCondition={() => setSelectedConditionId(null)}
-            />
-
-            {/* 3-Section Final Detail Flow: [행동 가이드] -> [의학적 근거] -> [영상 가이드] */}
-            {selectedKeyword ? (
-              <KeywordDetailView
-                condition={selectedCondition}
-                keyword={selectedKeyword}
-              />
-            ) : (
-              <div className="p-12 text-center bg-white rounded-2xl border border-dashed border-slate-300">
-                <Info className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-                <p className="text-slate-600 font-medium">
-                  상단의 세부 건강관리 키워드(태그)를 선택하시면 행동 가이드, 의학적 근거, 영상이 표시됩니다.
-                </p>
-              </div>
-            )}
-          </div>
-        )}
       </main>
+      <footer className="mt-auto border-t border-slate-200 bg-white/80 px-4 py-7 text-center text-[11px] leading-relaxed text-slate-400">
+        본 서비스는 건강검진 사후관리를 돕기 위한 보조 프로토타입이며, 실제 진단과 치료는 의료진 상담을 통해 결정해야 합니다.
+      </footer>
+    </>
+  );
+}
 
-      {/* Footer */}
-      <footer className="mt-auto border-t border-slate-200/80 bg-white/80 py-10 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <div className="flex items-center gap-3 justify-center md:justify-start">
-            <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center text-white">
-              <HeartPulse className="w-4 h-4" />
-            </div>
-            <div>
-              <p className="font-bold text-slate-700">
-                메디케어온 (Medicare On)
-              </p>
-              <p>일반건강검진 사후관리 및 생활습관 교정 프로토타입</p>
-            </div>
-          </div>
+function ConditionDetailView({
+  condition,
+  onBack,
+}: {
+  condition: HealthCondition;
+  onBack: () => void;
+}) {
+  const [selectedKeywordId, setSelectedKeywordId] = useState<string | null>(null);
+  const selectedKeyword = useMemo<HealthKeywordTopic | null>(() => {
+    if (!selectedKeywordId) return null;
+    return condition.keywords.find((keyword) => keyword.id === selectedKeywordId) || null;
+  }, [condition, selectedKeywordId]);
 
-          <div className="max-w-xl text-slate-400 leading-relaxed text-[11px]">
-            * 본 서비스는 일반건강검진 사후관리를 돕기 위한 보조 프로토타입이며, 실제 진단 및 약물 치료 처방은 의사와의 상담을 통해 결정되어야 합니다.
-          </div>
+  const handleSelectKeyword = (keyword: HealthKeywordTopic) => {
+    setSelectedKeywordId(keyword.id);
+    window.setTimeout(() => document.getElementById("final-guide")?.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
+  };
 
-          <div className="flex items-center gap-4 text-slate-600 font-medium">
-            <span className="hover:text-teal-600 cursor-pointer">이용약관</span>
-            <span>·</span>
-            <span className="hover:text-teal-600 cursor-pointer">개인정보처리방침</span>
-            <span>·</span>
-            <span className="hover:text-teal-600 cursor-pointer">학술출처안내</span>
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
+          <button onClick={onBack} className="inline-flex min-h-11 items-center gap-2 rounded-xl px-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-100 hover:text-teal-700 cursor-pointer" aria-label="전체 질환 목록으로 돌아가기">
+            <ArrowLeft className="h-5 w-5" />
+            <span className="hidden sm:inline">전체 질환 보기</span>
+            <span className="sm:hidden">목록</span>
+          </button>
+          <div className="flex items-center gap-2 text-right">
+            <Activity className="h-5 w-5 text-teal-600" />
+            <span className="text-sm font-extrabold text-slate-900">{condition.name} 관리</span>
           </div>
         </div>
-      </footer>
+      </div>
+
+      <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10">
+        <div className="mb-5 flex items-center gap-2 text-xs font-semibold text-slate-500">
+          <button onClick={onBack} className="text-teal-700 hover:underline cursor-pointer">8대 질환</button>
+          <ChevronRight className="h-3.5 w-3.5" />
+          <span>{condition.name}</span>
+        </div>
+
+        {/* STEP 1: disease criteria */}
+        <section className="mb-6 rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-700 to-cyan-700 p-5 text-white shadow-lg shadow-blue-700/15 sm:p-7">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15 text-sm font-extrabold">01</div>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-100">Step 1</p>
+              <h1 className="text-xl font-extrabold sm:text-2xl">{condition.name} 기준 설명</h1>
+            </div>
+          </div>
+          <p className="mb-5 max-w-3xl text-sm leading-relaxed text-blue-50 sm:text-base">{condition.shortDesc}</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
+              <p className="mb-1 text-xs font-bold text-blue-100">정상 기준</p>
+              <p className="text-sm font-semibold leading-relaxed">{condition.normalRangeLabel}</p>
+            </div>
+            <div className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
+              <p className="mb-1 text-xs font-bold text-blue-100">요관찰 기준</p>
+              <p className="text-sm font-semibold leading-relaxed">{condition.observationThreshold}</p>
+            </div>
+          </div>
+          <div className="mt-4 flex items-start gap-2 rounded-xl border border-amber-200/30 bg-amber-300/15 p-3 text-xs leading-relaxed text-blue-50">
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-200" />
+            건강검진의 요관찰 표시는 생활습관을 점검하고 추적검사를 준비하는 단계입니다. 개인의 진단을 대신하지 않습니다.
+          </div>
+        </section>
+
+        {/* STEP 2: keyword selection */}
+        <section className="mb-8 scroll-mt-20" id="keyword-section">
+          <div className="mb-3 flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">02</div>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Step 2</p>
+              <h2 className="text-xl font-extrabold text-slate-900">세부 관리 키워드 선택</h2>
+            </div>
+          </div>
+          <p className="mb-4 text-sm text-slate-600">지금 실천하고 싶은 주제를 하나 선택하면 최종 건강관리 가이드가 아래에 열립니다.</p>
+          <KeywordTagBar
+            condition={condition}
+            selectedKeywordId={selectedKeywordId}
+            onSelectKeyword={handleSelectKeyword}
+            onResetCondition={onBack}
+          />
+        </section>
+
+        {/* STEP 3: final guide only after keyword selection */}
+        <section id="final-guide" className="scroll-mt-20">
+          {selectedKeyword ? (
+            <>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-sm font-extrabold text-white">03</div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-600">Step 3</p>
+                  <h2 className="text-xl font-extrabold text-slate-900">최종 건강관리 가이드</h2>
+                </div>
+              </div>
+              <KeywordDetailView condition={condition} keyword={selectedKeyword} />
+            </>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center sm:p-12">
+              <CheckCircle2 className="mx-auto mb-3 h-9 w-9 text-teal-500" />
+              <h3 className="mb-1 font-bold text-slate-900">키워드를 선택하면 상세 가이드가 열립니다</h3>
+              <p className="text-sm text-slate-500">행동 가이드, 의학적 근거, 유튜브 영상이 선택한 주제에 맞춰 표시됩니다.</p>
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default function Home() {
+  const [selectedCondition, setSelectedCondition] = useState<HealthCondition | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("ALL");
+
+  if (selectedCondition) {
+    return <ConditionDetailView condition={selectedCondition} onBack={() => setSelectedCondition(null)} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-50 gradient-mesh">
+      <ListView
+        onSelectCondition={setSelectedCondition}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        categoryFilter={categoryFilter}
+        setCategoryFilter={setCategoryFilter}
+      />
     </div>
   );
 }
