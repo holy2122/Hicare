@@ -1,0 +1,941 @@
+[
+  {
+    "id": "hypertension",
+    "name": "고혈압",
+    "englishName": "Hypertension",
+    "shortDesc": "수축기 130~139mmHg 또는 이완기 80~89mmHg 전단계 주의 구간",
+    "category": "심뇌혈관질환군",
+    "badge": "수축기 130-139 / 이완기 80-89",
+    "normalRangeLabel": "정상 혈압: 120/80 mmHg 미만",
+    "observationThreshold": "요관찰 기준: 130~139 / 80~89 mmHg (고혈압 전단계)",
+    "urgency": "관리필요",
+    "colorTone": {
+      "primary": "from-blue-600 to-cyan-600",
+      "border": "border-blue-200 hover:border-blue-500",
+      "badgeBg": "bg-blue-50 text-blue-700 border-blue-200",
+      "badgeText": "text-blue-700",
+      "iconBg": "bg-blue-100 text-blue-600"
+    },
+    "keywords": [
+      {
+        "id": "hypertension-exercise",
+        "tag": "운동요법",
+        "title": "등척성 및 중강도 유산소 운동 루틴",
+        "subtitle": "혈관 탄력도 개선과 말초혈관 저항 감소를 위한 맞춤 처방",
+        "shortActionSummary": "매일 빠른 템포 걷기 30분과 악력기·벽스쿼트 등 등척성 운동을 주 3회 병행하세요. 과도한 무호흡 발살바 호흡을 피하고 자연스러운 호흡을 유지하는 것이 핵심입니다.",
+        "actionSteps": [
+          {
+            "title": "1. 준비운동 (5분)",
+            "desc": "발목, 무릎 회전 및 가벼운 팔 흔들기 스트레칭으로 수축기 혈압 급상승 방지",
+            "metric": "심박수 90~100bpm"
+          },
+          {
+            "title": "2. 중강도 유산소 걷기 (30분)",
+            "desc": "등에 살짝 땀이 나고 옆 사람과 대화는 가능하나 노래는 힘든 속도로 걷기",
+            "metric": "주 5회 이상 권장"
+          },
+          {
+            "title": "3. 벽 스쿼트 / 핸드그립 등척성 (10분)",
+            "desc": "최대 악력의 30% 강도로 2분간 쥐고 1분 휴식(4회 반복), 혈관 내피세포 산화질소 분비 촉진",
+            "metric": "주 3회 실시"
+          }
+        ],
+        "keyRules": [
+          "운동 중 호흡을 참는 발살바 조작(Valsalva maneuver)은 뇌압과 흉강내압을 급격히 높이므로 절대 금지합니다.",
+          "수축기 혈압 160mmHg 이상이거나 두통, 어지럼증 발생 시 즉시 중단하고 안정 후 재측정합니다."
+        ],
+        "evidence": {
+          "paperTitle": "Exercise training and resting blood pressure: a large-scale systematic review and network meta-analysis of randomized controlled trials",
+          "journal": "British Journal of Sports Medicine (BJSM)",
+          "year": 2023,
+          "authors": "Edwards JJ, et al.",
+          "coreSummary": "270개 무작위 대조 시험(총 15,827명 대상) 분석 결과, 등척성 운동(Isometric exercise)은 수축기 혈압을 평균 8.24mmHg, 이완기 혈압을 4.00mmHg 감소시켜 모든 운동군 중 가장 강력한 강압 효과를 보였으며, 일반 유산소 걷기 역시 4.49mmHg의 안정적 강압 효과가 검증되었습니다.",
+          "sourceUrl": "https://bjsm.bmj.com/content/57/20/1317",
+          "evidenceGrade": "Grade 1A (최고 근거 수준 메타분석)",
+          "sampleSizeOrMethod": "270 RCTs, n=15,827"
+        },
+        "video": {
+          "title": "고혈압 전단계 혈압 10mmHg 낮추는 3가지 홈트 운동 루틴",
+          "channel": "대한고혈압학회 & 심장재활 전문의 가이드",
+          "youtubeId": "bAQTHHS2YVk",
+          "duration": "12분 40초",
+          "summary": "관절에 무리 없이 침대 옆이나 거실에서 바로 따라 할 수 있는 벽 스쿼트 및 종아리 펌프 운동",
+          "difficulty": "초급",
+          "targetTimePerDay": "매일 20분"
+        }
+      },
+      {
+        "id": "hypertension-diet",
+        "tag": "DASH 저염식단",
+        "title": "DASH 식이법과 나트륨 2,000mg 이하 제한",
+        "subtitle": "칼륨·마그네슘이 풍부한 식자재와 저염 양념법 가이드",
+        "shortActionSummary": "국물 섭취를 최소화하고, 칼륨이 풍부한 채소(시금치, 브로콜리)와 잡곡을 기본으로 나트륨 일일 2,000mg(소금 5g 미만) 이내로 절제합니다.",
+        "actionSteps": [
+          {
+            "title": "1. 찌개·국물 섭취 건더기 위주로 전환",
+            "desc": "면류와 찌개 국물에 나트륨의 60% 이상 집중되어 있으므로 국물 남기기 실천",
+            "metric": "국그릇 대신 작은 볼 사용"
+          },
+          {
+            "title": "2. 신선 채소·과일 5접시 법칙",
+            "desc": "칼륨 섭취를 통해 잉여 나트륨 체외 배출(단, 신장질환 병발 시 칼륨 조절 필요)",
+            "metric": "매 끼니 녹황색 채소 포함"
+          },
+          {
+            "title": "3. 저염 간장·레몬즙·들기름 활용",
+            "desc": "소금 대신 허브, 후추, 마늘, 참기름 등의 향신료로 풍미를 높여 나트륨 대체",
+            "metric": "일일 소금 5g 미만"
+          }
+        ],
+        "keyRules": [
+          "가공식품(햄, 어묵, 라면, 통조림) 영양성분표에서 1회 섭취량당 나트륨 비율을 15% 이하로 선택합니다."
+        ],
+        "evidence": {
+          "paperTitle": "Effects on Blood Pressure of Reduced Dietary Sodium and the Dietary Approaches to Stop Hypertension (DASH) Diet",
+          "journal": "The New England Journal of Medicine (NEJM)",
+          "year": 2001,
+          "authors": "Sacks FM, Svetkey LP, Vollmer WM, et al.",
+          "coreSummary": "DASH 식단과 나트륨 섭취 제한을 병행한 군에서 고혈압 전단계 환자의 수축기 혈압이 비개입군 대비 7.1~11.5mmHg까지 유의미하게 감소함을 입증한 랜드마크 연구입니다.",
+          "sourceUrl": "https://www.nejm.org/doi/full/10.1056/NEJM200101043440101",
+          "evidenceGrade": "Grade 1A (무작위 대조군 임상)",
+          "sampleSizeOrMethod": "n=412, 다기관 교차 설계"
+        },
+        "video": {
+          "title": "짜지 않아도 맛있는 고혈압 DASH 식단 7일 밀프랩",
+          "channel": "임상영양사의 메디컬 푸드랩",
+          "youtubeId": "3ojB9kC6354",
+          "duration": "15분 10초",
+          "summary": "한국인 밥상에 맞춘 저염 된장찌개 조리법과 천연 다시마·표고 조미가루 만들기",
+          "difficulty": "초급",
+          "targetTimePerDay": "매 끼니 적용"
+        }
+      },
+      {
+        "id": "hypertension-monitor",
+        "tag": "자가혈압측정",
+        "title": "가정혈압 측정의 '아침·저녁 2회 룰'",
+        "subtitle": "백의고혈압과 가면고혈압을 판별하는 올바른 혈압계 사용법",
+        "shortActionSummary": "아침 기상 1시간 이내(배뇨 후, 식전, 약복용 전) 1회, 저녁 취침 전 1회, 1~2분 간격으로 2회씩 측정하여 평균값을 기록하세요.",
+        "actionSteps": [
+          {
+            "title": "1. 측정 전 5분 안정",
+            "desc": "카페인, 흡연 금지 상태에서 등받이 있는 의자에 발바닥을 붙이고 착석",
+            "metric": "대화 금지"
+          },
+          {
+            "title": "2. 커프 위치 심장 높이 일치",
+            "desc": "상완 커프 하단이 팔꿈치 접히는 선 위 2~3cm 지점에 오도록 밀착",
+            "metric": "손가락 1개 들어갈 여유"
+          },
+          {
+            "title": "3. 1분 간격 2회 연속 측정",
+            "desc": "첫 번째와 두 번째 측정치의 평균값을 건강수첩 앱에 기록",
+            "metric": "주 5일 이상 지속"
+          }
+        ],
+        "keyRules": [
+          "손목형보다 상완(위팔) 측정용 디지털 혈압계 사용을 권고합니다."
+        ],
+        "evidence": {
+          "paperTitle": "2022 Korean Society of Hypertension Guidelines for the Management of Hypertension",
+          "journal": "Clinical Hypertension",
+          "year": 2023,
+          "authors": "Kim HC, Ihm SH, Sung KC, et al.",
+          "coreSummary": "진료실 혈압보다 가정혈압(Home BP)이 표적장기 손상 및 심뇌혈관질환 발생 예측력이 월등히 높음을 입증하고, 가정혈압 기준 135/85mmHg를 이상치 진단기준으로 확립하였습니다.",
+          "sourceUrl": "https://clinicalhypertension.biomedcentral.com/articles/10.1186/s40885-023-00241-1",
+          "evidenceGrade": "Grade 1A (대한고혈압학회 진료지침)"
+        },
+        "video": {
+          "title": "의사가 직접 알려주는 가정혈압계 정확하게 재는 법",
+          "channel": "대한고혈압학회 공식채널",
+          "youtubeId": "zZlS_TRdXHM",
+          "duration": "8분 30초",
+          "summary": "커프 감는 위치와 앉는 자세, 자주 실수하는 5가지 에러 원인 해설",
+          "difficulty": "초급",
+          "targetTimePerDay": "아침/저녁 각 3분"
+        }
+      }
+    ]
+  },
+  {
+    "id": "diabetes",
+    "name": "당뇨병",
+    "englishName": "Prediabetes & Diabetes",
+    "shortDesc": "공복혈당 100~125mg/dL 또는 당화혈색소 5.7~6.4% 공복혈당장애 관리",
+    "category": "내분비·대사질환군",
+    "badge": "공복혈당 100-125 mg/dL (내당능장애)",
+    "normalRangeLabel": "정상 공복혈당: 100 mg/dL 미만 (HbA1c < 5.7%)",
+    "observationThreshold": "요관찰 기준: 공복 100~125 mg/dL (당뇨 전단계)",
+    "urgency": "관리필요",
+    "colorTone": {
+      "primary": "from-emerald-600 to-teal-600",
+      "border": "border-emerald-200 hover:border-emerald-500",
+      "badgeBg": "bg-emerald-50 text-emerald-700 border-emerald-200",
+      "badgeText": "text-emerald-700",
+      "iconBg": "bg-emerald-100 text-emerald-600"
+    },
+    "keywords": [
+      {
+        "id": "diabetes-exercise",
+        "tag": "식후 운동요법",
+        "title": "식후 15분 하체 대근육 스쿼트 및 계단오르기",
+        "subtitle": "인슐린 비의존성 포도당 수송체(GLUT4) 활성화로 식후 혈당스파이크 억제",
+        "shortActionSummary": "식사 후 30분~1시간 사이 혈당이 치솟는 시점에 가만히 앉아있지 말고, 15분간 가벼운 산책이나 의자 스쿼트를 진행하여 근육으로 당분을 즉시 소모하세요.",
+        "actionSteps": [
+          {
+            "title": "1. 식후 타이밍 포착 (식사 시작 후 30분)",
+            "desc": "음식물이 소화 흡수되어 혈당 스파이크가 시작되는 골든타임에 기립",
+            "metric": "식후 30~60분 이내"
+          },
+          {
+            "title": "2. 대퇴사두근 자극 스쿼트 (15회 x 3세트)",
+            "desc": "인체 최대 글리코겐 저장소인 허벅지 근육을 자극하여 혈중 포도당 직접 흡수",
+            "metric": "의자 짚고 안전하게"
+          },
+          {
+            "title": "3. 평지 또는 복도 빠른 걷기 (15분)",
+            "desc": "소화 부담을 주지 않는 편안한 보폭으로 천천히 산책 후 마무리",
+            "metric": "총 15~20분 소요"
+          }
+        ],
+        "keyRules": [
+          "공복 상태의 고강도 운동은 저혈당 혹은 간 글리코겐 분해로 혈당 반등을 유발할 수 있으므로 식후 운동이 안전합니다."
+        ],
+        "evidence": {
+          "paperTitle": "Postprandial walking is better for lowering the glycemic effect of dinner than pre-meal exercise in individuals with type 2 diabetes",
+          "journal": "Diabetologia",
+          "year": 2016,
+          "authors": "Reynolds AN, et al.",
+          "coreSummary": "식사 후 단 10분간의 걷기만으로도 하루 중 언제든 30분을 걷는 것보다 식후 최고 혈당 피크를 평균 22% 낮추며, 특히 탄수화물 비중이 높은 저녁 식후의 혈당 강하 효과가 가장 두드러졌습니다.",
+          "sourceUrl": "https://link.springer.com/article/10.1007/s00125-016-4085-2",
+          "evidenceGrade": "Grade 1B (무작위 교차 임상)",
+          "sampleSizeOrMethod": "RCT, 식후 10분 vs 일괄 30분 비교"
+        },
+        "video": {
+          "title": "식후 15분 혈당 스파이크 막는 실내 제자리 걷기 & 카프레이즈",
+          "channel": "당뇨전문 내과클리닉 홈케어",
+          "youtubeId": "bR9Rp0FP0FM",
+          "duration": "14분 20초",
+          "summary": "관절 무리 없이 식후 즉시 소화시키며 혈당을 떨어뜨리는 가자미근 운동법",
+          "difficulty": "초급",
+          "targetTimePerDay": "매 끼니 후 15분"
+        }
+      },
+      {
+        "id": "diabetes-diet",
+        "tag": "채소-단백질-탄수화물 순서식사",
+        "title": "식사 순서 혁명: 식이섬유 먼저 먹기",
+        "subtitle": "위 배출 속도를 늦춰 탄수화물 흡수 곡선을 완만하게 만드는 과학적 식사법",
+        "shortActionSummary": "식판에 놓인 음식을 [채소 샐러드/나물 5분] → [고기/생선/두부 5분] → [밥/빵/면 마지막] 순서로 천천히 씹어 드세요.",
+        "actionSteps": [
+          {
+            "title": "1. 식이섬유 프리로딩 (첫 5분)",
+            "desc": "위벽에 점성 코팅을 형성하여 당류의 십이지장 통과 속도 지연",
+            "metric": "채소 최소 반 그릇"
+          },
+          {
+            "title": "2. 단백질·지방 섭취 (다음 5분)",
+            "desc": "인크레틴(GLP-1) 분비를 촉진해 뇌에 포만감 신호 전달 및 인슐린 분비 완화",
+            "metric": "닭가슴살, 달걀, 두부"
+          },
+          {
+            "title": "3. 복합 탄수화물 (마지막 5분)",
+            "desc": "현미, 귀리 등 잡곡밥을 반 공기 이하로 꼭꼭 씹어 섭취",
+            "metric": "20회 이상 저작"
+          }
+        ],
+        "keyRules": [
+          "식혜, 과일주스, 탄산음료 등 액상과당 음료는 위를 즉시 통과해 혈당 급등을 일으키므로 엄격히 차단합니다."
+        ],
+        "evidence": {
+          "paperTitle": "Food Order Has a Significant Impact on Postprandial Glucose and Insulin Levels in Prediabetes: A Randomized Crossover Study",
+          "journal": "Diabetes Care (American Diabetes Association)",
+          "year": 2017,
+          "authors": "Shukla AP, et al.",
+          "coreSummary": "음식의 칼로리와 구성이 동일함에도 채소 및 단백질을 탄수화물보다 먼저 섭취했을 때 식후 30분, 60분 혈당 농도가 각각 29%, 37% 현저하게 낮았고 인슐린 분비 요구량 역시 48% 절감되었습니다.",
+          "sourceUrl": "https://diabetesjournals.org/care/article/40/7/e82/36735",
+          "evidenceGrade": "Grade 1B (무작위 교차 시험)"
+        },
+        "video": {
+          "title": "혈당 스파이크 없는 식사 순서의 비밀과 일주일 식단표",
+          "channel": "대한당뇨병학회 교육위원회",
+          "youtubeId": "WU1P4HwQji4",
+          "duration": "11분 15초",
+          "summary": "외식 상황(회식, 국밥집, 중식당)에서도 적용 가능한 거꾸로 식사 실전 가이드",
+          "difficulty": "초급",
+          "targetTimePerDay": "매 식사 적용"
+        }
+      },
+      {
+        "id": "diabetes-cgm",
+        "tag": "생활습관 로그",
+        "title": "연속혈당 또는 혈당일기와 수면관리",
+        "subtitle": "수면 부족으로 인한 코르티솔 상승과 인슐린 저항성 차단",
+        "shortActionSummary": "하루 7시간의 숙면을 확보하고, 어떤 음식이 나만의 혈당 스파이크를 부르는지 2주간 혈당 일기를 작성하여 맞춤 식단을 찾으세요.",
+        "actionSteps": [
+          {
+            "title": "1. 수면 위생 준수 (자정 전 취침)",
+            "desc": "수면 6시간 미만 시 인슐린 저항성이 최대 24% 악화되므로 7시간 수면 확보",
+            "metric": "밤 11시~아침 7시"
+          },
+          {
+            "title": "2. 특정 간식 테스트 기록",
+            "desc": "빵, 떡, 믹스커피 섭취 전후 혈당 수치를 메모해 대체 간식(견과류)으로 교체",
+            "metric": "일지 작성"
+          }
+        ],
+        "keyRules": [
+          "야식을 섭취하고 바로 자면 새벽 간 포도당 신생합성이 증가해 아침 공복혈당이 급등합니다."
+        ],
+        "evidence": {
+          "paperTitle": "Sleep Duration and Quality: Impact on Lifestyle Behaviors and Cardiometabolic Health: A Scientific Statement From the American Heart Association",
+          "journal": "Circulation",
+          "year": 2022,
+          "authors": "St-Onge MP, et al.",
+          "coreSummary": "미국심장협회 성명서는 불규칙하고 6시간 이하의 수면이 인슐린 감수성을 유의하게 떨어뜨려 전당뇨에서 당뇨로의 이환 위험을 1.4배 높임을 규명하였습니다.",
+          "sourceUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001099",
+          "evidenceGrade": "AHA Scientific Statement"
+        },
+        "video": {
+          "title": "수면과 공복혈당의 상관관계: 잠만 잘 자도 공복혈당 10이 내려간다",
+          "channel": "명의가 들려주는 혈당이야기",
+          "youtubeId": "Rwlw51j2jPI",
+          "duration": "13분 05초",
+          "summary": "수면 무호흡증 교정과 침실 암막 커튼, 야간 블루라이트 차단이 혈당에 미치는 영향",
+          "difficulty": "초급",
+          "targetTimePerDay": "매일 밤 7시간"
+        }
+      }
+    ]
+  },
+  {
+    "id": "dyslipidemia",
+    "name": "이상지질혈증",
+    "englishName": "Dyslipidemia",
+    "shortDesc": "총콜레스테롤 200~239, LDL 130~159, 중성지방 150~199mg/dL 구간",
+    "category": "심뇌혈관질환군",
+    "badge": "LDL 130-159 mg/dL 또는 TG 150-199",
+    "normalRangeLabel": "정상: LDL < 100~120, TG < 150, HDL > 40~50",
+    "observationThreshold": "요관찰 기준: 경계역 이상지질혈증 (LDL 130~159 또는 TG 150~199)",
+    "urgency": "주의요망",
+    "colorTone": {
+      "primary": "from-sky-600 to-indigo-600",
+      "border": "border-sky-200 hover:border-sky-500",
+      "badgeBg": "bg-sky-50 text-sky-700 border-sky-200",
+      "badgeText": "text-sky-700",
+      "iconBg": "bg-sky-100 text-sky-600"
+    },
+    "keywords": [
+      {
+        "id": "dyslipidemia-diet",
+        "tag": "포화지방/트랜스지방 절제",
+        "title": "LDL 콜레스테롤 낮추는 불포화지방 중심 식단",
+        "subtitle": "삼겹살·버터 대신 등푸른생선과 올리브유, 오메가-3 중심 교체",
+        "shortActionSummary": "붉은 육류의 기름진 부위와 베이커리 쇼트닝을 피하고, 주 2회 고등어·연어 등 등푸른생선 및 한 줌 견과류를 섭취하세요.",
+        "actionSteps": [
+          {
+            "title": "1. 조리용 기름을 엑스트라버진 올리브유로 교체",
+            "desc": "단일불포화지방산(올레산)이 LDL 산화를 방지하고 혈관벽 염증 저하",
+            "metric": "가열 요리 시 주의"
+          },
+          {
+            "title": "2. 주 2회 등푸른생선 섭취",
+            "desc": "EPA 및 DHA 오메가3 지방산이 간에서의 중성지방 합성을 억제",
+            "metric": "고등어 1토막 (100g)"
+          },
+          {
+            "title": "3. 수용성 식이섬유(베타글루칸) 섭취",
+            "desc": "장내에서 담즙산과 결합하여 체외 배출됨으로써 혈중 콜레스테롤 소모 유도",
+            "metric": "오트밀, 보리밥 권장"
+          }
+        ],
+        "keyRules": [
+          "식품 속 콜레스테롤(달걀 노른자 등)보다 포화지방산(육류 기름, 팜유, 버터)이 간의 LDL 수용체를 파괴하여 혈중 수치를 훨씬 크게 높입니다."
+        ],
+        "evidence": {
+          "paperTitle": "Reduction in saturated fat intake for cardiovascular disease",
+          "journal": "Cochrane Database of Systematic Reviews",
+          "year": 2020,
+          "authors": "Hooper L, et al.",
+          "coreSummary": "15개 RCT(약 59,000명)에 대한 코크란 메타분석 결과, 포화지방 섭취를 줄이고 불포화지방산으로 대체했을 때 심혈관 사건 발생 위험이 21% 유의하게 감소하였습니다.",
+          "sourceUrl": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011737.pub2/full",
+          "evidenceGrade": "Cochrane Review (Level 1)"
+        },
+        "video": {
+          "title": "나쁜 콜레스테롤(LDL) 30 낮추는 음식과 섭취법",
+          "channel": "심장내과 전문의 이상지질혈증 특강",
+          "youtubeId": "bR9Rp0FP0FM",
+          "duration": "16분 40초",
+          "summary": "오트밀과 사과 펙틴, 들기름의 효과적인 보관법과 영양성분표 확인 요령",
+          "difficulty": "초급",
+          "targetTimePerDay": "매일 실천"
+        }
+      },
+      {
+        "id": "dyslipidemia-exercise",
+        "tag": "중강도 유산소 150분",
+        "title": "중성지방(TG)을 태우는 유산소와 HDL 증진 운동",
+        "subtitle": "지단백 리파아제(LPL) 효소를 자극해 혈중 중성지방 분해 가속",
+        "shortActionSummary": "주 5회 이상, 1회당 30~45분씩 파워워킹이나 실내 자전거를 지속하여 근육 내 지방산 산화를 촉진합니다.",
+        "actionSteps": [
+          {
+            "title": "1. 30분 이상 지속 유산소",
+            "desc": "운동 시작 20분 이후부터 혈중 유리지방산과 중성지방 연소율 급증",
+            "metric": "주당 150~300분"
+          },
+          {
+            "title": "2. 인터벌 걷기/조깅 접목",
+            "desc": "3분 빠르게 걷기 + 2분 천천히 걷기를 6회 반복하여 심폐지구력 향상",
+            "metric": "HDL 상승 효과"
+          }
+        ],
+        "keyRules": [
+          "알코올은 간에서 중성지방 합성을 폭발적으로 증가시키므로 중성지방 200mg/dL 이상 시 완전 금주해야 합니다."
+        ],
+        "evidence": {
+          "paperTitle": "2022 Guidelines for the Management of Dyslipidemia",
+          "journal": "Journal of Lipid and Atherosclerosis",
+          "year": 2023,
+          "authors": "Korean Society of Lipid and Atherosclerosis",
+          "coreSummary": "한국지질동맥경화학회 지침은 주당 150분 이상의 중강도 유산소 운동이 중성지방을 20~30% 감소시키고 유익한 HDL을 5~10% 상승시킨다고 명시하고 있습니다.",
+          "sourceUrl": "https://e-jla.org/journal/view.php?doi=10.12997/jla.2023.12.1.1",
+          "evidenceGrade": "대한지질동맥경화학회 공식 지침"
+        },
+        "video": {
+          "title": "혈관 속 기름때 빼는 30분 실내 유산소 파워 워킹",
+          "channel": "국민건강보험공단 건강iN 홈트",
+          "youtubeId": "dQjrDqEhkfE",
+          "duration": "25분 00초",
+          "summary": "층간소음 없이 집에서 심박수를 안정적으로 높여 혈중 지질을 태우는 유산소",
+          "difficulty": "초급",
+          "targetTimePerDay": "하루 30분"
+        }
+      }
+    ]
+  },
+  {
+    "id": "liver",
+    "name": "간질환",
+    "englishName": "Liver Function Caution",
+    "shortDesc": "AST/ALT 41~99 U/L, 감마GTP 상승 등 비알코올성/알코올성 지방간 주의",
+    "category": "소화기계 질환군",
+    "badge": "AST/ALT 41-99 U/L (경도 상승)",
+    "normalRangeLabel": "정상 간수치: AST/ALT 40 U/L 이하, γ-GTP 남 11~63 / 여 8~35",
+    "observationThreshold": "요관찰 기준: AST/ALT 41~99 U/L 또는 γ-GTP 경도 상승 (간기능 이상 의심)",
+    "urgency": "적극개선",
+    "colorTone": {
+      "primary": "from-teal-600 to-emerald-700",
+      "border": "border-teal-200 hover:border-teal-500",
+      "badgeBg": "bg-teal-50 text-teal-700 border-teal-200",
+      "badgeText": "text-teal-700",
+      "iconBg": "bg-teal-100 text-teal-600"
+    },
+    "keywords": [
+      {
+        "id": "liver-abstinence",
+        "tag": "절주/금주 수칙",
+        "title": "간세포 재생을 위한 4주 간헐적 또는 완전 금주",
+        "subtitle": "아세트알데히드 독성 제거와 간 내 중성지방 축적 역전",
+        "shortActionSummary": "간수치 상승 소견 시 최소 4주간 일체의 음주를 멈추고 간세포의 자가 재생 및 해독 시스템을 회복시키세요.",
+        "actionSteps": [
+          {
+            "title": "1. 4주 클린 알코올 프리 챌린지",
+            "desc": "음주를 중단하면 2~4주 만에 간세포 염증 수치(AST/ALT)가 급격히 정상화",
+            "metric": "무알코올 대체제 활용"
+          },
+          {
+            "title": "2. 미검증 민간 건강즙 중단",
+            "desc": "홍삼엑기스, 칡즙, 헛개나무 고농축액 등은 간독성을 악화시킬 수 있으므로 섭취 중지",
+            "metric": "전문의 상담 전 복용 금지"
+          }
+        ],
+        "keyRules": [
+          "간은 70%가 손상될 때까지 자각 증상이 없는 '침묵의 장기'이므로 수치 이상 시 즉시 생활개선에 돌입해야 합니다."
+        ],
+        "evidence": {
+          "paperTitle": "KASL Clinical Practice Guidelines: Management of Non-Alcoholic Fatty Liver Disease",
+          "journal": "Clinical and Molecular Hepatology",
+          "year": 2021,
+          "authors": "The Korean Association for the Study of the Liver (KASL)",
+          "coreSummary": "대한간학회 진료지침에 따르면 체중 5~7% 감량과 음주 중단은 간 내 지방 침착과 간세포 괴사, 염증 반응을 80% 이상 유의하게 호전시킵니다.",
+          "sourceUrl": "https://e-cmh.org/journal/view.php?doi=10.3350/cmh.2021.0178",
+          "evidenceGrade": "Grade 1A (대한간학회 진료지침)"
+        },
+        "video": {
+          "title": "지방간과 높은 간수치를 한 달 만에 정상으로 돌리는 법",
+          "channel": "소화기내과 간전문의 건강강좌",
+          "youtubeId": "bAQTHHS2YVk",
+          "duration": "18분 12초",
+          "summary": "과당(과일주스)의 위험성과 알코올 분해 기전, 간 회복 식단 가이드",
+          "difficulty": "초급",
+          "targetTimePerDay": "생활 전반 적용"
+        }
+      },
+      {
+        "id": "liver-diet",
+        "tag": "단순당/과당 제한",
+        "title": "비알코올성 지방간(NAFLD) 잡는 과당 다이어트",
+        "subtitle": "간으로 직행해 지방간을 만드는 액상과당과 흰 탄수화물 차단",
+        "shortActionSummary": "탄산음료, 믹스커피, 과일 농축주스를 끊고 원물 형태의 통곡물과 양질의 식물성 단백질로 전환합니다.",
+        "actionSteps": [
+          {
+            "title": "1. 음료수 섭취를 생수 또는 보리차로 교체",
+            "desc": "액상과당은 인슐린을 거치지 않고 간에서 즉각 지방으로 합성됨",
+            "metric": "하루 1.5L 수분 섭취"
+          },
+          {
+            "title": "2. 야식 및 정제 탄수화물 제한",
+            "desc": "간에 중성지방이 끼는 인슐린 저항성 상태를 개선하기 위해 12시간 공복 유지",
+            "metric": "저녁 7시 이후 금식"
+          }
+        ],
+        "keyRules": [
+          "급격한 단식은 오히려 간 내 유리지방산 유입을 늘려 지방간을 악화시킬 수 있으므로 주당 0.5~1kg의 점진적 감량을 권장합니다."
+        ],
+        "evidence": {
+          "paperTitle": "Fructose and hepatic steatosis: Evidence from epidemiology and experimental models",
+          "journal": "Journal of Hepatology",
+          "year": 2018,
+          "authors": "Softic S, et al.",
+          "coreSummary": "과당(Fructose)은 간 내 지방 신생합성(DNL) 경로를 폭발적으로 자극하며, 단순당 섭취 제한만으로 2주 만에 간 지방량이 최대 22% 감소함을 확인했습니다.",
+          "sourceUrl": "https://www.journal-of-hepatology.eu/article/S0168-8278(18)30064-5/fulltext",
+          "evidenceGrade": "체계적 종단 연구"
+        },
+        "video": {
+          "title": "간에 가장 나쁜 최악의 음식 3가지와 간세포를 살리는 식사",
+          "channel": "간 질환 클리닉 닥터 토크",
+          "youtubeId": "3ojB9kC6354",
+          "duration": "13분 45초",
+          "summary": "지방간 환자가 흔히 하는 식이 실수와 단백질 위주 간 보호 식단 구성",
+          "difficulty": "초급",
+          "targetTimePerDay": "매 식사 적용"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ckd",
+    "name": "만성콩팥질환",
+    "englishName": "Chronic Kidney Disease Caution",
+    "shortDesc": "eGFR 60~89 mL/min (경도 저하) 또는 요단백 약양성(±, 1+) 주의",
+    "category": "비뇨기·신장질환군",
+    "badge": "eGFR 60-89 mL/min 또는 요단백 (±)",
+    "normalRangeLabel": "정상 신기능: eGFR 90 이상, 요단백 음성(-), 혈청 크레아티닌 정상",
+    "observationThreshold": "요관찰 기준: eGFR 60~89 mL/min (신사구체여과율 경도 저하) 또는 미세단백뇨",
+    "urgency": "주의요망",
+    "colorTone": {
+      "primary": "from-cyan-600 to-blue-700",
+      "border": "border-cyan-200 hover:border-cyan-500",
+      "badgeBg": "bg-cyan-50 text-cyan-700 border-cyan-200",
+      "badgeText": "text-cyan-700",
+      "iconBg": "bg-cyan-100 text-cyan-600"
+    },
+    "keywords": [
+      {
+        "id": "ckd-salt-protein",
+        "tag": "저염 및 적정 단백질",
+        "title": "사구체 고혈압을 막는 저염 식단과 단백질 과잉 금지",
+        "subtitle": "과도한 헬스 단백질 보충제와 짠 음식이 신장에 주는 과부하 차단",
+        "shortActionSummary": "신사구체의 과여과(Hyperfiltration) 손상을 줄이기 위해 나트륨을 제한하고 단백질 보충제의 무분별한 과다 섭취를 중단하세요.",
+        "actionSteps": [
+          {
+            "title": "1. 체중당 단백질 0.8g 유지",
+            "desc": "체중 70kg 기준 하루 56g 안팎으로 살코기, 달걀, 생선 위주의 적정량 분할 섭취",
+            "metric": "보충제 복용 중단"
+          },
+          {
+            "title": "2. 나트륨 하루 2g 미만 엄수",
+            "desc": "체액 저류와 신혈관 수축을 막아 사구체 내압을 낮춤",
+            "metric": "가공육 배제"
+          },
+          {
+            "title": "3. 비스테로이드 소염진통제(NSAIDs) 주의",
+            "desc": "이부프로펜 계열 진통제 남용 시 신혈류량이 급감하므로 아세트아미노펜 우선 고려",
+            "metric": "복용 전 의사 상담"
+          }
+        ],
+        "keyRules": [
+          "탈수는 급성 신손상을 유발할 수 있으므로 땀을 많이 흘렸을 때는 깨끗한 물을 조금씩 자주 보충합니다."
+        ],
+        "evidence": {
+          "paperTitle": "Executive summary of the KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+          "journal": "Kidney International",
+          "year": 2024,
+          "authors": "Kidney Disease: Improving Global Outcomes (KDIGO) CKD Work Group",
+          "coreSummary": "2024 KDIGO 최신 국제 가이드라인은 단백질 섭취량을 체중 kg당 0.8g 수준으로 조절하고 고단백 식이(>1.3g/kg)를 피할 것을 강력히 권고(Practice Point 3.3.1.1)하며, 이는 신기능 감소 속도를 현저히 지연시킵니다.",
+          "sourceUrl": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "evidenceGrade": "KDIGO 2024 국제 가이드라인"
+        },
+        "video": {
+          "title": "신장내과 교수가 경고하는 콩팥 망치는 대표 생활습관 3가지",
+          "channel": "대한신장학회 콩팥 건강 지킴이",
+          "youtubeId": "WU1P4HwQji4",
+          "duration": "14분 50초",
+          "summary": "건강검진 요단백 양성의 의미와 신장 기능(eGFR)을 지키는 물 마시기 및 식이 원칙",
+          "difficulty": "초급",
+          "targetTimePerDay": "매일 실천"
+        }
+      },
+      {
+        "id": "ckd-hydration",
+        "tag": "수분 밸런스 및 혈압관리",
+        "title": "신혈류 유지와 혈압 120/80 이하 철저 관리",
+        "subtitle": "신장 모세혈관 다발을 지키는 1차 방어선",
+        "shortActionSummary": "충분한 미온수를 매일 1.5~2.0L 섭취하고, 수축기 혈압을 철저히 관리하여 신장 사구체 경화를 예방합니다.",
+        "actionSteps": [
+          {
+            "title": "1. 기상 직후 및 일과 중 미온수 섭취",
+            "desc": "밤새 농축된 요독과 신결석 인자를 희석하고 신장 관류 유지",
+            "metric": "하루 7~8잔"
+          },
+          {
+            "title": "2. 금연 필수 실천",
+            "desc": "니코틴은 신장 미세혈관을 강하게 수축시켜 eGFR 감소를 가속화",
+            "metric": "금연 클리닉 연계"
+          }
+        ],
+        "keyRules": [
+          "신기능이 중증으로 저하된 상태가 아닌 '요관찰' 단계에서는 무조건적인 칼륨 제한보다는 자연식 위주의 섭취가 권장됩니다."
+        ],
+        "evidence": {
+          "paperTitle": "Blood Pressure Targets in Chronic Kidney Disease: A Systematic Review and Meta-Analysis",
+          "journal": "Lancet",
+          "year": 2021,
+          "authors": "Malhotra R, et al.",
+          "coreSummary": "수축기 혈압을 120mmHg 미만으로 엄격히 관리한 군에서 만성콩팥질환 환자의 심혈관 사망률 및 말기 신부전 진행 위험이 18% 감소함을 보고했습니다.",
+          "sourceUrl": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)00588-3/fulltext",
+          "evidenceGrade": "Systematic Review & Meta-analysis"
+        },
+        "video": {
+          "title": "건강검진에서 신장 수치 주의 떴을 때 반드시 지켜야 할 생활법",
+          "channel": "메디컬 에듀케이션 코리아",
+          "youtubeId": "Rwlw51j2jPI",
+          "duration": "10분 20초",
+          "summary": "크레아티닌 수치와 사구체여과율 수치를 이해하고 콩팥을 아끼는 수분 관리법",
+          "difficulty": "초급",
+          "targetTimePerDay": "수시 확인"
+        }
+      }
+    ]
+  },
+  {
+    "id": "tuberculosis",
+    "name": "결핵",
+    "englishName": "Tuberculosis Screen",
+    "shortDesc": "흉부 X-ray 비활동성 결핵흔적(비활동성 병변) 또는 잠복결핵 소견",
+    "category": "호흡기·감염성 질환군",
+    "badge": "흉부선 흉터/비활동성 병변 관찰",
+    "normalRangeLabel": "정상: 흉부 X선 활동성/비활동성 병변 없음",
+    "observationThreshold": "요관찰 기준: 비활동성 결핵 병변(Inactivet TB lesion) 또는 진구성 병변",
+    "urgency": "주의요망",
+    "colorTone": {
+      "primary": "from-blue-700 to-indigo-800",
+      "border": "border-blue-200 hover:border-blue-500",
+      "badgeBg": "bg-blue-50 text-blue-700 border-blue-200",
+      "badgeText": "text-blue-700",
+      "iconBg": "bg-blue-100 text-blue-600"
+    },
+    "keywords": [
+      {
+        "id": "tb-symptom-check",
+        "tag": "2주 이상 기침 감시",
+        "title": "2주 이상 지속되는 기침·야간 발열·체중감소 모니터링",
+        "subtitle": "비활동성 결핵균의 재활성화(Reactivation) 경고 징후 감별",
+        "shortActionSummary": "단순 감기로 오인하기 쉬운 2주 이상의 기침, 미열, 식은땀, 이유 없는 체중 감소 발생 시 즉시 호흡기내과를 방문해 객담 검사를 받아야 합니다.",
+        "actionSteps": [
+          {
+            "title": "1. 2주 기침 알림 룰 설정",
+            "desc": "기침이 14일 이상 이어지면 일반 감기약 복용을 멈추고 흉부 재검사 진행",
+            "metric": "달력에 시작일 체크"
+          },
+          {
+            "title": "2. 아침 체온 및 체중 기록",
+            "desc": "오후~야간에 체온이 37.5도 내외로 미열이 나고 식은땀(Night sweats)이 나는지 확인",
+            "metric": "주 1회 체중 측정"
+          }
+        ],
+        "keyRules": [
+          "비활동성 결핵 흔적은 과거 앓고 지나간 상흔이지만, 면역력이 급격히 떨어지면 체내 잔존 결핵균이 재증식할 수 있습니다."
+        ],
+        "evidence": {
+          "paperTitle": "Korean Guidelines for Tuberculosis - 4th Edition",
+          "journal": "Tuberculosis and Respiratory Diseases",
+          "year": 2020,
+          "authors": "Joint Committee for the Development of Korean Guidelines for Tuberculosis",
+          "coreSummary": "질병관리청 및 결핵및호흡기학회 지침은 비활동성 결핵 병변 보유자가 면역저하 상황에서 활동성 결핵으로 발전할 위험이 일반인의 5~10배에 달하므로 조기 증상 모니터링과 면역 유지가 핵심임을 강조합니다.",
+          "sourceUrl": "https://www.e-trd.org/journal/view.php?doi=10.4046/trd.2020.0094",
+          "evidenceGrade": "질병관리청 국가 결핵 가이드라인"
+        },
+        "video": {
+          "title": "건강검진 폐 X-ray '결핵 흔적' 발견, 위험한 건가요?",
+          "channel": "호흡기내과 전문의 팩트체크",
+          "youtubeId": "bAQTHHS2YVk",
+          "duration": "11분 30초",
+          "summary": "활동성 결핵과 비활동성 결핵의 차이점 및 꼭 알아야 할 4가지 재발 징후",
+          "difficulty": "초급",
+          "targetTimePerDay": "증상 자가체크"
+        }
+      },
+      {
+        "id": "tb-immunity",
+        "tag": "면역력 강화 영양",
+        "title": "세포 매개성 면역 강화를 위한 균형 단백질과 비타민 D",
+        "subtitle": "결핵균을 잠재우는 대식세포와 T림프구 기능 극대화",
+        "shortActionSummary": "극단적 초절식 다이어트를 피하고 하루 세끼 규칙적인 단백질 공급과 햇빛 노출로 비타민 D 합성을 유지하세요.",
+        "actionSteps": [
+          {
+            "title": "1. 충분한 영양 보충 (고단백 식단)",
+            "desc": "영양실조와 급격한 체중 감소는 결핵균 증식의 가장 큰 원인",
+            "metric": "하루 세끼 정시 식사"
+          },
+          {
+            "title": "2. 실외 산책 및 비타민 D 합성",
+            "desc": "비타민 D는 항결핵 펩타이드(카텔리시딘) 분비를 촉진해 대식세포 살균력 향상",
+            "metric": "햇빛 20분 이상"
+          }
+        ],
+        "keyRules": [
+          "과도한 야근, 만성 피로, 음주는 면역 T세포 기능을 억제하므로 충분한 휴식이 필수적입니다."
+        ],
+        "evidence": {
+          "paperTitle": "Vitamin D supplementation for the prevention and treatment of tuberculosis",
+          "journal": "Cochrane Database of Systematic Reviews",
+          "year": 2019,
+          "authors": "Grobler L, et al.",
+          "coreSummary": "비타민 D 결핍 상태는 결핵균에 대한 세포성 면역 저하와 밀접히 연관되어 있으며, 적정 농도 유지가 호흡기 면역 방어벽 유지에 필수적임을 확인하였습니다.",
+          "sourceUrl": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011179.pub3/full",
+          "evidenceGrade": "Cochrane Systematic Review"
+        },
+        "video": {
+          "title": "기관지와 폐 면역력을 높이는 호흡 재활 운동과 식단",
+          "channel": "국가결핵안심센터 건강정보",
+          "youtubeId": "3ojB9kC6354",
+          "duration": "9분 45초",
+          "summary": "흉곽 확장 심호흡 스트레칭과 폐 건강을 돕는 필수 항산화 식품",
+          "difficulty": "초급",
+          "targetTimePerDay": "하루 10분"
+        }
+      }
+    ]
+  },
+  {
+    "id": "obesity",
+    "name": "비만",
+    "englishName": "Obesity & Abdominal Fat",
+    "shortDesc": "BMI 25.0~29.9 kg/m² 또는 복부둘레 남≥90cm / 여≥85cm 주의",
+    "category": "내분비·대사질환군",
+    "badge": "BMI 25-29.9 kg/m² (1단계 비만/과체중)",
+    "normalRangeLabel": "정상: BMI 18.5~22.9 kg/m², 복부둘레 남<90 / 여<85",
+    "observationThreshold": "요관찰 기준: BMI 25.0~29.9 kg/m² 또는 복부 비만 경계",
+    "urgency": "적극개선",
+    "colorTone": {
+      "primary": "from-emerald-600 to-green-700",
+      "border": "border-emerald-200 hover:border-emerald-500",
+      "badgeBg": "bg-emerald-50 text-emerald-700 border-emerald-200",
+      "badgeText": "text-emerald-700",
+      "iconBg": "bg-emerald-100 text-emerald-600"
+    },
+    "keywords": [
+      {
+        "id": "obesity-aerobic-zone",
+        "tag": "존2 유산소 및 근력운동",
+        "title": "체지방 연소 최적화 Zone 2 유산소와 기초대사량 유지",
+        "subtitle": "최대 심박수의 60~70% 구간에서 진행하는 지속적 지방 산화 트레이닝",
+        "shortActionSummary": "코로 호흡하며 약간 숨이 차지만 대화가 가능한 속도로 40분 이상 빠르게 걷거나 실내 자전거를 타고, 하체 근력운동을 병행하세요.",
+        "actionSteps": [
+          {
+            "title": "1. Zone 2 심박수 유지 걷기 (40분)",
+            "desc": "탄수화물 대신 유리지방산을 미토콘드리아에서 직접 연소시키는 이상적 운동 강도",
+            "metric": "심박수 110~130bpm"
+          },
+          {
+            "title": "2. 복합 하체 근력 루틴 (주 3회)",
+            "desc": "스쿼트, 런지, 레그프레스 등으로 기초대사량의 60%를 차지하는 골격근 보존",
+            "metric": "세트당 12회 3세트"
+          },
+          {
+            "title": "3. 일상 속 비운동성 열생산(NEAT) 증가",
+            "desc": "엘리베이터 대신 계단 이용, 점심 식후 산책으로 하루 8,000보 달성",
+            "metric": "보수계 어플 활용"
+          }
+        ],
+        "keyRules": [
+          "근육량이 손실되는 초저열량 굶기 다이어트는 기초대사량을 떨어뜨려 요요현상과 내장지방 축적을 가속합니다."
+        ],
+        "evidence": {
+          "paperTitle": "2022 Korean Society for the Study of Obesity Guidelines for the Management of Obesity in Korea",
+          "journal": "Journal of Obesity & Metabolic Syndrome",
+          "year": 2023,
+          "authors": "Kim BY, et al.",
+          "coreSummary": "대한비만학회 가이드라인은 초기 체중의 5~10% 감량 시 혈압, 혈당, 중성지방 등 모든 심대사 지표가 극적으로 개선되며, 유산소와 저항성 운동의 병행이 내장지방 감소에 가장 우수한 효과를 냄을 입증하고 있습니다.",
+          "sourceUrl": "https://www.jomes.org/journal/view.html?doi=10.7570/jomes22056",
+          "evidenceGrade": "대한비만학회 공식 임상진료지침"
+        },
+        "video": {
+          "title": "내장지방만 쏙 빼는 Zone 2 유산소의 과학과 홈트레이닝",
+          "channel": "스포츠의학 전문의 피트니스 랩",
+          "youtubeId": "zZlS_TRdXHM",
+          "duration": "15분 30초",
+          "summary": "관절에 충격을 주지 않으면서 복부 내장지방을 가장 빠르게 태우는 걷기 테크닉",
+          "difficulty": "초급",
+          "targetTimePerDay": "하루 40분"
+        }
+      },
+      {
+        "id": "obesity-intermittent-diet",
+        "tag": "12:12 간헐적 단식",
+        "title": "야간 12시간 공복 유지와 혈당 스파이크 없는 저탄수 식단",
+        "subtitle": "인슐린 분비를 최소화하여 체지방 분해 호르몬(리파아제) 가동",
+        "shortActionSummary": "저녁 7시 식사 완료 후 다음 날 아침 7시까지 12시간 동안 물만 마시고 공복을 유지하여 간과 췌장의 인슐린 피로를 덜어주세요.",
+        "actionSteps": [
+          {
+            "title": "1. 12시간 야간 공복 지키기",
+            "desc": "소화기관 휴식 및 자가포식(Autophagy) 활성화로 지방 분해 모드 전환",
+            "metric": "저녁 7시 ~ 아침 7시"
+          },
+          {
+            "title": "2. 매 끼니 단백질 20g + 채소 1그릇",
+            "desc": "충분한 씹는 행위와 식이섬유로 위 포만감 호르몬(렙틴) 촉진",
+            "metric": "식단 단백질 비율 25%"
+          },
+          {
+            "title": "3. 달콤한 간식(과자, 아이스크림) 제거",
+            "desc": "당류 섭취는 즉시 지방으로 변환되므로 견과류, 방울토마토로 대체",
+            "metric": "가공당 섭취 0g 도전"
+          }
+        ],
+        "keyRules": [
+          "공복 후 첫 식사는 혈당을 급격히 올리지 않도록 채소와 단백질 위주로 시작해야 폭식을 막을 수 있습니다."
+        ],
+        "evidence": {
+          "paperTitle": "Effects of Intermittent Fasting on Health, Aging, and Disease",
+          "journal": "The New England Journal of Medicine (NEJM)",
+          "year": 2019,
+          "authors": "de Cabo R, Mattson MP.",
+          "coreSummary": "공복 시간을 체계적으로 확보하는 간헐적 대사 스위칭(Metabolic Switching)은 세포 내 항산화 방어, 인슐린 감수성 개선 및 내장지방 분해를 촉진하는 유의미한 임상 효능을 증명했습니다.",
+          "sourceUrl": "https://www.nejm.org/doi/full/10.1056/nejmra1905136",
+          "evidenceGrade": "NEJM Review Article"
+        },
+        "video": {
+          "title": "굶지 않고 뱃살 빼는 12:12 식사법과 현실적인 직장인 식단",
+          "channel": "가정의학과 비만클리닉 솔루션",
+          "youtubeId": "Rwlw51j2jPI",
+          "duration": "13분 40초",
+          "summary": "점심 구내식당 이용법, 회식 대처 요령과 정체기 극복 팁",
+          "difficulty": "초급",
+          "targetTimePerDay": "매일 실천"
+        }
+      }
+    ]
+  },
+  {
+    "id": "heart",
+    "name": "심장질환",
+    "englishName": "Cardiovascular Health",
+    "shortDesc": "심전도 경미한 이상(동성부정맥, 비특이적 ST변화) 또는 심혈관 위험요인",
+    "category": "심뇌혈관질환군",
+    "badge": "심전도 경미한 이상/위험군",
+    "normalRangeLabel": "정상: 정상 동율동 심전도(Normal Sinus Rhythm), 흉통 없음",
+    "observationThreshold": "요관찰 기준: 경미한 부정맥 소견(조기수축 등) 또는 다발성 위험요인 동반",
+    "urgency": "주의요망",
+    "colorTone": {
+      "primary": "from-blue-600 to-sky-700",
+      "border": "border-blue-200 hover:border-blue-500",
+      "badgeBg": "bg-blue-50 text-blue-700 border-blue-200",
+      "badgeText": "text-blue-700",
+      "iconBg": "bg-blue-100 text-blue-600"
+    },
+    "keywords": [
+      {
+        "id": "heart-red-flags",
+        "tag": "위험 징후 인지",
+        "title": "심혈관 응급 신호 3가지와 즉시 대처 프로토콜",
+        "subtitle": "조이는 가슴 통증, 호흡 곤란, 턱/어깨로 뻗치는 방사통 구별",
+        "shortActionSummary": "가슴을 쥐어짜거나 짓누르는 통증이 10분 이상 지속되고 식은땀이나 호흡곤란이 동반되면 지체 없이 119를 부르세요.",
+        "actionSteps": [
+          {
+            "title": "1. 흉통 양상 확인",
+            "desc": "고춧가루를 뿌린 듯 타는 느낌이나 무거운 돌을 얹어놓은 듯한 압박감인지 관찰",
+            "metric": "10분 이상 지속 시"
+          },
+          {
+            "title": "2. 방사통 부위 확인",
+            "desc": "왼쪽 어깨, 팔 안쪽, 턱 밑 또는 등 뒤로 통증이 뻗치는지 자가 점검",
+            "metric": "식은땀 동반 여부"
+          },
+          {
+            "title": "3. 비상 상황 시 119 연락",
+            "desc": "자가 운전은 절대 금지하며 환자를 편안히 앉힌 자세로 구급차 대기",
+            "metric": "골든타임 2시간 이내"
+          }
+        ],
+        "keyRules": [
+          "안정 시 사라지는 경미한 흉통이라도 운동 시나 계단 오를 때 반복된다면 협심증 가능성이 높으므로 심장내과 정밀검사가 필요합니다."
+        ],
+        "evidence": {
+          "paperTitle": "2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain",
+          "journal": "Circulation",
+          "year": 2021,
+          "authors": "Gulati M, Levy PD, Mukherjee D, et al.",
+          "coreSummary": "미국심장학회(AHA/ACC) 흉통 가이드라인은 비전형적 흉통이라도 심혈관 위험요인(고혈압, 이상지질혈증 등)이 있는 환자에서 조기 평가와 응급 대응 프로토콜이 심근경색 사망률을 40% 이상 낮춘다고 명시합니다.",
+          "sourceUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001029",
+          "evidenceGrade": "AHA/ACC Clinical Practice Guideline"
+        },
+        "video": {
+          "title": "심장마비 전조증상 5가지와 협심증 통증의 결정적 차이",
+          "channel": "대한심장학회 심혈관 바로알기",
+          "youtubeId": "WU1P4HwQji4",
+          "duration": "12분 15초",
+          "summary": "단순 역류성 식도염 통증과 관상동맥 협착으로 인한 심장 통증 구별법",
+          "difficulty": "초급",
+          "targetTimePerDay": "상시 숙지"
+        }
+      },
+      {
+        "id": "heart-aerobic-safe",
+        "tag": "심폐 안심 유산소",
+        "title": "심장 부담을 최소화하는 점진적 유산소 운동",
+        "subtitle": "갑작스러운 전력 질주 대신 웜업-본운동-쿨다운의 3단계 접근",
+        "shortActionSummary": "아침 찬 공기 노출을 피하고 실내나 따뜻한 낮 시간에 준비운동 10분, 가벼운 걷기 30분, 마무리 5분을 지켜 심장 박동을 점진적으로 적응시키세요.",
+        "actionSteps": [
+          {
+            "title": "1. 실내 웜업 스트레칭 (10분)",
+            "desc": "급격한 관상동맥 수축을 예방하고 말초 모세혈관을 서서히 확장",
+            "metric": "실내 온도 22도 유지"
+          },
+          {
+            "title": "2. 완만한 유산소 걷기 (30분)",
+            "desc": "숨이 약간 찰 정도를 유지하며 심박수가 급등하지 않도록 속도 제어",
+            "metric": "보행 속도 4.5~5km/h"
+          },
+          {
+            "title": "3. 쿨다운 및 안정 (5분)",
+            "desc": "급정지 시 정맥 환류 저하로 생길 수 있는 저혈압·어지럼증 방지",
+            "metric": "제자리 걷기 후 착석"
+          }
+        ],
+        "keyRules": [
+          "추운 겨울철이나 일교차가 큰 새벽에는 혈관이 급수축하므로 야외 운동을 금하고 실내 운동으로 대체합니다."
+        ],
+        "evidence": {
+          "paperTitle": "2020 ESC Guidelines on sports cardiology and exercise in patients with cardiovascular disease",
+          "journal": "European Heart Journal",
+          "year": 2021,
+          "authors": "Pelliccia A, et al.",
+          "coreSummary": "유럽심장학회(ESC) 운동 가이드라인에 따르면 심혈관 질환 경계군에서 주당 150분의 규칙적인 저·중강도 유산소 운동은 전체 심혈관 사망률을 20~30% 낮추며 심근의 산소 공급 효율을 극대화합니다.",
+          "sourceUrl": "https://academic.oup.com/eurheartj/article/42/1/17/5898937",
+          "evidenceGrade": "ESC Clinical Practice Guidelines"
+        },
+        "video": {
+          "title": "심장이 약한 분들을 위한 무리 없는 20분 심장 튼튼 걷기 운동",
+          "channel": "심장재활클리닉 피지컬 테라피",
+          "youtubeId": "dQjrDqEhkfE",
+          "duration": "21분 00초",
+          "summary": "맥박을 손목으로 직접 재며 안전 구간 내에서 운동하는 심장 보호 홈트",
+          "difficulty": "초급",
+          "targetTimePerDay": "주 4~5회 30분"
+        }
+      }
+    ]
+  }
+]

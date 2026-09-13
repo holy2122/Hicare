@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { HEALTH_CONDITIONS, HealthCondition, HealthKeywordTopic } from "../data/healthData";
+import React, { useEffect, useMemo, useState } from "react";
+import { HealthCondition, HealthKeywordTopic, loadHealthConditions } from "../data/healthData";
 import { Navbar } from "../components/Navbar";
 import { ConditionCard } from "../components/ConditionCard";
 import { KeywordTagBar } from "../components/KeywordTagBar";
@@ -25,12 +25,14 @@ const CATEGORY_TABS = [
 ];
 
 function ListView({
+  conditions,
   onSelectCondition,
   searchQuery,
   setSearchQuery,
   categoryFilter,
   setCategoryFilter,
 }: {
+  conditions: HealthCondition[];
   onSelectCondition: (condition: HealthCondition) => void;
   searchQuery: string;
   setSearchQuery: (value: string) => void;
@@ -38,7 +40,7 @@ function ListView({
   setCategoryFilter: (value: string) => void;
 }) {
   const filteredConditions = useMemo(() => {
-    return HEALTH_CONDITIONS.filter((item) => {
+    return conditions.filter((item) => {
       const matchCategory = categoryFilter === "ALL" || item.category.includes(categoryFilter);
       const q = searchQuery.trim().toLowerCase();
       if (!q) return matchCategory;
@@ -50,7 +52,7 @@ function ListView({
       ].some((value) => value.toLowerCase().includes(q));
       return matchCategory && matchesSearch;
     });
-  }, [categoryFilter, searchQuery]);
+  }, [categoryFilter, conditions, searchQuery]);
 
   return (
     <>
@@ -250,9 +252,35 @@ function ConditionDetailView({
 }
 
 export default function Home() {
+  const [conditions, setConditions] = useState<HealthCondition[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedCondition, setSelectedCondition] = useState<HealthCondition | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
+
+  useEffect(() => {
+    const controller = new AbortController();
+    loadHealthConditions(controller.signal)
+      .then((data) => {
+        setConditions(data);
+        setLoadError(null);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setLoadError(error instanceof Error ? error.message : "건강관리 데이터를 불러오지 못했습니다.");
+      })
+      .finally(() => setIsLoading(false));
+    return () => controller.abort();
+  }, []);
+
+  if (isLoading) {
+    return <div className="min-h-screen grid place-items-center bg-slate-50 text-sm font-semibold text-slate-600">건강관리 데이터를 불러오는 중입니다…</div>;
+  }
+
+  if (loadError) {
+    return <div className="min-h-screen grid place-items-center bg-slate-50 px-6 text-center"><div><p className="font-bold text-slate-900">데이터를 불러오지 못했습니다.</p><p className="mt-2 text-sm text-slate-500">{loadError}</p><button onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white cursor-pointer">다시 시도</button></div></div>;
+  }
 
   if (selectedCondition) {
     return <ConditionDetailView condition={selectedCondition} onBack={() => setSelectedCondition(null)} />;
@@ -261,6 +289,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 gradient-mesh">
       <ListView
+        conditions={conditions}
         onSelectCondition={setSelectedCondition}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
