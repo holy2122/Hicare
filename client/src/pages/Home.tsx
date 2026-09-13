@@ -102,7 +102,7 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-display mb-2">
-                일반건강검진 요관찰자(B판정) 맞춤 건강 대시보드
+                일반건강검진 요관찰자(B판정) 맞춤 건강
               </h1>
               <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
                 검진 결과지에서 ‘질환의심(C)’ 전 단계인 <strong>요관찰(B)</strong> 판정을 받으셨나요?
