@@ -194,6 +194,33 @@ function ConditionDetailView({
             <h1 className="text-xl font-extrabold sm:text-2xl">{condition.name} 기준 설명</h1>
           </div>
           <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">{condition.shortDesc}</p>
+          {condition.id === "hypertension" && (
+            <div className="mt-5 overflow-hidden rounded-xl border-2 border-teal-500 bg-white">
+              <div className="border-b border-teal-100 bg-teal-50 px-4 py-3">
+                <h2 className="text-sm font-extrabold text-teal-900 sm:text-base">2026 고혈압 진단 기준</h2>
+                <p className="mt-1 text-xs text-slate-600">수축기·이완기 혈압 측정값 비교</p>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[560px] border-collapse text-left text-xs sm:text-sm">
+                  <thead className="bg-slate-50 text-slate-600">
+                    <tr>
+                      <th className="px-4 py-3 font-bold">구분</th>
+                      <th className="px-4 py-3 font-bold">수축기</th>
+                      <th className="px-4 py-3 font-bold">이완기</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-emerald-700">정상 혈압</th><td className="px-4 py-3 whitespace-nowrap">120 mmHg 미만</td><td className="px-4 py-3 whitespace-nowrap">80 mmHg 미만</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-sky-700">주의 혈압</th><td className="px-4 py-3 whitespace-nowrap">120~129 mmHg</td><td className="px-4 py-3 whitespace-nowrap">80 mmHg 미만</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-amber-700">고혈압 전단계</th><td className="px-4 py-3 whitespace-nowrap">130~139 mmHg</td><td className="px-4 py-3 whitespace-nowrap">80~89 mmHg</td></tr>
+                    <tr className="border-t border-teal-200 bg-teal-50"><th className="px-4 py-3 font-bold text-teal-800">이완기 단독 고혈압</th><td className="px-4 py-3 whitespace-nowrap">140 mmHg 미만</td><td className="px-4 py-3 whitespace-nowrap">90 mmHg 이상</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-orange-700">1기 고혈압</th><td className="px-4 py-3 whitespace-nowrap">140~159 mmHg</td><td className="px-4 py-3 whitespace-nowrap">90~99 mmHg</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-red-700">2기 고혈압</th><td className="px-4 py-3 whitespace-nowrap">160 mmHg 이상</td><td className="px-4 py-3 whitespace-nowrap">100 mmHg 이상</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* Keyword selection */}

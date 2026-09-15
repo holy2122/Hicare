@@ -234,10 +234,10 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       {/* ======================================================== */}
       <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
-        <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 px-6 py-4 text-white flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
-              <FileText className="w-5 h-5 text-blue-100" />
+              <FileText className="w-5 h-5 text-teal-100" />
             </div>
             <div>
               <h2 className="text-lg font-bold">학술 논문 및 근거</h2>
