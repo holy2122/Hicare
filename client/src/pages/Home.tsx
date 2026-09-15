@@ -211,12 +211,8 @@ function ConditionDetailView({
         <section className="mb-8 scroll-mt-20" id="keyword-section">
           <div className="mb-3 flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">02</div>
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Step 2</p>
-              <h2 className="text-xl font-extrabold text-slate-900">세부 관리 키워드 선택</h2>
-            </div>
+            <h2 className="text-xl font-extrabold text-slate-900">나의 상태에 맞는 건강관리 확인하기!</h2>
           </div>
-          <p className="mb-4 text-sm text-slate-600">지금 실천하고 싶은 주제를 하나 선택하면 최종 건강관리 가이드가 아래에 열립니다.</p>
           <KeywordTagBar
             condition={condition}
             selectedKeywordId={selectedKeywordId}

@@ -1,6 +1,6 @@
 import React from "react";
 import { HealthCondition, HealthKeywordTopic } from "../data/healthData";
-import { Tag, Sparkles, CheckCircle2, ChevronRight, Stethoscope } from "lucide-react";
+import { Tag, Sparkles, CheckCircle2 } from "lucide-react";
 
 interface KeywordTagBarProps {
   condition: HealthCondition;
@@ -16,7 +16,16 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
   onResetCondition,
 }) => {
   return (
-    <div className="bg-white rounded-2xl border border-teal-200/90 shadow-sm p-4 sm:p-6 mb-8 transition-all">
+    <div className="mb-8 space-y-3">
+      <div className="rounded-lg border border-green-500 bg-green-50 p-4 text-sm leading-relaxed text-slate-800">
+        <p className="font-bold">▶ [질환은 없으나 의심 소견 및 확진 필요한 경우]</p>
+        <p className="mt-1.5">🟢 검진 결과상 의심 소견이 있어 정밀 검사나 지속적인 일상관리가 필요한 단계입니다. 아래 가이드를 참고하여 건강관리를 시작하세요!</p>
+      </div>
+      <div className="rounded-lg border border-red-500 bg-red-50 p-4 text-sm leading-relaxed text-slate-800">
+        <p className="font-bold">▶ [의사에게 질환으로 진단받은 경우]</p>
+        <p className="mt-1.5">🔴 의사에게 질환으로 진단받아 전문 치료와 관리가 필요한 단계입니다. 병원 정기 진찰 및 전문의 치료를 반드시 병행하시고, 아래 일상 관리를 철저히 준수하세요!</p>
+      </div>
+      <div className="rounded-2xl border border-teal-200/90 bg-white p-4 shadow-sm transition-all sm:p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100">
         <div>
           <div className="flex items-center gap-2 mb-1">
@@ -51,7 +60,7 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
         <div className="flex items-center gap-2 mb-3">
           <Tag className="w-4 h-4 text-teal-600" />
           <span className="text-xs sm:text-sm font-semibold text-slate-800">
-            세부 관리 키워드를 선택하세요 (클릭 시 하단 상세 페이지가 열립니다):
+            세부 관리 키워드
           </span>
         </div>
 
@@ -87,6 +96,7 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
             );
           })}
         </div>
+      </div>
       </div>
     </div>
   );
