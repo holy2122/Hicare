@@ -59,7 +59,7 @@ export interface HealthCondition {
 export const HEALTH_DATA_URL = "/healthData.json";
 
 export async function loadHealthConditions(signal?: AbortSignal): Promise<HealthCondition[]> {
-  const response = await fetch(HEALTH_DATA_URL, { signal, cache: "no-store" });
+  const response = await fetch(`${HEALTH_DATA_URL}?v=${Date.now()}`, { signal, cache: "no-store" });
   if (!response.ok) {
     throw new Error(`건강관리 데이터 로딩 실패: ${response.status}`);
   }
