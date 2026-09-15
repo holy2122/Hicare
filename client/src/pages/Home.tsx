@@ -69,10 +69,14 @@ function ListView({
         <section className="max-w-3xl mb-7 sm:mb-9">
           <div className="inline-flex items-center gap-2 rounded-full bg-teal-50 border border-teal-200 px-3 py-1.5 text-xs font-bold text-teal-800 mb-4">
             <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
-            일반건강검진 요관찰자 맞춤 건강관리
+            질환별 맞춤 건강관리
           </div>
           <h1 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">
-            8대 질환 중 관리가 필요한 항목을 선택하세요
+            <>
+              5대 질환 중 선택!
+              <br />
+              건강관리법 확인!
+            </>
           </h1>
           <p className="text-sm sm:text-base leading-relaxed text-slate-600">
             질환을 선택하면 해당 질환의 기준 설명과 생활관리 키워드, 근거 기반 가이드가 한 화면에 순서대로 열립니다.
@@ -83,8 +87,7 @@ function ListView({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-5">
             <div className="flex items-center gap-2">
               <Layers className="w-5 h-5 text-teal-600" />
-              <h2 id="condition-list-title" className="text-xl font-bold text-slate-900">8대 질환 목록</h2>
-              <span className="text-xs font-semibold rounded-md bg-slate-200 px-2 py-1 text-slate-700">{filteredConditions.length}개</span>
+              <h2 id="condition-list-title" className="text-xl font-bold text-slate-900">5대 질환 목록</h2>
             </div>
             <div className="relative md:hidden">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />

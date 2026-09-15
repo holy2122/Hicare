@@ -74,17 +74,6 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
             </div>
           </div>
 
-          <span
-            className={`px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-tight border shrink-0 ${
-              condition.urgency === "적극개선"
-                ? "bg-amber-50 text-amber-700 border-amber-200"
-                : condition.urgency === "주의요망"
-                ? "bg-sky-50 text-sky-700 border-sky-200"
-                : "bg-teal-50 text-teal-700 border-teal-200"
-            }`}
-          >
-            {condition.urgency}
-          </span>
         </div>
 
         {/* Short Description */}
