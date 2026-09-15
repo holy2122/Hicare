@@ -148,6 +148,12 @@ function ConditionDetailView({
   onBack: () => void;
 }) {
   const [selectedKeywordId, setSelectedKeywordId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSelectedKeywordId(null);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [condition.id]);
+
   const selectedKeyword = useMemo<HealthKeywordTopic | null>(() => {
     if (!selectedKeywordId) return null;
     return condition.keywords.find((keyword) => keyword.id === selectedKeywordId) || null;
@@ -216,10 +222,6 @@ function ConditionDetailView({
             </div>
           </div>
           )}
-          <div className="mt-4 flex items-start gap-2 rounded-xl border border-amber-200/30 bg-amber-300/15 p-3 text-xs leading-relaxed text-blue-50">
-            <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-200" />
-            건강검진의 요관찰 표시는 생활습관을 점검하고 추적검사를 준비하는 단계입니다. 개인의 진단을 대신하지 않습니다.
-          </div>
         </section>
 
         {/* STEP 2: keyword selection */}
