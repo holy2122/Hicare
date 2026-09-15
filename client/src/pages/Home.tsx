@@ -188,43 +188,15 @@ function ConditionDetailView({
         </div>
 
         {/* Disease criteria */}
-        <section className="mb-6 rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-700 to-cyan-700 p-5 text-white shadow-lg shadow-blue-700/15 sm:p-7">
-          <div className="mb-5 flex items-center gap-3">
+        <section className="mb-6 rounded-2xl border border-slate-200 bg-white p-5 text-slate-900 shadow-sm sm:p-7">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">01</span>
             <h1 className="text-xl font-extrabold sm:text-2xl">{condition.name} 기준 설명</h1>
           </div>
-          <p className="mb-5 max-w-3xl text-sm leading-relaxed text-blue-50 sm:text-base">{condition.shortDesc}</p>
-          {condition.id === "diabetes" ? (
-            <div className="overflow-hidden rounded-xl border border-white/20 bg-white text-slate-800">
-              <div className="border-b border-slate-200 px-4 py-3">
-                <h2 className="text-sm font-extrabold text-slate-900 sm:text-base">혈당 수치 요약</h2>
-                <p className="mt-1 text-xs text-slate-500">대한당뇨병학회 임상지침 기준</p>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[520px] border-collapse text-left text-xs sm:text-sm">
-                  <thead className="bg-slate-50 text-slate-600"><tr><th className="px-4 py-3 font-bold">구분</th><th className="px-4 py-3 font-bold">공복 혈당</th><th className="px-4 py-3 font-bold">식후 2시간 혈당</th></tr></thead>
-                  <tbody>
-                    <tr className="border-t border-slate-200 bg-green-50"><th className="px-4 py-3 font-bold text-green-800">정상 범위</th><td className="px-4 py-3 whitespace-nowrap">100 mg/dL 미만</td><td className="px-4 py-3 whitespace-nowrap">140 mg/dL 미만</td></tr>
-                    <tr className="border-t border-slate-200 bg-orange-50"><th className="px-4 py-3 font-bold text-orange-800">당뇨 전단계</th><td className="px-4 py-3 whitespace-nowrap">100~125 mg/dL</td><td className="px-4 py-3 whitespace-nowrap">140~199 mg/dL</td></tr>
-                    <tr className="border-t border-slate-200 bg-red-50"><th className="px-4 py-3 font-bold text-red-800">당뇨병 단계</th><td className="px-4 py-3 whitespace-nowrap">126 mg/dL 이상</td><td className="px-4 py-3 whitespace-nowrap">200 mg/dL 이상</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ) : (
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
-              <p className="mb-1 text-xs font-bold text-blue-100">정상 기준</p>
-              <p className="text-sm font-semibold leading-relaxed">{condition.normalRangeLabel}</p>
-            </div>
-            <div className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
-              <p className="mb-1 text-xs font-bold text-blue-100">요관찰 기준</p>
-              <p className="text-sm font-semibold leading-relaxed">{condition.observationThreshold}</p>
-            </div>
-          </div>
-          )}
+          <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">{condition.shortDesc}</p>
         </section>
 
-        {/* STEP 2: keyword selection */}
+        {/* Keyword selection */}
         <section className="mb-8 scroll-mt-20" id="keyword-section">
           <div className="mb-3 flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">02</div>

@@ -113,7 +113,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 1. [행동 가이드] - 한눈에 들어오는 짧고 직관적인 건강관리 요약 글 */}
+      {/* 1. 실천 수칙 및 한 줄 요약 */}
       {/* ======================================================== */}
       <section className="bg-white rounded-2xl border-2 border-teal-500/80 shadow-md shadow-teal-500/5 overflow-hidden transition-all">
         {/* Section Header */}
@@ -123,7 +123,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <Compass className="w-5 h-5 text-teal-100" />
             </div>
             <div>
-              <h2 className="text-lg font-bold">[행동 가이드] 직관적 요약 & 실천 수칙</h2>
+              <h2 className="text-lg font-bold">실천 수칙 및 한 줄 요약</h2>
             </div>
           </div>
           <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-xs">
@@ -228,7 +228,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       </section>
 
       {/* ======================================================== */}
-      {/* 2. [의학적 근거] - 논문 핵심 요약문과 출처 하이퍼링크 버튼 */}
+      {/* 2. 학술 논문 및 근거 */}
       {/* ======================================================== */}
       <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
@@ -238,10 +238,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <FileText className="w-5 h-5 text-blue-100" />
             </div>
             <div>
-              <span className="text-xs uppercase tracking-wider font-bold text-blue-100">
-                STEP 2
-              </span>
-              <h2 className="text-lg font-bold">[의학적 근거] 학술 논문 및 실효성 입증 데이터</h2>
+              <h2 className="text-lg font-bold">학술 논문 및 근거</h2>
             </div>
           </div>
           <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-xs">

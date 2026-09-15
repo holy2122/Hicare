@@ -33,15 +33,9 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
               선택 질환
             </span>
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-              <span>{condition.name}</span>
+              <span className="rounded-lg bg-teal-50 px-3 py-1 text-teal-800 ring-1 ring-inset ring-teal-200">{condition.name}</span>
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600">
-            {condition.normalRangeLabel} ·{" "}
-            <span className="text-teal-700 font-medium">
-              {condition.observationThreshold}
-            </span>
-          </p>
         </div>
 
         <button
