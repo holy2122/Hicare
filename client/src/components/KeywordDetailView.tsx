@@ -123,6 +123,9 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <Compass className="w-5 h-5 text-teal-100" />
             </div>
             <div>
+              <span className="text-xs uppercase tracking-wider font-bold text-teal-100">
+                STEP 1
+              </span>
               <h2 className="text-lg font-bold">[행동 가이드] 직관적 요약 & 실천 수칙</h2>
             </div>
           </div>

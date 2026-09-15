@@ -182,37 +182,26 @@ function ConditionDetailView({
           <span>{condition.name}</span>
         </div>
 
-        {/* Disease criteria */}
+        {/* STEP 1: disease criteria */}
         <section className="mb-6 rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-700 to-cyan-700 p-5 text-white shadow-lg shadow-blue-700/15 sm:p-7">
           <div className="mb-5 flex items-center gap-3">
-            <h1 className="text-xl font-extrabold sm:text-2xl">{condition.name} 기준 설명</h1>
-          </div>
-          <div className="rounded-lg border border-green-500 bg-green-50 p-4 text-sm leading-relaxed text-slate-800">
-            <p className="font-bold">▶ [질환은 없으나 의심 소견 및 확진 필요한 경우]</p>
-            <p className="mt-1.5"><span className="mr-1 text-xs align-middle">🟢</span>검진 결과상 의심되는 부분이 있어 정확한 진단을 위한 병원 정밀 검사(확진 검사)를 먼저 받으시길 권고드립니다. 현재 상태를 개선할 수 있는 아래 가이드북을 참고해 건강관리를 병행해 주세요!</p>
-          </div>
-          {condition.id === "diabetes" ? (
-            <div className="mt-5 overflow-hidden rounded-xl border border-white/20 bg-white text-slate-800">
-              <div className="border-b border-slate-200 px-4 py-3">
-                <h2 className="text-sm font-extrabold text-slate-900 sm:text-base">혈당 수치 요약</h2>
-                <p className="mt-1 text-xs text-slate-500">대한당뇨병학회 임상지침 기준</p>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[520px] border-collapse text-left text-xs sm:text-sm">
-                  <thead className="bg-slate-50 text-slate-600">
-                    <tr><th className="px-4 py-3 font-bold">구분</th><th className="px-4 py-3 font-bold">공복 혈당</th><th className="px-4 py-3 font-bold">식후 2시간 혈당</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-t border-slate-200 bg-green-50"><th className="px-4 py-3 font-bold text-green-800">정상 범위</th><td className="px-4 py-3 whitespace-nowrap">100 mg/dL 미만</td><td className="px-4 py-3 whitespace-nowrap">140 mg/dL 미만</td></tr>
-                    <tr className="border-t border-slate-200 bg-orange-50"><th className="px-4 py-3 font-bold text-orange-800">당뇨 전단계</th><td className="px-4 py-3 whitespace-nowrap">100~125 mg/dL</td><td className="px-4 py-3 whitespace-nowrap">140~199 mg/dL</td></tr>
-                    <tr className="border-t border-slate-200 bg-red-50"><th className="px-4 py-3 font-bold text-red-800">당뇨병 단계</th><td className="px-4 py-3 whitespace-nowrap">126 mg/dL 이상</td><td className="px-4 py-3 whitespace-nowrap">200 mg/dL 이상</td></tr>
-                  </tbody>
-                </table>
-              </div>
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15 text-sm font-extrabold">01</div>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-100">Step 1</p>
+              <h1 className="text-xl font-extrabold sm:text-2xl">{condition.name} 기준 설명</h1>
             </div>
-          ) : (
-            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-blue-50 sm:text-base">{condition.shortDesc}</p>
-          )}
+          </div>
+          <p className="mb-5 max-w-3xl text-sm leading-relaxed text-blue-50 sm:text-base">{condition.shortDesc}</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
+              <p className="mb-1 text-xs font-bold text-blue-100">정상 기준</p>
+              <p className="text-sm font-semibold leading-relaxed">{condition.normalRangeLabel}</p>
+            </div>
+            <div className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
+              <p className="mb-1 text-xs font-bold text-blue-100">요관찰 기준</p>
+              <p className="text-sm font-semibold leading-relaxed">{condition.observationThreshold}</p>
+            </div>
+          </div>
           <div className="mt-4 flex items-start gap-2 rounded-xl border border-amber-200/30 bg-amber-300/15 p-3 text-xs leading-relaxed text-blue-50">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-200" />
             건강검진의 요관찰 표시는 생활습관을 점검하고 추적검사를 준비하는 단계입니다. 개인의 진단을 대신하지 않습니다.
