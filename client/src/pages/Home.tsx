@@ -197,8 +197,8 @@ function ConditionDetailView({
         </section>
 
         {/* Keyword selection */}
-        <section className="mb-8 scroll-mt-20" id="keyword-section">
-          <div className="mb-3 flex items-center gap-3">
+        <section className="mb-8 scroll-mt-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" id="keyword-section">
+          <div className="mb-4 flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">02</div>
             <h2 className="text-xl font-extrabold text-slate-900">나의 상태에 맞는 건강관리</h2>
           </div>

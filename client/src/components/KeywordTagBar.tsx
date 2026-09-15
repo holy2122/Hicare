@@ -32,18 +32,18 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
             <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-teal-100/80 text-teal-800">
               선택 질환
             </span>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 sm:text-2xl">
               <span className="rounded-lg bg-teal-50 px-3 py-1 text-teal-800 ring-1 ring-inset ring-teal-200">{condition.name}</span>
+              <button
+                onClick={onResetCondition}
+                className="cursor-pointer text-xs font-semibold text-slate-500 underline underline-offset-4 transition hover:text-teal-700 sm:text-sm"
+              >
+                다른 질환 선택하기
+              </button>
             </h2>
           </div>
         </div>
 
-        <button
-          onClick={onResetCondition}
-          className="self-start md:self-auto text-xs sm:text-sm text-slate-500 hover:text-slate-800 underline underline-offset-4 cursor-pointer"
-        >
-          다른 질환 선택하기
-        </button>
       </div>
 
       {/* Interactive Keyword Tags */}
