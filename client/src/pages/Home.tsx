@@ -211,7 +211,7 @@ function ConditionDetailView({
         <section className="mb-8 scroll-mt-20" id="keyword-section">
           <div className="mb-3 flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">02</div>
-            <h2 className="text-xl font-extrabold text-slate-900">나의 상태에 맞는 건강관리 확인하기!</h2>
+            <h2 className="text-xl font-extrabold text-slate-900">나의 상태에 맞는 건강관리</h2>
           </div>
           <KeywordTagBar
             condition={condition}
@@ -221,17 +221,10 @@ function ConditionDetailView({
           />
         </section>
 
-        {/* STEP 3: final guide only after keyword selection */}
+        {/* Final guide only after keyword selection */}
         <section id="final-guide" className="scroll-mt-20">
           {selectedKeyword ? (
             <>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-sm font-extrabold text-white">03</div>
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-600">Step 3</p>
-                  <h2 className="text-xl font-extrabold text-slate-900">최종 건강관리 가이드</h2>
-                </div>
-              </div>
               <KeywordDetailView condition={condition} keyword={selectedKeyword} />
             </>
           ) : (

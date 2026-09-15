@@ -17,6 +17,8 @@ import {
   Video,
   Flame,
   ArrowRight,
+  Dumbbell,
+  X,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -31,6 +33,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
 }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   const toggleStep = (idx: number) => {
     setCompletedSteps((prev) =>
@@ -67,8 +70,6 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
             <span className="text-slate-800 bg-slate-100 px-2.5 py-1 rounded-md">
               {keyword.tag}
             </span>
-            <span>&gt;</span>
-            <span className="text-slate-400">요관찰자 맞춤 솔루션</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -151,9 +152,9 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
 
           {/* Action Steps Interactive Checklist */}
           <div>
-            <h4 className="text-sm font-bold text-slate-900 mb-3 flex items-center justify-between">
+            <h4 className="text-sm font-bold text-slate-900 mb-3">
               <span>단계별 세부 실천 순서</span>
-              <span className="text-xs font-normal text-slate-500">
+              <span className="mt-1 block text-xs font-normal text-slate-500">
                 완료한 항목을 클릭해 체크해보세요 ({completedSteps.length}/{keyword.actionSteps.length})
               </span>
             </h4>
@@ -215,7 +216,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
             <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-xs sm:text-sm">
               <div className="flex items-center gap-2 font-bold mb-1.5 text-amber-950">
                 <AlertCircle className="w-4 h-4 text-amber-600" />
-                <span>요관찰자 안전 주의사항</span>
+                <span>안전 주의사항</span>
               </div>
               <ul className="list-disc list-inside space-y-1 text-amber-900/90">
                 {keyword.keyRules.map((rule, idx) => (
@@ -318,9 +319,6 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <Video className="w-5 h-5 text-teal-200" />
             </div>
             <div>
-              <span className="text-xs uppercase tracking-wider font-bold text-teal-200">
-                STEP 3
-              </span>
               <h2 className="text-lg font-bold">[영상 가이드] 즉시 시청하고 따라 하는 실천 영상</h2>
             </div>
           </div>
@@ -393,6 +391,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
         </div>
         <button
           onClick={() => {
+            setShowCompletionModal(true);
             toast.success("건강관리 실천 다이어리에 기록되었습니다.");
           }}
           className="px-6 py-3 rounded-xl bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-bold text-sm shadow-md shadow-teal-600/20 flex items-center gap-2 cursor-pointer shrink-0 transition-transform hover:scale-[1.02]"
@@ -401,6 +400,33 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
+
+      {showCompletionModal && (
+        <div className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/45 px-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="completion-title">
+          <div className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-teal-200 bg-white p-6 text-center shadow-2xl animate-in zoom-in-95 fade-in duration-200">
+            <button onClick={() => setShowCompletionModal(false)} className="absolute right-3 top-3 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 cursor-pointer" aria-label="팝업 닫기"><X className="h-5 w-5" /></button>
+            <div className="mb-3 flex justify-center gap-1.5" aria-label={`완료한 실천 ${completedSteps.length}개`}>
+              {keyword.actionSteps.map((_, index) => (
+                <span key={index} className={`grid h-10 w-10 place-items-center rounded-full border-2 text-lg transition-all duration-300 ${completedSteps.includes(index) ? "scale-110 border-amber-400 bg-amber-100 animate-bounce" : "border-slate-200 bg-slate-50 grayscale opacity-40"}`}>🏅</span>
+              ))}
+            </div>
+            {completedSteps.length === keyword.actionSteps.length ? (
+              <>
+                <div className="mx-auto mb-3 grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-teal-100 to-cyan-100 text-teal-700 animate-pulse"><Dumbbell className="h-10 w-10" /></div>
+                <h2 id="completion-title" className="text-lg font-extrabold leading-relaxed text-slate-900">오늘도 정말 고생 많으셨어요! 👏<br />꾸준한 노력이 건강한 내일을 만듭니다! 💪</h2>
+                <p className="mt-3 text-base font-extrabold text-teal-700">🎉 나의 건강관리 Level Up 완료! 🎉</p>
+              </>
+            ) : (
+              <>
+                <div className="mx-auto mb-3 grid h-16 w-16 place-items-center rounded-full bg-amber-50 text-amber-500"><span className="text-3xl">👏</span></div>
+                <h2 id="completion-title" className="text-lg font-extrabold text-slate-900">참 잘했어요!</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">오늘 {completedSteps.length}개 항목을 완료했어요. 남은 실천도 천천히 이어가 보세요.</p>
+              </>
+            )}
+            <button onClick={() => setShowCompletionModal(false)} className="mt-5 w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white hover:bg-slate-800 cursor-pointer">확인</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
