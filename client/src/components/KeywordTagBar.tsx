@@ -17,13 +17,13 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
 }) => {
   return (
     <div className="mb-8 space-y-3">
-      <div className="rounded-lg border border-green-500 bg-green-50 p-4 text-sm leading-relaxed text-slate-800">
-        <p className="font-bold">🟢 [질환은 없으나 의심 소견 및 확진 필요한 경우]</p>
-        <p className="mt-1.5 text-black"><span className="mr-1 text-xs align-middle">▶</span>검진 결과상 의심되는 부분이 있어 정확한 진단을 위한 병원 정밀 검사(확진 검사)를 먼저 받으시길 권고드립니다.<br />현재 상태를 개선할 수 있는 아래 가이드북을 참고해 건강관리를 시작해 주세요!</p>
+      <div className="rounded-lg border border-teal-300 bg-teal-50 p-4 text-sm leading-relaxed text-slate-800">
+        <p className="font-bold text-teal-900"><span className="mr-1.5 text-teal-600" aria-hidden="true">●</span>[질환은 없으나 의심 소견 및 확진 필요한 경우]</p>
+        <p className="mt-1.5 text-slate-700"><span className="mr-1 text-xs align-middle text-teal-700">▶</span>검진 결과상 의심되는 부분이 있어 정확한 진단을 위한 병원 정밀 검사(확진 검사)를 먼저 받으시길 권고드립니다.<br />현재 상태를 개선할 수 있는 아래 가이드북을 참고해 건강관리를 시작해 주세요!</p>
       </div>
-      <div className="rounded-lg border border-red-500 bg-red-50 p-4 text-sm leading-relaxed text-slate-800">
-        <p className="font-bold">🔴 [질환으로 진단받은 경우]</p>
-        <p className="mt-1.5"><span className="mr-1 text-xs align-middle">▶</span>질환으로 진단받아 전문 치료와 관리가 필요한 단계입니다. 병원 정기 진찰 및 전문의 치료를 반드시 병행하시고, 아래 일상 관리를 철저히 준수하세요!</p>
+      <div className="rounded-lg border border-indigo-300 bg-indigo-50 p-4 text-sm leading-relaxed text-slate-800">
+        <p className="font-bold text-indigo-900"><span className="mr-1.5 text-indigo-600" aria-hidden="true">●</span>[질환으로 진단받은 경우]</p>
+        <p className="mt-1.5 text-slate-700"><span className="mr-1 text-xs align-middle text-indigo-700">▶</span>질환으로 진단받아 전문 치료와 관리가 필요한 단계입니다. 병원 정기 진찰 및 전문의 치료를 반드시 병행하시고, 아래 일상 관리를 철저히 준수하세요!</p>
       </div>
       <div className="rounded-2xl border border-teal-200/90 bg-white p-4 shadow-sm transition-all sm:p-6">
         {/* Interactive Keyword Tags */}
