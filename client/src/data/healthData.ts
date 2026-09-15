@@ -40,7 +40,6 @@ export interface HealthKeywordTopic {
 export interface HealthCondition {
   id: string;
   name: string;
-  englishName: string;
   shortDesc: string;
   category: string;
   badge: string;

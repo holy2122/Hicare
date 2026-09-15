@@ -108,7 +108,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           {keyword.title}
         </h1>
         <p className="text-base text-slate-600 font-medium leading-relaxed">
-          {keyword.subtitle}
+          {keyword.subtitle.startsWith("기전: ") ? keyword.subtitle : `기전: ${keyword.subtitle}`}
         </p>
       </div>
 
@@ -306,7 +306,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       </section>
 
       {/* ======================================================== */}
-      {/* 3. [영상 가이드] - 즉시 시청하고 따라 할 수 있는 유튜브 영상 미리보기 */}
+      {/* 3. 영상 시청 및 따라 하기 */}
       {/* ======================================================== */}
       <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
@@ -316,7 +316,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <Video className="w-5 h-5 text-teal-200" />
             </div>
             <div>
-              <h2 className="text-lg font-bold">[영상 가이드] 즉시 시청하고 따라 하는 실천 영상</h2>
+              <h2 className="text-lg font-bold">시청하고 직접 따라하기</h2>
             </div>
           </div>
           <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-xs">

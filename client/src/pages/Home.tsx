@@ -46,7 +46,6 @@ function ListView({
       if (!q) return matchCategory;
       const matchesSearch = [
         item.name,
-        item.englishName,
         item.shortDesc,
         ...item.keywords.flatMap((keyword) => [keyword.tag, keyword.title]),
       ].some((value) => value.toLowerCase().includes(q));

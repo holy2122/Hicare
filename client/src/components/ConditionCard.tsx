@@ -67,9 +67,6 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
               <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight whitespace-nowrap">
                 {condition.name}
               </h3>
-              <p className="text-[11px] text-slate-400 font-medium truncate max-w-[100px]">
-                {condition.englishName}
-              </p>
             </div>
           </div>
 

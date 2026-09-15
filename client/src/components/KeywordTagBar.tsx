@@ -34,9 +34,6 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
             </span>
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
               <span>{condition.name}</span>
-              <span className="text-sm font-normal text-slate-400">
-                ({condition.englishName})
-              </span>
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600">
