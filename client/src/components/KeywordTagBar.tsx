@@ -26,28 +26,8 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
         <p className="mt-1.5"><span className="mr-1 text-xs align-middle">🔴</span>질환으로 진단받아 전문 치료와 관리가 필요한 단계입니다. 병원 정기 진찰 및 전문의 치료를 반드시 병행하시고, 아래 일상 관리를 철저히 준수하세요!</p>
       </div>
       <div className="rounded-2xl border border-teal-200/90 bg-white p-4 shadow-sm transition-all sm:p-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+        {/* Interactive Keyword Tags */}
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-teal-100/80 text-teal-800">
-              선택 질환
-            </span>
-            <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 sm:text-2xl">
-              <span className="rounded-lg bg-teal-50 px-3 py-1 text-teal-800 ring-1 ring-inset ring-teal-200">{condition.name}</span>
-              <button
-                onClick={onResetCondition}
-                className="cursor-pointer text-xs font-semibold text-slate-500 underline underline-offset-4 transition hover:text-teal-700 sm:text-sm"
-              >
-                다른 질환 선택하기
-              </button>
-            </h2>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Interactive Keyword Tags */}
-      <div className="mt-4">
         <div className="flex items-center gap-2 mb-3">
           <Tag className="w-4 h-4 text-teal-600" />
           <span className="text-xs sm:text-sm font-semibold text-slate-800">

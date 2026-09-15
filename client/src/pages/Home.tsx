@@ -214,7 +214,7 @@ function ConditionDetailView({
         <section id="final-guide" className="scroll-mt-20">
           {selectedKeyword ? (
             <>
-              <KeywordDetailView condition={condition} keyword={selectedKeyword} />
+              <KeywordDetailView condition={condition} keyword={selectedKeyword} onResetCondition={onBack} />
             </>
           ) : (
             <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center sm:p-12">
