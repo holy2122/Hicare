@@ -66,17 +66,15 @@ function ListView({
         selectedConditionId={null}
       />
       <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-7 sm:py-10">
-        <section className="max-w-3xl mb-7 sm:mb-9">
+        <section className="mx-auto mb-9 max-w-4xl text-center sm:mb-12">
           <div className="inline-flex items-center gap-2 rounded-full bg-teal-50 border border-teal-200 px-3 py-1.5 text-xs font-bold text-teal-800 mb-4">
             <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
             질환별 맞춤 건강관리
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">
-            <>
-              5대 질환 중 선택!
-              <br />
-              건강관리법 확인!
-            </>
+          <h1 className="font-display mb-4 text-3xl font-light leading-[1.45] tracking-tight text-slate-800 sm:text-5xl">
+            <span>나의 </span><span className="font-light text-blue-900">질환</span><span>을 선택하고</span>
+            <br />
+            <span className="font-bold">찾아가는 </span><span className="font-bold text-teal-600">나만의 </span><span className="font-bold text-emerald-600">건강습관</span>
           </h1>
           <p className="text-sm sm:text-base leading-relaxed text-slate-600">
             질환을 선택하면 해당 질환의 기준 설명과 생활관리 키워드, 근거 기반 가이드가 한 화면에 순서대로 열립니다.

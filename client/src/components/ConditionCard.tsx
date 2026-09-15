@@ -9,7 +9,6 @@ import {
   Apple,
   Wind,
   ChevronRight,
-  AlertTriangle,
 } from "lucide-react";
 
 interface ConditionCardProps {
@@ -81,11 +80,6 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
           {condition.shortDesc}
         </p>
 
-        {/* Observation Threshold Indicator */}
-        <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 mb-3 flex items-center gap-1.5 text-[11px] text-slate-600">
-          <AlertTriangle className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="truncate">{condition.observationThreshold}</span>
-        </div>
       </div>
 
       {/* Tags Preview & CTA */}
