@@ -84,7 +84,7 @@ function ListView({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-5">
             <div className="flex items-center gap-2">
               <Layers className="w-5 h-5 text-teal-600" />
-              <h2 id="condition-list-title" className="text-xl font-bold text-slate-900">5대 질환 목록</h2>
+              <h2 id="condition-list-title" className="text-xl font-bold text-slate-900">질환 목록</h2>
             </div>
             <div className="relative md:hidden">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -135,6 +135,7 @@ function ListView({
       </main>
       <footer className="mt-auto border-t border-slate-200 bg-white/80 px-4 py-7 text-center text-[11px] leading-relaxed text-slate-400">
         본 서비스는 건강검진 사후관리를 돕기 위한 보조 프로토타입이며, 실제 진단과 치료는 의료진 상담을 통해 결정해야 합니다.
+        <span className="mx-2">·</span><a href="/admin" className="font-bold text-slate-500 hover:text-teal-700">관리자 데이터</a>
       </footer>
     </>
   );
@@ -259,6 +260,7 @@ function ConditionDetailView({
             selectedKeywordId={selectedKeywordId}
             onSelectKeyword={handleSelectKeyword}
             onResetCondition={onBack}
+            onOpenSurvey={() => { window.location.href = `/survey?condition=${encodeURIComponent(condition.id)}&name=${encodeURIComponent(condition.name)}`; }}
           />
         </section>
 
@@ -303,6 +305,14 @@ export default function Home() {
       .finally(() => setIsLoading(false));
     return () => controller.abort();
   }, []);
+
+  useEffect(() => {
+    const conditionId = new URLSearchParams(window.location.search).get("condition");
+    if (conditionId && conditions.length > 0) {
+      const matchingCondition = conditions.find((condition) => condition.id === conditionId);
+      if (matchingCondition) setSelectedCondition(matchingCondition);
+    }
+  }, [conditions]);
 
   if (isLoading) {
     return <div className="min-h-screen grid place-items-center bg-slate-50 text-sm font-semibold text-slate-600">건강관리 데이터를 불러오는 중입니다…</div>;
