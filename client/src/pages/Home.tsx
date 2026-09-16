@@ -200,25 +200,38 @@ function ConditionDetailView({
                 <h2 className="text-sm font-extrabold text-teal-900 sm:text-base">2026 고혈압 진단 기준</h2>
                 <p className="mt-1 text-xs text-slate-600">수축기·이완기 혈압 측정값 비교</p>
               </div>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[560px] border-collapse text-left text-xs sm:text-sm">
+              <div>
+                <table className="w-full table-fixed border-collapse text-left text-[11px] sm:text-xs">
                   <thead className="bg-slate-50 text-slate-600">
                     <tr>
-                      <th className="px-4 py-3 font-bold">구분</th>
-                      <th className="px-4 py-3 font-bold">수축기</th>
-                      <th className="px-4 py-3 font-bold">이완기</th>
+                      <th className="w-[32%] px-2 py-2.5 font-bold sm:px-3">구분</th>
+                      <th className="w-[34%] px-2 py-2.5 font-bold sm:px-3">수축기 혈압</th>
+                      <th className="w-[34%] px-2 py-2.5 font-bold sm:px-3">이완기 혈압</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-emerald-700">정상 혈압</th><td className="px-4 py-3 whitespace-nowrap">120 mmHg 미만</td><td className="px-4 py-3 whitespace-nowrap">80 mmHg 미만</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-sky-700">주의 혈압</th><td className="px-4 py-3 whitespace-nowrap">120~129 mmHg</td><td className="px-4 py-3 whitespace-nowrap">80 mmHg 미만</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-amber-700">고혈압 전단계</th><td className="px-4 py-3 whitespace-nowrap">130~139 mmHg</td><td className="px-4 py-3 whitespace-nowrap">80~89 mmHg</td></tr>
-                    <tr className="border-t border-teal-200 bg-teal-50"><th className="px-4 py-3 font-bold text-teal-800">이완기 단독 고혈압</th><td className="px-4 py-3 whitespace-nowrap">140 mmHg 미만</td><td className="px-4 py-3 whitespace-nowrap">90 mmHg 이상</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-orange-700">1기 고혈압</th><td className="px-4 py-3 whitespace-nowrap">140~159 mmHg</td><td className="px-4 py-3 whitespace-nowrap">90~99 mmHg</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-4 py-3 font-bold text-red-700">2기 고혈압</th><td className="px-4 py-3 whitespace-nowrap">160 mmHg 이상</td><td className="px-4 py-3 whitespace-nowrap">100 mmHg 이상</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-emerald-700 sm:px-3">정상</th><td className="px-2 py-2.5 sm:px-3">120 미만</td><td className="px-2 py-2.5 sm:px-3">80 미만</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-sky-700 sm:px-3">주의</th><td className="px-2 py-2.5 sm:px-3">120~129</td><td className="px-2 py-2.5 sm:px-3">80 미만</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-amber-700 sm:px-3">고혈압전단계</th><td className="px-2 py-2.5 sm:px-3">130~139</td><td className="px-2 py-2.5 sm:px-3">80~89</td></tr>
+                    <tr className="border-t border-teal-200 bg-teal-50"><th className="px-2 py-2.5 font-bold text-teal-800 sm:px-3">이완기 단독 고혈압</th><td className="px-2 py-2.5 sm:px-3">140 미만</td><td className="px-2 py-2.5 sm:px-3">90 이상</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-orange-700 sm:px-3">1기 고혈압</th><td className="px-2 py-2.5 sm:px-3">140~159</td><td className="px-2 py-2.5 sm:px-3">90~99</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-red-700 sm:px-3">2기 고혈압</th><td className="px-2 py-2.5 sm:px-3">160 이상</td><td className="px-2 py-2.5 sm:px-3">100 이상</td></tr>
                   </tbody>
                 </table>
               </div>
+            </div>
+          )}
+          {condition.id === "diabetes" && (
+            <div className="mt-5 overflow-hidden rounded-xl border-2 border-emerald-400 bg-white">
+              <div className="border-b border-emerald-100 bg-emerald-50 px-4 py-3">
+                <h2 className="text-sm font-extrabold text-emerald-900 sm:text-base">당뇨병 기준 수치 요약</h2>
+                <p className="mt-1 text-xs text-slate-600">공복·식후 2시간 혈당 및 당화혈색소 비교</p>
+              </div>
+              <ul className="divide-y divide-slate-100 text-xs leading-relaxed sm:text-sm">
+                <li className="grid grid-cols-[7rem_1fr] gap-2 px-4 py-3 sm:grid-cols-[8rem_1fr] sm:px-5"><strong className="text-emerald-700">정상</strong><span>공복 100 mg/dL 미만 · 식후 2시간 140 mg/dL 미만 · 당화혈색소 5.6% 이하</span></li>
+                <li className="grid grid-cols-[7rem_1fr] gap-2 bg-amber-50/60 px-4 py-3 sm:grid-cols-[8rem_1fr] sm:px-5"><strong className="text-amber-700">당뇨병 전단계</strong><span>공복 100~125 mg/dL · 식후 2시간 140~199 mg/dL · 당화혈색소 5.7~6.4%</span></li>
+                <li className="grid grid-cols-[7rem_1fr] gap-2 bg-rose-50/60 px-4 py-3 sm:grid-cols-[8rem_1fr] sm:px-5"><strong className="text-rose-700">당뇨병</strong><span>공복 126 mg/dL 이상 · 식후 2시간 200 mg/dL 이상 · 당화혈색소 6.5% 이상</span></li>
+              </ul>
             </div>
           )}
         </section>
