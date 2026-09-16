@@ -204,18 +204,18 @@ function ConditionDetailView({
                 <table className="w-full table-fixed border-collapse text-left text-[11px] sm:text-xs">
                   <thead className="bg-slate-50 text-slate-600">
                     <tr>
-                      <th className="w-[32%] px-2 py-2.5 font-bold sm:px-3">구분</th>
-                      <th className="w-[34%] px-2 py-2.5 font-bold sm:px-3">수축기 혈압</th>
-                      <th className="w-[34%] px-2 py-2.5 font-bold sm:px-3">이완기 혈압</th>
+                      <th className="w-[30%] px-1.5 py-2.5 font-bold sm:px-2">구분</th>
+                      <th className="w-[35%] px-1.5 py-2.5 font-bold sm:px-2">수축기 혈압</th>
+                      <th className="w-[35%] px-1.5 py-2.5 font-bold sm:px-2">이완기 혈압</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-emerald-700 sm:px-3">정상</th><td className="px-2 py-2.5 sm:px-3">120 미만</td><td className="px-2 py-2.5 sm:px-3">80 미만</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-sky-700 sm:px-3">주의</th><td className="px-2 py-2.5 sm:px-3">120~129</td><td className="px-2 py-2.5 sm:px-3">80 미만</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-amber-700 sm:px-3">고혈압전단계</th><td className="px-2 py-2.5 sm:px-3">130~139</td><td className="px-2 py-2.5 sm:px-3">80~89</td></tr>
-                    <tr className="border-t border-teal-200 bg-teal-50"><th className="px-2 py-2.5 font-bold text-teal-800 sm:px-3">이완기 단독 고혈압</th><td className="px-2 py-2.5 sm:px-3">140 미만</td><td className="px-2 py-2.5 sm:px-3">90 이상</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-orange-700 sm:px-3">1기 고혈압</th><td className="px-2 py-2.5 sm:px-3">140~159</td><td className="px-2 py-2.5 sm:px-3">90~99</td></tr>
-                    <tr className="border-t border-slate-200"><th className="px-2 py-2.5 font-bold text-red-700 sm:px-3">2기 고혈압</th><td className="px-2 py-2.5 sm:px-3">160 이상</td><td className="px-2 py-2.5 sm:px-3">100 이상</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-1.5 py-2.5 font-bold text-emerald-700 sm:px-2">정상</th><td className="px-1.5 py-2.5 sm:px-2">120 미만</td><td className="px-1.5 py-2.5 sm:px-2">80 미만</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-1.5 py-2.5 font-bold text-sky-700 sm:px-2">주의</th><td className="px-1.5 py-2.5 sm:px-2">120~129</td><td className="px-1.5 py-2.5 sm:px-2">80 미만</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-1.5 py-2.5 font-bold text-amber-700 sm:px-2">고혈압전단계</th><td className="px-1.5 py-2.5 sm:px-2">130~139</td><td className="px-1.5 py-2.5 sm:px-2">80~89</td></tr>
+                    <tr className="border-t border-teal-200 bg-teal-50"><th className="px-1.5 py-2.5 font-bold text-teal-800 sm:px-2">이완기 단독 고혈압</th><td className="px-1.5 py-2.5 sm:px-2">140 미만</td><td className="px-1.5 py-2.5 sm:px-2">90 이상</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-1.5 py-2.5 font-bold text-orange-700 sm:px-2">1기 고혈압</th><td className="px-1.5 py-2.5 sm:px-2">140~159</td><td className="px-1.5 py-2.5 sm:px-2">90~99</td></tr>
+                    <tr className="border-t border-slate-200"><th className="px-1.5 py-2.5 font-bold text-red-700 sm:px-2">2기 고혈압</th><td className="px-1.5 py-2.5 sm:px-2">160 이상</td><td className="px-1.5 py-2.5 sm:px-2">100 이상</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -227,11 +227,23 @@ function ConditionDetailView({
                 <h2 className="text-sm font-extrabold text-emerald-900 sm:text-base">당뇨병 기준 수치 요약</h2>
                 <p className="mt-1 text-xs text-slate-600">공복·식후 2시간 혈당 및 당화혈색소 비교</p>
               </div>
-              <ul className="divide-y divide-slate-100 text-xs leading-relaxed sm:text-sm">
-                <li className="grid grid-cols-[7rem_1fr] gap-2 px-4 py-3 sm:grid-cols-[8rem_1fr] sm:px-5"><strong className="text-emerald-700">정상</strong><span>공복 100 mg/dL 미만 · 식후 2시간 140 mg/dL 미만 · 당화혈색소 5.6% 이하</span></li>
-                <li className="grid grid-cols-[7rem_1fr] gap-2 bg-amber-50/60 px-4 py-3 sm:grid-cols-[8rem_1fr] sm:px-5"><strong className="text-amber-700">당뇨병 전단계</strong><span>공복 100~125 mg/dL · 식후 2시간 140~199 mg/dL · 당화혈색소 5.7~6.4%</span></li>
-                <li className="grid grid-cols-[7rem_1fr] gap-2 bg-rose-50/60 px-4 py-3 sm:grid-cols-[8rem_1fr] sm:px-5"><strong className="text-rose-700">당뇨병</strong><span>공복 126 mg/dL 이상 · 식후 2시간 200 mg/dL 이상 · 당화혈색소 6.5% 이상</span></li>
-              </ul>
+              <table className="w-full table-fixed border-collapse text-[10px] leading-relaxed sm:text-xs">
+                <thead className="bg-slate-50 text-slate-600">
+                  <tr><th className="w-[34%] px-1.5 py-2.5 text-left font-bold sm:px-2">검사 항목</th><th className="w-[42%] px-1.5 py-2.5 text-left font-bold sm:px-2">수치</th><th className="w-[24%] px-1.5 py-2.5 text-left font-bold sm:px-2">진단 결과</th></tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-slate-200"><th rowSpan={3} className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">공복혈당<br /><span className="font-normal text-[9px] text-slate-500 sm:text-[10px]">(8시간 이상 공복)</span></th><td className="px-1.5 py-2.5 sm:px-2">100 mg/dL 미만</td><td className="px-1.5 py-2.5 font-semibold text-emerald-700 sm:px-2">정상</td></tr>
+                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1.5 py-2.5 sm:px-2">100~125 mg/dL</td><td className="px-1.5 py-2.5 font-semibold text-amber-700 sm:px-2">당뇨병 전단계</td></tr>
+                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1.5 py-2.5 sm:px-2">126 mg/dL 이상</td><td className="px-1.5 py-2.5 font-semibold text-rose-700 sm:px-2">당뇨병</td></tr>
+                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">식후 2시간 혈당<br /><span className="font-normal text-[9px] text-slate-500 sm:text-[10px]">(포도당 부하 2시간 후)</span></th><td className="px-1.5 py-2.5 sm:px-2">140 mg/dL 미만</td><td className="px-1.5 py-2.5 font-semibold text-emerald-700 sm:px-2">정상</td></tr>
+                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1.5 py-2.5 sm:px-2">140~199 mg/dL</td><td className="px-1.5 py-2.5 font-semibold text-amber-700 sm:px-2">당뇨병 전단계</td></tr>
+                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1.5 py-2.5 sm:px-2">200 mg/dL 이상</td><td className="px-1.5 py-2.5 font-semibold text-rose-700 sm:px-2">당뇨병</td></tr>
+                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">당화혈색소<br /><span className="font-normal text-[9px] text-slate-500 sm:text-[10px]">(HbA1c)</span></th><td className="px-1.5 py-2.5 sm:px-2">5.6% 이하</td><td className="px-1.5 py-2.5 font-semibold text-emerald-700 sm:px-2">정상</td></tr>
+                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1.5 py-2.5 sm:px-2">5.7~6.4%</td><td className="px-1.5 py-2.5 font-semibold text-amber-700 sm:px-2">당뇨병 전단계</td></tr>
+                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1.5 py-2.5 sm:px-2">6.5% 이상</td><td className="px-1.5 py-2.5 font-semibold text-rose-700 sm:px-2">당뇨병</td></tr>
+                  <tr className="border-t-2 border-slate-200"><th className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">식이습관</th><td colSpan={2} className="px-1.5 py-2.5 text-slate-600 sm:px-2">채소·단백질·탄수화물 순서 식사 등 개인별 식이 가이드라인을 참고해 관리합니다.</td></tr>
+                </tbody>
+              </table>
             </div>
           )}
         </section>
