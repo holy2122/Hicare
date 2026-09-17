@@ -8,7 +8,6 @@ import {
   CheckCircle,
   AlertCircle,
   Clock,
-  Sparkles,
   Share2,
   Bookmark,
   Printer,
@@ -141,7 +140,6 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           {/* Highlight Callout Box: Short intuitive summary */}
           <div className="p-4 sm:p-5 rounded-xl bg-teal-50/70 border-l-4 border-teal-600 text-slate-800">
             <div className="flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wide text-teal-800 mb-1">
                   한 줄 핵심 실천 요약
@@ -188,20 +186,20 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                         <span
-                          className={`font-bold text-sm sm:text-base ${
+                          className={`font-bold text-base sm:text-lg ${
                             isDone ? "line-through text-slate-400" : "text-slate-900"
                           }`}
                         >
                           {step.title}
                         </span>
                         {step.metric && (
-                          <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-cyan-50 text-cyan-800 border border-cyan-200/60">
+                          <span className="px-2 py-0.5 rounded-md text-sm font-semibold bg-cyan-50 text-cyan-800 border border-cyan-200/60">
                             {step.metric}
                           </span>
                         )}
                       </div>
                       <p
-                        className={`text-xs sm:text-sm leading-relaxed ${
+                        className={`text-sm sm:text-base leading-relaxed ${
                           isDone ? "text-slate-400" : "text-slate-600"
                         }`}
                       >
@@ -216,7 +214,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
 
           {/* Key Safety Rules */}
           {keyword.keyRules && keyword.keyRules.length > 0 && (
-            <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-xs sm:text-sm">
+            <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-sm sm:text-base">
               <div className="flex items-center gap-2 font-bold mb-1.5 text-amber-950">
                 <AlertCircle className="w-4 h-4 text-amber-600" />
                 <span>안전 주의사항</span>
