@@ -58,9 +58,9 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
   const getIcon = () => {
     switch (condition.id) {
       case "hypertension":
-        return <VesselLineIcon className="w-5 h-5 text-blue-600" />;
+        return <VesselLineIcon className="w-7 h-7 text-blue-600" />;
       case "diabetes":
-        return <GlucoseLineIcon className="w-5 h-5 text-emerald-600" />;
+        return <GlucoseLineIcon className="w-7 h-7 text-emerald-600" />;
       case "dyslipidemia":
         return <Droplets className="w-5 h-5 text-sky-600" />;
       case "liver":
@@ -70,7 +70,7 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
       case "tuberculosis":
         return <LungsLineIcon className="w-5 h-5 text-blue-700" />;
       case "obesity":
-        return <PersonStanding className="w-5 h-5 text-emerald-600" />;
+        return <PersonStanding className="w-7 h-7 text-emerald-600" />;
       case "heart":
         return <Heart className="w-5 h-5 text-blue-600" />;
       default:
