@@ -1,0 +1,10 @@
+const fs = require('fs');
+const path = require('path');
+const file = path.resolve(__dirname, '../client/public/healthData.json');
+const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+const condition = data.find((item) => item.id === 'hypertension');
+const keyword = condition?.keywords.find((item) => item.id === 'hypertension-exercise');
+if (!keyword) throw new Error('Hypertension exercise guide not found');
+keyword.title = '고혈압 낮추는 방법\n벽스쿼트 마법!';
+fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
+console.log('Updated hypertension exercise title.');

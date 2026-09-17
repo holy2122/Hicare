@@ -106,7 +106,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           </div>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+        <h1 className="whitespace-pre-line text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
           {keyword.title}
         </h1>
         <p className="text-base text-slate-600 font-medium leading-relaxed">
