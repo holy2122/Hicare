@@ -19,8 +19,8 @@
       {
         "id": "hypertension-exercise",
         "tag": "운동요법",
-        "title": "약없이 고혈압 낮추는 방법! 벽스쿼트의 마법",
-        "subtitle": "기전: 하체 근육 수축과 휴식의 반복을 통해 혈관을 확장하고 탄력성을 회복하여 심장 부담 감소",
+        "title": "벽스쿼트 운동",
+        "subtitle": "기전: 하체 운동으로 혈관 부담을 줄입니다.",
         "shortActionSummary": "하루 16분 벽 스쿼트로 혈압을 안정시키세요.",
         "actionSteps": [
           {
@@ -62,8 +62,8 @@
       {
         "id": "hypertension-diet",
         "tag": "DASH 저염식단",
-        "title": "DASH 식이법과 나트륨 2,000mg 이하 제한",
-        "subtitle": "기전: 칼륨·마그네슘이 풍부한 식자재와 저염 양념법 가이드",
+        "title": "저염 식단",
+        "subtitle": "기전: 나트륨을 줄여 혈압을 낮춥니다.",
         "shortActionSummary": "싱겁게 먹고 채소와 잡곡을 챙기세요.",
         "actionSteps": [
           {
@@ -108,8 +108,8 @@
       {
         "id": "hypertension-monitor",
         "tag": "자가혈압측정",
-        "title": "가정혈압 측정의 '아침·저녁 2회 룰'",
-        "subtitle": "기전: 백의고혈압과 가면고혈압을 판별하는 올바른 혈압계 사용법",
+        "title": "혈압 측정",
+        "subtitle": "기전: 정확한 기록으로 혈압 변화를 확인합니다.",
         "shortActionSummary": "아침·저녁 혈압을 재고 평균을 기록하세요.",
         "actionSteps": [
           {
@@ -172,8 +172,8 @@
       {
         "id": "diabetes-exercise",
         "tag": "식후 운동요법",
-        "title": "의자를 활용하여 식후 혈당 잡는 5분 운동",
-        "subtitle": "기전: 인슐린 비의존성 포도당 수송체(GLUT4) 활성화로 식후 혈당스파이크 억제",
+        "title": "식후 운동",
+        "subtitle": "기전: 근육 활동으로 식후 혈당을 낮춥니다.",
         "shortActionSummary": "식후 30분, 의자 운동 5분으로 혈당 관리",
         "actionSteps": [
           {
@@ -235,8 +235,8 @@
       {
         "id": "diabetes-diet",
         "tag": "식이습관",
-        "title": "식사 순서 혁명: 식이섬유 먼저 먹기",
-        "subtitle": "기전: 위 배출 속도를 늦춰 탄수화물 흡수 곡선을 완만하게 만드는 과학적 식사법",
+        "title": "식이습관",
+        "subtitle": "기전: 식사 순서로 혈당 상승을 완만하게 합니다.",
         "shortActionSummary": "채소, 단백질, 탄수화물 순서로 드세요.",
         "actionSteps": [
           {
@@ -280,8 +280,8 @@
       {
         "id": "diabetes-cgm",
         "tag": "생활습관 로그",
-        "title": "연속혈당 또는 혈당일기와 수면관리",
-        "subtitle": "기전: 수면 부족으로 인한 코르티솔 상승과 인슐린 저항성 차단",
+        "title": "혈당 기록",
+        "subtitle": "기전: 기록으로 생활습관과 혈당을 함께 봅니다.",
         "shortActionSummary": "7시간 숙면과 혈당 기록을 실천하세요.",
         "actionSteps": [
           {
@@ -339,8 +339,8 @@
       {
         "id": "dyslipidemia-diet",
         "tag": "포화지방/트랜스지방 절제",
-        "title": "LDL 콜레스테롤 낮추는 불포화지방 중심 식단",
-        "subtitle": "기전: 삼겹살·버터 대신 등푸른생선과 올리브유, 오메가-3 중심 교체",
+        "title": "건강한 지방",
+        "subtitle": "기전: 포화지방을 줄여 콜레스테롤을 관리합니다.",
         "shortActionSummary": "기름진 음식 대신 생선과 견과를 드세요.",
         "actionSteps": [
           {
@@ -384,8 +384,8 @@
       {
         "id": "dyslipidemia-exercise",
         "tag": "중강도 유산소 150분",
-        "title": "중성지방(TG)을 태우는 유산소와 HDL 증진 운동",
-        "subtitle": "기전: 지단백 리파아제(LPL) 효소를 자극해 혈중 중성지방 분해 가속",
+        "title": "유산소 운동",
+        "subtitle": "기전: 꾸준한 운동으로 중성지방을 낮춥니다.",
         "shortActionSummary": "주 5회 30분 유산소를 실천하세요.",
         "actionSteps": [
           {
@@ -443,8 +443,8 @@
       {
         "id": "liver-abstinence",
         "tag": "절주/금주 수칙",
-        "title": "간세포 재생을 위한 4주 간헐적 또는 완전 금주",
-        "subtitle": "기전: 아세트알데히드 독성 제거와 간 내 중성지방 축적 역전",
+        "title": "금주 실천",
+        "subtitle": "기전: 술을 줄여 간 회복을 돕습니다.",
         "shortActionSummary": "4주 금주로 간 건강을 회복하세요.",
         "actionSteps": [
           {
@@ -483,8 +483,8 @@
       {
         "id": "liver-diet",
         "tag": "단순당/과당 제한",
-        "title": "비알코올성 지방간(NAFLD) 잡는 과당 다이어트",
-        "subtitle": "기전: 간으로 직행해 지방간을 만드는 액상과당과 흰 탄수화물 차단",
+        "title": "당 줄이기",
+        "subtitle": "기전: 과당을 줄여 간 지방 축적을 막습니다.",
         "shortActionSummary": "단 음료를 끊고 통곡물을 선택하세요.",
         "actionSteps": [
           {
@@ -542,8 +542,8 @@
       {
         "id": "ckd-salt-protein",
         "tag": "저염 및 적정 단백질",
-        "title": "사구체 고혈압을 막는 저염 식단과 단백질 과잉 금지",
-        "subtitle": "기전: 과도한 헬스 단백질 보충제와 짠 음식이 신장에 주는 과부하 차단",
+        "title": "저염 단백질",
+        "subtitle": "기전: 염분과 단백질 부담을 줄입니다.",
         "shortActionSummary": "짠 음식과 과한 단백질을 줄이세요.",
         "actionSteps": [
           {
@@ -587,8 +587,8 @@
       {
         "id": "ckd-hydration",
         "tag": "수분 밸런스 및 혈압관리",
-        "title": "신혈류 유지와 혈압 120/80 이하 철저 관리",
-        "subtitle": "기전: 신장 모세혈관 다발을 지키는 1차 방어선",
+        "title": "수분·혈압",
+        "subtitle": "기전: 수분과 혈압을 균형 있게 관리합니다.",
         "shortActionSummary": "수분과 혈압을 나에게 맞게 관리하세요.",
         "actionSteps": [
           {
@@ -646,8 +646,8 @@
       {
         "id": "tb-symptom-check",
         "tag": "2주 이상 기침 감시",
-        "title": "2주 이상 지속되는 기침·야간 발열·체중감소 모니터링",
-        "subtitle": "기전: 비활동성 결핵균의 재활성화(Reactivation) 경고 징후 감별",
+        "title": "기침 확인",
+        "subtitle": "기전: 증상 변화를 살펴 조기 진료를 돕습니다.",
         "shortActionSummary": "2주 기침과 이상 증상은 즉시 검사하세요.",
         "actionSteps": [
           {
@@ -686,8 +686,8 @@
       {
         "id": "tb-immunity",
         "tag": "면역력 강화 영양",
-        "title": "세포 매개성 면역 강화를 위한 균형 단백질과 비타민 D",
-        "subtitle": "기전: 결핵균을 잠재우는 대식세포와 T림프구 기능 극대화",
+        "title": "면역 영양",
+        "subtitle": "기전: 균형 잡힌 영양으로 면역을 돕습니다.",
         "shortActionSummary": "규칙적인 식사와 햇빛을 챙기세요.",
         "actionSteps": [
           {
@@ -745,8 +745,8 @@
       {
         "id": "obesity-aerobic-zone",
         "tag": "존2 유산소 및 근력운동",
-        "title": "체지방 연소 최적화 Zone 2 유산소와 기초대사량 유지",
-        "subtitle": "기전: 최대 심박수의 60~70% 구간에서 진행하는 지속적 지방 산화 트레이닝",
+        "title": "존2·근력운동",
+        "subtitle": "기전: 유산소와 근력으로 체지방을 줄입니다.",
         "shortActionSummary": "대화 가능한 속도로 40분 걸으세요.",
         "actionSteps": [
           {
@@ -790,8 +790,8 @@
       {
         "id": "obesity-intermittent-diet",
         "tag": "12:12 간헐적 단식",
-        "title": "야간 12시간 공복 유지와 혈당 스파이크 없는 저탄수 식단",
-        "subtitle": "기전: 인슐린 분비를 최소화하여 체지방 분해 호르몬(리파아제) 가동",
+        "title": "12:12 식사",
+        "subtitle": "기전: 규칙적인 식사로 혈당 변동을 줄입니다.",
         "shortActionSummary": "저녁 후 12시간 공복을 실천하세요.",
         "actionSteps": [
           {
@@ -854,8 +854,8 @@
       {
         "id": "heart-red-flags",
         "tag": "위험 징후 인지",
-        "title": "심혈관 응급 신호 3가지와 즉시 대처 프로토콜",
-        "subtitle": "기전: 조이는 가슴 통증, 호흡 곤란, 턱/어깨로 뻗치는 방사통 구별",
+        "title": "위험 신호",
+        "subtitle": "기전: 이상 신호를 알아차려 빠르게 대응합니다.",
         "shortActionSummary": "가슴 통증과 호흡곤란은 즉시 119입니다.",
         "actionSteps": [
           {
@@ -899,8 +899,8 @@
       {
         "id": "heart-aerobic-safe",
         "tag": "심폐 안심 유산소",
-        "title": "심장 부담을 최소화하는 점진적 유산소 운동",
-        "subtitle": "기전: 갑작스러운 전력 질주 대신 웜업-본운동-쿨다운의 3단계 접근",
+        "title": "안심 유산소",
+        "subtitle": "기전: 무리 없는 운동으로 심폐 기능을 돕습니다.",
         "shortActionSummary": "준비운동 후 따뜻한 시간에 걸으세요.",
         "actionSteps": [
           {
