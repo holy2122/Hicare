@@ -1,13 +1,14 @@
 import React from "react";
 import { HealthCondition } from "../data/healthData";
 import {
-  Activity,
-  Heart,
-  Droplet,
-  Flame,
-  Shield,
-  Apple,
+  GitBranch,
+  Gauge,
+  Droplets,
+  Slice,
+  Bean,
   Wind,
+  PersonStanding,
+  HeartPulse,
   ChevronRight,
 } from "lucide-react";
 
@@ -25,23 +26,23 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
   const getIcon = () => {
     switch (condition.id) {
       case "hypertension":
-        return <Activity className="w-5 h-5 text-blue-600" />;
+        return <GitBranch className="w-5 h-5 text-blue-600" />;
       case "diabetes":
-        return <Droplet className="w-5 h-5 text-emerald-600" />;
+        return <Gauge className="w-5 h-5 text-emerald-600" />;
       case "dyslipidemia":
-        return <Flame className="w-5 h-5 text-sky-600" />;
+        return <Droplets className="w-5 h-5 text-sky-600" />;
       case "liver":
-        return <Shield className="w-5 h-5 text-teal-600" />;
+        return <Slice className="w-5 h-5 text-teal-600" />;
       case "ckd":
-        return <Droplet className="w-5 h-5 text-cyan-600" />;
+        return <Bean className="w-5 h-5 text-cyan-600" />;
       case "tuberculosis":
         return <Wind className="w-5 h-5 text-blue-700" />;
       case "obesity":
-        return <Apple className="w-5 h-5 text-emerald-600" />;
+        return <PersonStanding className="w-5 h-5 text-emerald-600" />;
       case "heart":
-        return <Heart className="w-5 h-5 text-blue-600" />;
+        return <HeartPulse className="w-5 h-5 text-blue-600" />;
       default:
-        return <Activity className="w-5 h-5 text-teal-600" />;
+        return <Gauge className="w-5 h-5 text-teal-600" />;
     }
   };
 
