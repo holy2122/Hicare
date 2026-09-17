@@ -1,4 +1,5 @@
 import React from "react";
+import { HeartPulse } from "lucide-react";
 
 interface NavbarProps {
   onReset: () => void;
@@ -21,8 +22,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={onReset}
           className="flex items-center text-left group transition hover:opacity-90 cursor-pointer"
         >
-          <span className="font-display text-[17px] font-semibold italic tracking-[-0.06em] text-rose-700 transition-colors duration-200 group-hover:text-rose-800 sm:text-[19px]">
-            Care<span className="ml-0.5 font-serif font-black not-italic text-rose-500">-T</span>
+          <HeartPulse className="mr-1.5 h-4 w-4 text-teal-600 transition-colors duration-200 group-hover:text-emerald-700 sm:h-[18px] sm:w-[18px]" aria-hidden="true" />
+          <span className="font-display text-[17px] font-extrabold tracking-[-0.04em] text-teal-700 transition-colors duration-200 group-hover:text-emerald-700 sm:text-[19px]">
+            Hi <span className="text-emerald-600">Care</span>
           </span>
         </button>
       </div>
