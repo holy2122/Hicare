@@ -28,10 +28,12 @@ const LungsLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 const VesselLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M3 7h18" />
-    <path d="M3 13h18" />
-    <path d="M7 7v6M17 7v6" />
-    <path d="M7 13v4M17 13v4" />
+    <path d="M3.2 15.8c2.8-6.7 7.2-9.7 13.1-8.6 2 .4 3.5 1.2 4.5 2.3" />
+    <path d="M4.8 19c2.6-5.6 6.2-8 10.7-7.2 1.7.3 3 .9 4 1.8" />
+    <path d="M3.2 15.8 4.8 19M16.3 7.2l-.8 4.6M20.8 9.5l-1.3 4.1" />
+    <ellipse cx="8" cy="14" rx="1.2" ry="0.65" transform="rotate(-28 8 14)" />
+    <ellipse cx="12" cy="11.8" rx="1.2" ry="0.65" transform="rotate(18 12 11.8)" />
+    <ellipse cx="15.8" cy="13.8" rx="1.2" ry="0.65" transform="rotate(-18 15.8 13.8)" />
   </svg>
 );
 
