@@ -251,9 +251,9 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           </span>
         </div>
 
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="p-4 sm:p-5 space-y-3">
           {/* Paper Meta Card */}
-          <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-5">
+          <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">
                 {keyword.evidence.journal} ({keyword.evidence.year})
@@ -271,12 +271,12 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
             <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug mb-1">
               {keyword.evidence.paperTitle}
             </h3>
-            <p className="text-xs text-slate-500 mb-4">
+            <p className="text-xs text-slate-500 mb-2">
               저자: {keyword.evidence.authors}
             </p>
 
             {/* Core Summary Callout */}
-            <div className="p-4 rounded-lg bg-white border border-blue-200/70 text-slate-800 shadow-2xs">
+            <div className="p-3 rounded-lg bg-white border border-blue-200/70 text-slate-800 shadow-2xs">
               <h4 className="text-xs font-bold text-blue-800 uppercase tracking-wide mb-1 flex items-center gap-1.5">
                 <Award className="w-3.5 h-3.5 text-blue-600" />
                 <span>논문 핵심 요약문 (Clinical Findings)</span>
@@ -288,7 +288,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           </div>
 
           {/* Hyperlink Button */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
             <div className="text-xs text-slate-500">
               * 학술 출처는 PubMed, NEJM, Lancet, 대한의학회 공인 학술지 등 공신력 있는 임상 데이터를 기준으로 추출되었습니다.
             </div>
