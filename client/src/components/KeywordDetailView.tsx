@@ -59,7 +59,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-8 animate-in fade-in-50 duration-300 pb-16">
+    <div className="w-full max-w-5xl mx-auto space-y-4 animate-in fade-in-50 duration-300 pb-16">
       {/* Detail Page Breadcrumb & Header Title */}
       <div className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-xs">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
@@ -388,12 +388,12 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       </div>
 
       {/* Completion & Next Action Banner */}
-      <div className="bg-gradient-to-r from-teal-50 via-cyan-50 to-blue-50 rounded-2xl border border-teal-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <h4 className="text-base font-bold text-slate-900 mb-1">
-            오늘의 {keyword.tag} 가이드를 확인하셨나요?
+      <div className="-mt-2 bg-gradient-to-r from-teal-50 via-cyan-50 to-blue-50 rounded-2xl border border-teal-200 p-4 flex flex-col items-center justify-center gap-3 text-center">
+        <div className="w-full">
+          <h4 className="text-sm sm:text-base font-bold text-slate-900">
+            오늘의 {keyword.tag} 가이드 확인했나요?
           </h4>
-          <p className="text-xs sm:text-sm text-slate-600">
+          <p className="mt-1 text-xs text-slate-600">
             꾸준한 4주간의 생활습관 개선 후 3~6개월 뒤 보건소 또는 병원에서 추적 검사를 권장합니다.
           </p>
         </div>
