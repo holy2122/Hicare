@@ -58,23 +58,23 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
   const getIcon = () => {
     switch (condition.id) {
       case "hypertension":
-        return <VesselLineIcon className="w-7 h-7 text-blue-600" />;
+        return <VesselLineIcon className="w-8 h-8 text-blue-600" />;
       case "diabetes":
-        return <GlucoseLineIcon className="w-7 h-7 text-emerald-600" />;
+        return <GlucoseLineIcon className="w-8 h-8 text-emerald-600" />;
       case "dyslipidemia":
-        return <Droplets className="w-5 h-5 text-sky-600" />;
+        return <Droplets className="w-7 h-7 text-sky-600" />;
       case "liver":
-        return <LiverLineIcon className="w-5 h-5 text-teal-600" />;
+        return <LiverLineIcon className="w-7 h-7 text-teal-600" />;
       case "ckd":
-        return <Bean className="w-5 h-5 text-cyan-600" />;
+        return <Bean className="w-7 h-7 text-cyan-600" />;
       case "tuberculosis":
-        return <LungsLineIcon className="w-5 h-5 text-blue-700" />;
+        return <LungsLineIcon className="w-7 h-7 text-blue-700" />;
       case "obesity":
-        return <PersonStanding className="w-7 h-7 text-emerald-600" />;
+        return <PersonStanding className="w-8 h-8 text-emerald-600" />;
       case "heart":
-        return <Heart className="w-5 h-5 text-blue-600" />;
+        return <Heart className="w-7 h-7 text-blue-600" />;
       default:
-        return <Gauge className="w-5 h-5 text-teal-600" />;
+        return <Gauge className="w-7 h-7 text-teal-600" />;
     }
   };
 
@@ -92,12 +92,12 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2.5">
             <div
-              className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200 ${condition.colorTone.iconBg}`}
+              className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200 ${condition.colorTone.iconBg}`}
             >
               {getIcon()}
             </div>
             <div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight whitespace-nowrap">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight whitespace-nowrap">
                 {condition.name}
               </h3>
             </div>
@@ -106,7 +106,7 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
         </div>
 
         {/* Short Description */}
-        <p className="text-xs text-slate-600 line-clamp-2 mb-3 leading-relaxed min-h-[34px]">
+        <p className="text-sm sm:text-base text-slate-600 line-clamp-2 mb-3 leading-relaxed min-h-[42px]">
           {condition.shortDesc}
         </p>
 
