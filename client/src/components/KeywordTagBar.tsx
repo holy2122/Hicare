@@ -28,21 +28,21 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
       <div className="rounded-2xl border border-teal-200/90 bg-white p-4 shadow-sm transition-all sm:p-6">
         {/* Interactive Keyword Tags */}
         <div>
-        <div className="flex items-center gap-2 mb-3">
+        <div className="mb-3 flex items-center justify-center gap-2 text-center">
           <Tag className="w-4 h-4 text-teal-600" />
           <span className="text-xs sm:text-sm font-semibold text-slate-800">
             세부 관리 키워드
           </span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center justify-center gap-2.5">
           {condition.keywords.map((kw) => {
             const isKwActive = selectedKeywordId === kw.id;
             return (
               <button
                 key={kw.id}
                 onClick={() => onSelectKeyword(kw)}
-                className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
+                className={`group relative justify-center px-4 py-2.5 rounded-xl text-center text-sm font-semibold transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
                   isKwActive
                     ? "bg-gradient-to-r from-teal-600 to-cyan-600 text-white border-transparent shadow-md shadow-teal-600/25 scale-[1.02]"
                     : "bg-slate-50 hover:bg-teal-50/80 text-slate-700 hover:text-teal-800 border-slate-200/80 hover:border-teal-300"
