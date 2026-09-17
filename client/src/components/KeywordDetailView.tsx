@@ -108,7 +108,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
         <h1 className="whitespace-pre-line text-center text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
           {keyword.title}
         </h1>
-        <p className="text-base text-slate-600 font-medium leading-relaxed">
+        <p className="text-center text-base text-slate-600 font-medium leading-relaxed">
           {keyword.id === "hypertension-exercise"
             ? keyword.subtitle.replace(/^기전:\s*/, "")
             : keyword.subtitle.startsWith("기전: ")
