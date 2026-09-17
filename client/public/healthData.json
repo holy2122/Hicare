@@ -543,43 +543,39 @@
         "id": "ckd-salt-protein",
         "tag": "저염 및 적정 단백질",
         "title": "저염 단백질",
-        "subtitle": "기전: 염분과 단백질 부담을 줄입니다.",
-        "shortActionSummary": "짠 음식과 과한 단백질을 줄이세요.",
+        "subtitle": "기전: 저염과 적정 단백질로 콩팥 부담을 낮춥니다.",
+        "shortActionSummary": "저염·적정 단백질로 콩팥을 지켜요.",
         "actionSteps": [
           {
-            "title": "1. 체중당 단백질 0.8g 유지",
-            "desc": "체중 70kg 기준 하루 56g 안팎으로 살코기, 달걀, 생선 위주의 적정량 분할 섭취",
-            "metric": "보충제 복용 중단"
+            "title": "🍏 가이드 1. 추천 식습관",
+            "desc": "칼륨이 낮은 사과·배·귤·포도·딸기와 배추·오이·콩나물·가지·당근을 선택하세요. 채소는 잘게 썰어 물에 2시간 이상 담그거나 데쳐 칼륨을 줄이고, 들기름·아마씨유와 고등어·참치·생강·양파 등 오메가-3 식품을 활용합니다.",
+            "metric": "저칼륨·오메가-3"
           },
           {
-            "title": "2. 나트륨 하루 2g 미만 엄수",
-            "desc": "체액 저류와 신혈관 수축을 막아 사구체 내압을 낮춤",
-            "metric": "가공육 배제"
-          },
-          {
-            "title": "3. 비스테로이드 소염진통제(NSAIDs) 주의",
-            "desc": "이부프로펜 계열 진통제 남용 시 신혈류량이 급감하므로 아세트아미노펜 우선 고려",
-            "metric": "복용 전 의사 상담"
+            "title": "🚨 가이드 2. 피해야 할 식습관",
+            "desc": "달고 짠 자극적인 음식, 지나친 육식과 단백질 메가도스, 칼륨 조절 없는 생채소·과일주스를 피하세요. 고용량 비타민 C, 칼슘·비타민 D 보충제, 크레아틴은 복용 전 의료진과 상담합니다.",
+            "metric": "나트륨·과단백 제한"
           }
         ],
         "keyRules": [
-          "탈수는 급성 신손상을 유발할 수 있으므로 땀을 많이 흘렸을 때는 깨끗한 물을 조금씩 자주 보충합니다."
+          "단백질은 체중 kg당 0.55~0.6g 수준을 기본으로 하되, 투석 여부와 혈액검사에 따라 달라지므로 신장 전문의·영양사와 조정하세요.",
+          "나트륨은 하루 2.0g(소금 5g) 미만을 목표로 하고, 과일·채소의 칼륨 제한은 혈중 칼륨 수치에 따라 의료진 지시를 따르세요."
         ],
         "evidence": {
-          "paperTitle": "Executive summary of the KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
-          "journal": "Kidney International",
+          "paperTitle": "만성콩팥병 저염·적정 단백질 식이의 신보호 효과",
+          "journal": "KDOQI·KDIGO 임상 가이드라인",
           "year": 2024,
-          "authors": "Kidney Disease: Improving Global Outcomes (KDIGO) CKD Work Group",
-          "coreSummary": "2024 KDIGO 최신 국제 가이드라인은 단백질 섭취량을 체중 kg당 0.8g 수준으로 조절하고 고단백 식이(>1.3g/kg)를 피할 것을 강력히 권고(Practice Point 3.3.1.1)하며, 이는 신기능 감소 속도를 현저히 지연시킵니다.",
+          "authors": "KDOQI Nutrition in CKD Work Group · KDIGO CKD Work Group",
+          "coreSummary": "근거 1｜KDOQI는 만성콩팥병 3~5단계에서 단백질을 하루 체중 kg당 0.55~0.6g으로 제한하면 사구체 과여과와 단백뇨를 줄이고 신기능 저하를 늦출 수 있다고 제시합니다. 근거 2｜KDIGO는 나트륨 하루 2.0g(소금 5g) 미만을 권고하며, 나트륨 제한은 사구체 모세혈관 압력과 요단백을 낮추는 데 도움을 줍니다. 근거 3｜들기름·아마씨유의 식물성 오메가-3(ALA)는 염증성 사이토카인과 혈관 내피 기능에 영향을 주어 신혈관 보호에 도움을 줄 가능성이 보고되었습니다. 개인별 단백질·칼륨 처방은 신장 전문의와 상담하세요.",
           "sourceUrl": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
-          "evidenceGrade": "KDIGO 2024 국제 가이드라인"
+          "evidenceGrade": "KDOQI·KDIGO 근거 기반"
         },
         "video": {
-          "title": "신장내과 교수가 경고하는 콩팥 망치는 대표 생활습관 3가지",
-          "channel": "대한신장학회 콩팥 건강 지킴이",
-          "youtubeId": "WU1P4HwQji4",
-          "duration": "14분 50초",
-          "summary": "건강검진 요단백 양성의 의미와 신장 기능(eGFR)을 지키는 물 마시기 및 식이 원칙",
+          "title": "만성콩팥병 저염·적정 단백질 식단 가이드",
+          "channel": "건강관리 영상 가이드",
+          "youtubeId": "ySrzbJV3zeY",
+          "duration": "영상 시청",
+          "summary": "칼륨을 줄이는 식재료 손질법과 저염·적정 단백질 식습관의 핵심을 확인하세요.",
           "difficulty": "초급",
           "targetTimePerDay": "매일 실천"
         }
