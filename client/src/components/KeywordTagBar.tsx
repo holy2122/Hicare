@@ -30,7 +30,7 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
         <div>
         <div className="mb-3 flex items-center justify-center gap-2 text-center">
           <Tag className="w-4 h-4 text-teal-600" />
-          <span className="text-xl font-extrabold text-slate-900">
+          <span className="text-xl font-semibold text-slate-800">
             03 일상 속 {condition.name}관리
           </span>
         </div>
