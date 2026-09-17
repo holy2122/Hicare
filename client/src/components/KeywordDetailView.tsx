@@ -355,7 +355,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-xl border border-slate-800">
             <iframe
               className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube-nocookie.com/embed/${keyword.video.youtubeId}?rel=0&modestbranding=1`}
+              src={`https://www.youtube-nocookie.com/embed/${keyword.video.youtubeId}?rel=0&modestbranding=1${keyword.video.startSeconds ? `&start=${keyword.video.startSeconds}` : ""}`}
               title={keyword.video.title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen

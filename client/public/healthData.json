@@ -96,11 +96,12 @@
           "sampleSizeOrMethod": "n=412, 다기관 교차 설계"
         },
         "video": {
-          "title": "짜지 않아도 맛있는 고혈압 DASH 식단 7일 밀프랩",
-          "channel": "임상영양사의 메디컬 푸드랩",
-          "youtubeId": "3ojB9kC6354",
-          "duration": "15분 10초",
-          "summary": "한국인 밥상에 맞춘 저염 된장찌개 조리법과 천연 다시마·표고 조미가루 만들기",
+          "title": "고혈압 DASH 식이습관 따라하기",
+          "channel": "건강관리 영상 가이드",
+          "youtubeId": "dhShgjGZslo",
+          "startSeconds": 628,
+          "duration": "영상 시청",
+          "summary": "DASH 식이습관 실천 영상을 10분 28초 지점부터 시청하고 따라 하세요.",
           "difficulty": "초급",
           "targetTimePerDay": "매 끼니 적용"
         }

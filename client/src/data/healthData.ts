@@ -19,6 +19,7 @@ export interface VideoGuide {
   title: string;
   channel: string;
   youtubeId: string;
+  startSeconds?: number;
   duration: string;
   summary: string;
   difficulty: "초급" | "중급" | "고급";
