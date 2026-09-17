@@ -31,7 +31,7 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
         <div className="mb-3 flex items-center justify-center gap-2 text-center">
           <Tag className="w-4 h-4 text-teal-600" />
           <span className="text-xs sm:text-sm font-semibold text-slate-800">
-            세부 관리 키워드
+            03 일상 속 {condition.name}관리
           </span>
         </div>
 
