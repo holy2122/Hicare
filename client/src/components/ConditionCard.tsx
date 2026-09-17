@@ -11,9 +11,9 @@ import {
 
 const LiverLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M3.5 10.2C5.4 6.1 9.4 4.1 14.1 4.8c2.8.4 4.8 1.8 6.4 3.9-1.5 4.1-5.1 7-9.4 7.7-3.5.6-6.4-.8-8-3.5-.6-.9-.5-1.8.4-2.7Z" />
-    <path d="M3.8 10.4c3.2 1.1 6.6 1.1 10.1-.2 1.8-.7 3.4-1.7 4.8-3" />
-    <path d="M14.2 4.9c.2 1.8-.3 3.7-1.5 5.3" />
+    <path d="M3.2 10.4c2.1-4.1 6.4-5.8 11.3-5.1 2.8.4 4.8 1.9 6.3 4.1-.8 4-4.2 7.1-8.3 8.1-3.6.9-7.4.1-9.3-2.5-.8-1.1-.8-2.8 0-4.6Z" />
+    <path d="M3.7 10.6c3.1 1.1 6.1 1.1 8.9 0 2.2-.8 4-2.1 5.5-3.7" />
+    <path d="M12.6 10.8c.1 1.8-.4 3.6-1.4 5.1" />
   </svg>
 );
 
@@ -28,17 +28,17 @@ const LungsLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 const VesselLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M4 4v5c0 2.1 1.7 3.8 3.8 3.8H12c2.2 0 4-1.8 4-4V4" />
-    <path d="M12 12.8v4.1c0 1.7 1.3 3.1 3 3.1h5" />
-    <path d="M7.8 12.8v3.3c0 2.2-1.8 4-4 4" />
-    <path d="M4 4h3.8M16 4h4" />
+    <path d="M3 7h18" />
+    <path d="M3 13h18" />
+    <path d="M7 7v6M17 7v6" />
+    <path d="M7 13v4M17 13v4" />
   </svg>
 );
 
 const GlucoseLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M12 3.5s5 5.4 5 9.2a5 5 0 1 1-10 0c0-3.8 5-9.2 5-9.2Z" />
-    <path d="M9.5 13.2h5M12 10.7v5" />
+    <path d="M9.2 12.2h5.6M9.2 14.6h5.6" />
   </svg>
 );
 
