@@ -393,8 +393,9 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           <h4 className="text-sm sm:text-base font-bold text-slate-900">
             오늘의 {keyword.tag} 가이드 확인했나요?
           </h4>
-          <p className="mt-1 text-xs text-slate-600">
-            꾸준한 4주간의 생활습관 개선 후 3~6개월 뒤 보건소 또는 병원에서 추적 검사를 권장합니다.
+          <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+            꾸준한 4주간의 생활습관 개선으로<br />
+            Body Up! 건강 Up!
           </p>
         </div>
         <button
