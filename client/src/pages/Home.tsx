@@ -135,7 +135,6 @@ function ListView({
       </main>
       <footer className="mt-auto border-t border-slate-200 bg-white/80 px-4 py-7 text-center text-[11px] leading-relaxed text-slate-400">
         본 서비스는 건강검진 사후관리를 돕기 위한 보조 프로토타입이며, 실제 진단과 치료는 의료진 상담을 통해 결정해야 합니다.
-        <span className="mx-2">·</span><a href="/admin" className="font-bold text-slate-500 hover:text-teal-700">관리자 데이터</a>
       </footer>
     </>
   );
@@ -260,7 +259,6 @@ function ConditionDetailView({
             selectedKeywordId={selectedKeywordId}
             onSelectKeyword={handleSelectKeyword}
             onResetCondition={onBack}
-            onOpenSurvey={() => { window.location.href = `/survey?condition=${encodeURIComponent(condition.id)}&name=${encodeURIComponent(condition.name)}`; }}
           />
         </section>
 

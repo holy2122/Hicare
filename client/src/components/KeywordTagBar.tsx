@@ -1,13 +1,12 @@
 import React from "react";
 import { HealthCondition, HealthKeywordTopic } from "../data/healthData";
-import { Tag, Sparkles, CheckCircle2, ClipboardCheck, ArrowRight } from "lucide-react";
+import { Tag, Sparkles, CheckCircle2 } from "lucide-react";
 
 interface KeywordTagBarProps {
   condition: HealthCondition;
   selectedKeywordId: string | null;
   onSelectKeyword: (kw: HealthKeywordTopic) => void;
   onResetCondition: () => void;
-  onOpenSurvey: () => void;
 }
 
 export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
@@ -15,7 +14,6 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
   selectedKeywordId,
   onSelectKeyword,
   onResetCondition,
-  onOpenSurvey,
 }) => {
   return (
     <div className="mb-8 space-y-3">
@@ -26,18 +24,6 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
       <div className="rounded-lg border border-indigo-300 bg-indigo-50 p-4 text-sm leading-relaxed text-slate-800">
         <p className="font-bold text-indigo-900"><span className="mr-1.5 text-indigo-600" aria-hidden="true">●</span>[질환으로 진단받은 경우]</p>
         <p className="mt-1.5 text-slate-700"><span className="mr-1 text-xs align-middle text-indigo-700">▶</span>질환으로 진단받아 전문 치료와 관리가 필요한 단계입니다. 병원 정기 진찰 및 전문의 치료를 반드시 병행하시고, 아래 일상 관리를 철저히 준수하세요!</p>
-        <button
-          type="button"
-          onClick={onOpenSurvey}
-          className="mt-4 flex min-h-14 w-full items-center justify-between rounded-2xl border border-indigo-600 bg-indigo-600 px-4 py-3 text-left text-white shadow-[0_5px_0_#3730a3,0_10px_18px_rgba(79,70,229,0.2)] transition hover:-translate-y-0.5 hover:bg-indigo-700 active:translate-y-0.5 active:shadow-[0_2px_0_#3730a3,0_5px_10px_rgba(79,70,229,0.18)]"
-          aria-label="건강설문 시작하기"
-        >
-          <span className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15"><ClipboardCheck className="h-5 w-5" /></span>
-            <span><strong className="block text-sm">건강설문 시작하기</strong><span className="mt-0.5 block text-xs text-indigo-100">현재 상태를 알려주시면 맞춤 관리에 반영해요</span></span>
-          </span>
-          <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
-        </button>
       </div>
       <div className="rounded-2xl border border-teal-200/90 bg-white p-4 shadow-sm transition-all sm:p-6">
         {/* Interactive Keyword Tags */}
