@@ -1,12 +1,11 @@
 import React from "react";
 import { HealthCondition } from "../data/healthData";
 import {
-  GitBranch,
   Gauge,
   Droplets,
   Bean,
   PersonStanding,
-  HeartPulse,
+  Heart,
   ChevronRight,
 } from "lucide-react";
 
@@ -27,6 +26,22 @@ const LungsLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
+const VesselLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M4 4v5c0 2.1 1.7 3.8 3.8 3.8H12c2.2 0 4-1.8 4-4V4" />
+    <path d="M12 12.8v4.1c0 1.7 1.3 3.1 3 3.1h5" />
+    <path d="M7.8 12.8v3.3c0 2.2-1.8 4-4 4" />
+    <path d="M4 4h3.8M16 4h4" />
+  </svg>
+);
+
+const GlucoseLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 3.5s5 5.4 5 9.2a5 5 0 1 1-10 0c0-3.8 5-9.2 5-9.2Z" />
+    <path d="M9.5 13.2h5M12 10.7v5" />
+  </svg>
+);
+
 interface ConditionCardProps {
   condition: HealthCondition;
   isSelected: boolean;
@@ -41,9 +56,9 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
   const getIcon = () => {
     switch (condition.id) {
       case "hypertension":
-        return <GitBranch className="w-5 h-5 text-blue-600" />;
+        return <VesselLineIcon className="w-5 h-5 text-blue-600" />;
       case "diabetes":
-        return <Gauge className="w-5 h-5 text-emerald-600" />;
+        return <GlucoseLineIcon className="w-5 h-5 text-emerald-600" />;
       case "dyslipidemia":
         return <Droplets className="w-5 h-5 text-sky-600" />;
       case "liver":
@@ -55,7 +70,7 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
       case "obesity":
         return <PersonStanding className="w-5 h-5 text-emerald-600" />;
       case "heart":
-        return <HeartPulse className="w-5 h-5 text-blue-600" />;
+        return <Heart className="w-5 h-5 text-blue-600" />;
       default:
         return <Gauge className="w-5 h-5 text-teal-600" />;
     }
