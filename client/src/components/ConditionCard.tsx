@@ -4,13 +4,28 @@ import {
   GitBranch,
   Gauge,
   Droplets,
-  Slice,
   Bean,
-  Wind,
   PersonStanding,
   HeartPulse,
   ChevronRight,
 } from "lucide-react";
+
+const LiverLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3.5 10.2C5.4 6.1 9.4 4.1 14.1 4.8c2.8.4 4.8 1.8 6.4 3.9-1.5 4.1-5.1 7-9.4 7.7-3.5.6-6.4-.8-8-3.5-.6-.9-.5-1.8.4-2.7Z" />
+    <path d="M3.8 10.4c3.2 1.1 6.6 1.1 10.1-.2 1.8-.7 3.4-1.7 4.8-3" />
+    <path d="M14.2 4.9c.2 1.8-.3 3.7-1.5 5.3" />
+  </svg>
+);
+
+const LungsLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 5v5" />
+    <path d="M12 10c-1.8 0-2.7 1.4-3.5 3.2C7.7 15 6.7 18 4.4 18c-1.1 0-1.8-.8-1.8-2.1 0-2.8 1.2-6.7 2.7-8.5.8-.9 1.7-.7 2.3.3L9.5 11" />
+    <path d="M12 10c1.8 0 2.7 1.4 3.5 3.2.8 1.8 1.8 4.8 4.1 4.8 1.1 0 1.8-.8 1.8-2.1 0-2.8-1.2-6.7-2.7-8.5-.8-.9-1.7-.7-2.3.3L14.5 11" />
+    <path d="M12 10v9" />
+  </svg>
+);
 
 interface ConditionCardProps {
   condition: HealthCondition;
@@ -32,11 +47,11 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
       case "dyslipidemia":
         return <Droplets className="w-5 h-5 text-sky-600" />;
       case "liver":
-        return <Slice className="w-5 h-5 text-teal-600" />;
+        return <LiverLineIcon className="w-5 h-5 text-teal-600" />;
       case "ckd":
         return <Bean className="w-5 h-5 text-cyan-600" />;
       case "tuberculosis":
-        return <Wind className="w-5 h-5 text-blue-700" />;
+        return <LungsLineIcon className="w-5 h-5 text-blue-700" />;
       case "obesity":
         return <PersonStanding className="w-5 h-5 text-emerald-600" />;
       case "heart":
