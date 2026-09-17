@@ -241,7 +241,6 @@ function ConditionDetailView({
                   <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">당화혈색소<br /><span className="font-normal text-[9px] text-slate-500 sm:text-[10px]">(HbA1c)</span></th><td className="px-1.5 py-2.5 sm:px-2">5.6% 이하</td><td className="px-1.5 py-2.5 font-semibold text-emerald-700 sm:px-2">정상</td></tr>
                   <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1.5 py-2.5 sm:px-2">5.7~6.4%</td><td className="px-1.5 py-2.5 font-semibold text-amber-700 sm:px-2">당뇨병 전단계</td></tr>
                   <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1.5 py-2.5 sm:px-2">6.5% 이상</td><td className="px-1.5 py-2.5 font-semibold text-rose-700 sm:px-2">당뇨병</td></tr>
-                  <tr className="border-t-2 border-slate-200"><th className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">식이습관</th><td colSpan={2} className="px-1.5 py-2.5 text-slate-600 sm:px-2">채소·단백질·탄수화물 순서 식사 등 개인별 식이 가이드라인을 참고해 관리합니다.</td></tr>
                 </tbody>
               </table>
             </div>
