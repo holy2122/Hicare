@@ -189,7 +189,7 @@
       {
         "id": "diabetes-exercise",
         "tag": "식후 운동요법",
-        "title": "의자 식후 혈당 운동",
+        "title": "식후 의자 운동",
         "subtitle": "근육 활동으로 식후 혈당을 낮춥니다.",
         "shortActionSummary": "식후 30분, 의자 운동 5분으로 혈당 관리",
         "actionSteps": [
