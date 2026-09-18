@@ -16,7 +16,7 @@ export const KeywordTagBar: React.FC<KeywordTagBarProps> = ({
   onResetCondition,
 }) => {
   return (
-    <div className="mb-8 space-y-3">
+    <div className="mb-1 space-y-3">
       <div className="rounded-lg border border-teal-300 bg-teal-50 p-4 text-sm leading-relaxed text-slate-800">
         <p className="font-bold text-teal-900"><span className="mr-1.5 text-teal-600" aria-hidden="true">●</span>[질환은 없으나 의심 소견 및 확진 필요한 경우]</p>
         <p className="mt-1.5 text-slate-700"><span className="mr-1 text-xs align-middle text-teal-700">▶</span>검진 결과상 의심되는 부분이 있어 정확한 진단을 위한 병원 정밀 검사(확진 검사)를 먼저 받으시길 권고드립니다.<br />현재 상태를 개선할 수 있는 아래 가이드북을 참고해 건강관리를 시작해 주세요!</p>

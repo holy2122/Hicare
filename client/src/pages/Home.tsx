@@ -248,7 +248,7 @@ function ConditionDetailView({
         </section>
 
         {/* Keyword selection */}
-        <section className="mb-8 scroll-mt-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" id="keyword-section">
+        <section className="mb-3 scroll-mt-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" id="keyword-section">
           <div className="mb-4 flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">02</div>
             <h2 className="text-xl font-extrabold text-slate-900">나의 상태별 건강관리</h2>
@@ -268,9 +268,9 @@ function ConditionDetailView({
               <KeywordDetailView condition={condition} keyword={selectedKeyword} onResetCondition={onBack} />
             </>
           ) : (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center sm:p-12">
-              <CheckCircle2 className="mx-auto mb-3 h-9 w-9 text-teal-500" />
-              <h3 className="mb-1 font-bold text-slate-900">키워드를 선택하면 상세 가이드가 열립니다</h3>
+            <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-4 text-center sm:p-5">
+              <CheckCircle2 className="mx-auto mb-1 h-7 w-7 text-teal-500" />
+              <h3 className="mb-0.5 font-bold text-slate-900">키워드를 선택하면 상세 가이드가 열립니다</h3>
               <p className="text-sm text-slate-500">행동 가이드, 의학적 근거, 유튜브 영상이 선택한 주제에 맞춰 표시됩니다.</p>
             </div>
           )}
