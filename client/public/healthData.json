@@ -19,7 +19,7 @@
       {
         "id": "hypertension-exercise",
         "tag": "운동요법",
-        "title": "고혈압 낮추는 방법\n벽스쿼트 마법!",
+        "title": "벽 스쿼트 16분 루틴",
         "subtitle": "하체 운동으로 혈관 부담을 줄입니다.",
         "shortActionSummary": "하루 16분 벽 스쿼트로 혈압을 안정시키세요.",
         "actionSteps": [
@@ -70,8 +70,8 @@
       {
         "id": "hypertension-diet",
         "tag": "DASH 저염식단",
-        "title": "저염 식단",
-        "subtitle": "기전: 나트륨을 줄여 혈압을 낮춥니다.",
+        "title": "한국형 DASH 식단",
+        "subtitle": "나트륨을 줄여 혈압을 낮춥니다.",
         "shortActionSummary": "싱겁게 먹고 채소와 잡곡을 챙기세요.",
         "actionSteps": [
           {
@@ -117,8 +117,8 @@
       {
         "id": "hypertension-monitor",
         "tag": "자가혈압측정",
-        "title": "혈압 측정",
-        "subtitle": "기전: 표준화된 가정혈압 기록으로 실제 혈압 변화를 확인합니다.",
+        "title": "정확한 자가혈압 측정법",
+        "subtitle": "표준화된 가정혈압 기록으로 실제 혈압 변화를 확인합니다.",
         "shortActionSummary": "아침·저녁 2회 측정해 평균을 기록하세요.",
         "actionSteps": [
           {
@@ -189,8 +189,8 @@
       {
         "id": "diabetes-exercise",
         "tag": "식후 운동요법",
-        "title": "식후 운동",
-        "subtitle": "기전: 근육 활동으로 식후 혈당을 낮춥니다.",
+        "title": "의자 식후 혈당 운동",
+        "subtitle": "근육 활동으로 식후 혈당을 낮춥니다.",
         "shortActionSummary": "식후 30분, 의자 운동 5분으로 혈당 관리",
         "actionSteps": [
           {
@@ -242,8 +242,8 @@
       {
         "id": "diabetes-diet",
         "tag": "식이습관",
-        "title": "식이습관",
-        "subtitle": "기전: 식사 순서로 혈당 상승을 완만하게 합니다.",
+        "title": "당뇨 7일 식단 계획",
+        "subtitle": "식사 순서로 혈당 상승을 완만하게 합니다.",
         "shortActionSummary": "채소, 단백질, 탄수화물 순서로 드세요.",
         "actionSteps": [
           {
@@ -292,8 +292,8 @@
       {
         "id": "diabetes-cgm",
         "tag": "생활습관 로그",
-        "title": "혈당 기록",
-        "subtitle": "기전: 기록으로 생활습관과 혈당을 함께 봅니다.",
+        "title": "자가혈당 측정·기록",
+        "subtitle": "기록으로 생활습관과 혈당을 함께 봅니다.",
         "shortActionSummary": "7시간 숙면과 혈당 기록을 실천하세요.",
         "actionSteps": [
           {
@@ -361,8 +361,8 @@
       {
         "id": "dyslipidemia-diet",
         "tag": "포화지방/트랜스지방 절제",
-        "title": "건강한 지방",
-        "subtitle": "기전: 포화지방을 줄여 콜레스테롤을 관리합니다.",
+        "title": "LDL 낮추는 건강한 지방",
+        "subtitle": "포화지방을 줄여 콜레스테롤을 관리합니다.",
         "shortActionSummary": "기름진 음식 대신 생선과 견과를 드세요.",
         "actionSteps": [
           {
@@ -411,8 +411,8 @@
       {
         "id": "dyslipidemia-exercise",
         "tag": "중강도 유산소 150분",
-        "title": "유산소 운동",
-        "subtitle": "기전: 꾸준한 운동으로 중성지방을 낮춥니다.",
+        "title": "주 150분 유산소 가이드",
+        "subtitle": "꾸준한 운동으로 중성지방을 낮춥니다.",
         "shortActionSummary": "주 5회 30분 유산소를 실천하세요.",
         "actionSteps": [
           {
@@ -480,8 +480,8 @@
       {
         "id": "liver-abstinence",
         "tag": "절주/금주 수칙",
-        "title": "금주 실천",
-        "subtitle": "기전: 술을 줄여 간 회복을 돕습니다.",
+        "title": "절주·금주 6단계",
+        "subtitle": "술을 줄여 간 회복을 돕습니다.",
         "shortActionSummary": "4주 금주로 간 건강을 회복하세요.",
         "actionSteps": [
           {
@@ -530,8 +530,8 @@
       {
         "id": "liver-diet",
         "tag": "단순당/과당 제한",
-        "title": "당 줄이기",
-        "subtitle": "기전: 과당을 줄여 간 지방 축적을 막습니다.",
+        "title": "간을 위한 당 줄이기",
+        "subtitle": "과당을 줄여 간 지방 축적을 막습니다.",
         "shortActionSummary": "단 음료를 끊고 통곡물을 선택하세요.",
         "actionSteps": [
           {
@@ -599,8 +599,8 @@
       {
         "id": "ckd-salt-protein",
         "tag": "추천 식습관",
-        "title": "추천 식습관",
-        "subtitle": "기전: 칼륨과 단백질을 알맞게 조절해 콩팥 부담을 낮춥니다.",
+        "title": "콩팥 식습관·칼륨 조절",
+        "subtitle": "칼륨과 단백질을 알맞게 조절해 콩팥 부담을 낮춥니다.",
         "shortActionSummary": "칼륨 낮은 음식부터 골라요.",
         "actionSteps": [
           {
@@ -649,8 +649,8 @@
       {
         "id": "ckd-hydration",
         "tag": "피해야 할 식습관",
-        "title": "피해야 할 식습관",
-        "subtitle": "기전: 자극적인 음식과 과도한 단백질이 만드는 콩팥 부담을 줄입니다.",
+        "title": "콩팥에 피할 식습관",
+        "subtitle": "자극적인 음식과 과도한 단백질이 만드는 콩팥 부담을 줄입니다.",
         "shortActionSummary": "달고 짠 음식과 과단백을 피하세요.",
         "actionSteps": [
           {
@@ -718,8 +718,8 @@
       {
         "id": "tb-symptom-check",
         "tag": "2주 이상 기침 감시",
-        "title": "기침 확인",
-        "subtitle": "기전: 증상 변화를 살펴 조기 진료를 돕습니다.",
+        "title": "결핵 흔적과 재발 징후",
+        "subtitle": "증상 변화를 살펴 조기 진료를 돕습니다.",
         "shortActionSummary": "2주 기침과 이상 증상은 즉시 검사하세요.",
         "actionSteps": [
           {
@@ -758,8 +758,8 @@
       {
         "id": "tb-immunity",
         "tag": "면역력 강화 영양",
-        "title": "면역 영양",
-        "subtitle": "기전: 균형 잡힌 영양으로 면역을 돕습니다.",
+        "title": "폐 면역 호흡 운동과 식단",
+        "subtitle": "균형 잡힌 영양으로 면역을 돕습니다.",
         "shortActionSummary": "규칙적인 식사와 햇빛을 챙기세요.",
         "actionSteps": [
           {
@@ -817,8 +817,8 @@
       {
         "id": "obesity-aerobic-zone",
         "tag": "존2 유산소 및 근력운동",
-        "title": "존2·근력운동",
-        "subtitle": "기전: 유산소와 근력으로 체지방을 줄입니다.",
+        "title": "Zone 2 걷기와 홈트",
+        "subtitle": "유산소와 근력으로 체지방을 줄입니다.",
         "shortActionSummary": "대화 가능한 속도로 40분 걸으세요.",
         "actionSteps": [
           {
@@ -862,8 +862,8 @@
       {
         "id": "obesity-intermittent-diet",
         "tag": "12:12 간헐적 단식",
-        "title": "12:12 식사",
-        "subtitle": "기전: 규칙적인 식사로 혈당 변동을 줄입니다.",
+        "title": "12:12 현실 식사법",
+        "subtitle": "규칙적인 식사로 혈당 변동을 줄입니다.",
         "shortActionSummary": "저녁 후 12시간 공복을 실천하세요.",
         "actionSteps": [
           {
@@ -926,8 +926,8 @@
       {
         "id": "heart-red-flags",
         "tag": "위험 징후 인지",
-        "title": "위험 신호",
-        "subtitle": "기전: 이상 신호를 알아차려 빠르게 대응합니다.",
+        "title": "심근경색 위험 신호 응급대처",
+        "subtitle": "이상 신호를 알아차려 빠르게 대응합니다.",
         "shortActionSummary": "가슴 통증과 호흡곤란은 즉시 119입니다.",
         "actionSteps": [
           {
@@ -976,8 +976,8 @@
       {
         "id": "heart-aerobic-safe",
         "tag": "심폐 안심 유산소",
-        "title": "안심 유산소",
-        "subtitle": "기전: 무리 없는 운동으로 심폐 기능을 돕습니다.",
+        "title": "심장 보호 20분 걷기",
+        "subtitle": "무리 없는 운동으로 심폐 기능을 돕습니다.",
         "shortActionSummary": "준비운동 후 따뜻한 시간에 걸으세요.",
         "actionSteps": [
           {
