@@ -311,6 +311,14 @@ export default function Home() {
     }
   }, [conditions]);
 
+  const handleReturnToInitialList = () => {
+    setSelectedCondition(null);
+    setSearchQuery("");
+    setCategoryFilter("ALL");
+    window.history.replaceState({}, "", window.location.pathname);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  };
+
   if (isLoading) {
     return <div className="min-h-screen grid place-items-center bg-slate-50 text-sm font-semibold text-slate-600">건강관리 데이터를 불러오는 중입니다…</div>;
   }
@@ -320,7 +328,7 @@ export default function Home() {
   }
 
   if (selectedCondition) {
-    return <ConditionDetailView condition={selectedCondition} onBack={() => setSelectedCondition(null)} />;
+    return <ConditionDetailView condition={selectedCondition} onBack={handleReturnToInitialList} />;
   }
 
   return (
