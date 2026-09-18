@@ -99,3 +99,20 @@
                     radial-gradient(at 90% 10%, rgba(20, 184, 166, 0.12) 0px, transparent 50%),
                     radial-gradient(at 50% 90%, rgba(56, 189, 248, 0.08) 0px, transparent 50%);
 }
+
+/* 기준 설명표 공통 규칙: 모바일에서도 내용 사이의 불필요한 여백을 최소화합니다. */
+.medical-criteria-card table th,
+.medical-criteria-card table td,
+.compact-medical-table th,
+.compact-medical-table td {
+  padding: 0.45rem 0.4rem !important;
+}
+
+@media (max-width: 639px) {
+  .medical-criteria-card table th,
+  .medical-criteria-card table td,
+  .compact-medical-table th,
+  .compact-medical-table td {
+    padding: 0.35rem 0.3rem !important;
+  }
+}

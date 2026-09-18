@@ -191,7 +191,7 @@ function ConditionDetailView({
         </div>
 
         {/* Disease criteria */}
-        <section className="mb-6 rounded-2xl border border-slate-200 bg-white p-5 text-slate-900 shadow-sm sm:p-7">
+        <section className="medical-criteria-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 text-slate-900 shadow-sm sm:p-7">
           <div className="mb-4 flex items-center gap-3">
             <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-sm font-extrabold text-white">01</span>
             <h1 className="text-xl font-extrabold sm:text-2xl">{condition.name} 기준 설명</h1>
@@ -204,7 +204,7 @@ function ConditionDetailView({
                 <p className="mt-1 text-xs text-slate-600">수축기·이완기 혈압 측정값 비교</p>
               </div>
               <div>
-                <table className="w-full table-fixed border-collapse text-left text-[11px] sm:text-xs">
+                <table className="compact-medical-table w-full table-fixed border-collapse text-left text-[11px] sm:text-xs">
                   <thead className="bg-slate-50 text-slate-600">
                     <tr>
                       <th className="w-[30%] px-1.5 py-2.5 font-bold sm:px-2">구분</th>
@@ -230,7 +230,7 @@ function ConditionDetailView({
                 <h2 className="text-sm font-extrabold text-emerald-900 sm:text-base">당뇨병 기준 수치 요약</h2>
                 <p className="mt-1 text-xs text-slate-600">공복·식후 2시간 혈당 및 당화혈색소 비교</p>
               </div>
-              <table className="w-full table-fixed border-collapse text-[10px] leading-relaxed sm:text-xs">
+              <table className="compact-medical-table w-full table-fixed border-collapse text-[10px] leading-relaxed sm:text-xs">
                 <thead className="bg-slate-50 text-slate-600">
                   <tr><th className="w-[34%] px-1.5 py-2.5 text-left font-bold sm:px-2">검사 항목</th><th className="w-[42%] px-1.5 py-2.5 text-left font-bold sm:px-2">수치</th><th className="w-[24%] px-1.5 py-2.5 text-left font-bold sm:px-2">진단 결과</th></tr>
                 </thead>
@@ -257,7 +257,7 @@ function ConditionDetailView({
               <div className="space-y-3">
                 <div className="overflow-hidden rounded-lg border border-sky-200">
                   <h3 className="bg-sky-50 px-3 py-2 text-xs font-extrabold text-sky-900 sm:text-sm">LDL 콜레스테롤</h3>
-                  <table className="w-full table-fixed border-collapse text-[11px] sm:text-xs">
+                  <table className="compact-medical-table w-full table-fixed border-collapse text-[11px] sm:text-xs">
                     <thead className="bg-slate-50 text-slate-600"><tr><th className="w-1/2 px-2 py-2 text-left font-bold">분류</th><th className="w-1/2 px-2 py-2 text-left font-bold">수치</th></tr></thead>
                     <tbody>
                       <tr className="border-t"><th className="px-2 py-2 text-left font-bold text-emerald-700">적정</th><td className="px-2 py-2">100 mg/dL 미만</td></tr>
@@ -270,7 +270,7 @@ function ConditionDetailView({
                 </div>
                 <div className="overflow-hidden rounded-lg border border-sky-200">
                   <h3 className="bg-sky-50 px-3 py-2 text-xs font-extrabold text-sky-900 sm:text-sm">총콜레스테롤</h3>
-                  <table className="w-full table-fixed border-collapse text-[11px] sm:text-xs">
+                  <table className="compact-medical-table w-full table-fixed border-collapse text-[11px] sm:text-xs">
                     <thead className="bg-slate-50 text-slate-600"><tr><th className="w-1/2 px-2 py-2 text-left font-bold">분류</th><th className="w-1/2 px-2 py-2 text-left font-bold">수치</th></tr></thead>
                     <tbody>
                       <tr className="border-t"><th className="px-2 py-2 text-left font-bold text-emerald-700">적정</th><td className="px-2 py-2">200 mg/dL 미만</td></tr>
@@ -281,7 +281,7 @@ function ConditionDetailView({
                 </div>
                 <div className="overflow-hidden rounded-lg border border-sky-200">
                   <h3 className="bg-sky-50 px-3 py-2 text-xs font-extrabold text-sky-900 sm:text-sm">중성지방 (TG)</h3>
-                  <table className="w-full table-fixed border-collapse text-[11px] sm:text-xs">
+                  <table className="compact-medical-table w-full table-fixed border-collapse text-[11px] sm:text-xs">
                     <thead className="bg-slate-50 text-slate-600"><tr><th className="w-1/2 px-2 py-2 text-left font-bold">분류</th><th className="w-1/2 px-2 py-2 text-left font-bold">수치</th></tr></thead>
                     <tbody>
                       <tr className="border-t"><th className="px-2 py-2 text-left font-bold text-emerald-700">적정</th><td className="px-2 py-2">150 mg/dL 미만</td></tr>
@@ -293,7 +293,7 @@ function ConditionDetailView({
                 </div>
                 <div className="overflow-hidden rounded-lg border border-sky-200">
                   <h3 className="bg-sky-50 px-3 py-2 text-xs font-extrabold text-sky-900 sm:text-sm">HDL 콜레스테롤</h3>
-                  <table className="w-full table-fixed border-collapse text-[11px] sm:text-xs">
+                  <table className="compact-medical-table w-full table-fixed border-collapse text-[11px] sm:text-xs">
                     <thead className="bg-slate-50 text-slate-600"><tr><th className="w-1/2 px-2 py-2 text-left font-bold">분류</th><th className="w-1/2 px-2 py-2 text-left font-bold">수치</th></tr></thead>
                     <tbody>
                       <tr className="border-t bg-rose-50/60"><th className="px-2 py-2 text-left font-bold text-rose-700">낮음</th><td className="px-2 py-2">40 mg/dL 미만</td></tr>
