@@ -115,12 +115,13 @@ function ListView({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {filteredConditions.map((condition) => (
-              <ConditionCard
-                key={condition.id}
-                condition={condition}
-                isSelected={false}
-                onSelect={onSelectCondition}
-              />
+              <div key={condition.id} id={`condition-card-${condition.id}`}>
+                <ConditionCard
+                  condition={condition}
+                  isSelected={false}
+                  onSelect={onSelectCondition}
+                />
+              </div>
             ))}
           </div>
 
@@ -143,9 +144,11 @@ function ListView({
 function ConditionDetailView({
   condition,
   onBack,
+  onReturnToViewedCondition,
 }: {
   condition: HealthCondition;
   onBack: () => void;
+  onReturnToViewedCondition: () => void;
 }) {
   const [selectedKeywordId, setSelectedKeywordId] = useState<string | null>(null);
 
@@ -265,7 +268,11 @@ function ConditionDetailView({
         <section id="final-guide" className="scroll-mt-20">
           {selectedKeyword ? (
             <>
-              <KeywordDetailView condition={condition} keyword={selectedKeyword} onResetCondition={onBack} />
+              <KeywordDetailView
+                condition={condition}
+                keyword={selectedKeyword}
+                onReturnToViewedCondition={onReturnToViewedCondition}
+              />
             </>
           ) : (
             <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-4 text-center sm:p-5">
@@ -319,6 +326,22 @@ export default function Home() {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   };
 
+  const handleReturnToViewedCondition = () => {
+    const conditionId = selectedCondition?.id;
+    setSelectedCondition(null);
+    setSearchQuery("");
+    setCategoryFilter("ALL");
+    window.history.replaceState({}, "", window.location.pathname);
+    window.setTimeout(() => {
+      if (!conditionId) return;
+      document.getElementById(`condition-card-${conditionId}`)?.scrollIntoView({
+        behavior: "auto",
+        block: "center",
+        inline: "nearest",
+      });
+    }, 0);
+  };
+
   if (isLoading) {
     return <div className="min-h-screen grid place-items-center bg-slate-50 text-sm font-semibold text-slate-600">건강관리 데이터를 불러오는 중입니다…</div>;
   }
@@ -328,7 +351,13 @@ export default function Home() {
   }
 
   if (selectedCondition) {
-    return <ConditionDetailView condition={selectedCondition} onBack={handleReturnToInitialList} />;
+    return (
+      <ConditionDetailView
+        condition={selectedCondition}
+        onBack={handleReturnToInitialList}
+        onReturnToViewedCondition={handleReturnToViewedCondition}
+      />
+    );
   }
 
   return (

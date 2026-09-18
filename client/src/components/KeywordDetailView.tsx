@@ -24,13 +24,13 @@ import { toast } from "sonner";
 interface KeywordDetailViewProps {
   condition: HealthCondition;
   keyword: HealthKeywordTopic;
-  onResetCondition: () => void;
+  onReturnToViewedCondition: () => void;
 }
 
 export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
   condition,
   keyword,
-  onResetCondition,
+  onReturnToViewedCondition,
 }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
@@ -379,7 +379,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
 
       <div className="flex justify-center">
         <button
-          onClick={onResetCondition}
+          onClick={onReturnToViewedCondition}
           className="inline-flex items-center gap-2 rounded-xl border border-teal-300 bg-white px-5 py-3 text-sm font-bold text-teal-800 shadow-sm transition hover:border-teal-500 hover:bg-teal-50 cursor-pointer"
         >
           다른 질환 선택하기
