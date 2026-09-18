@@ -105,7 +105,16 @@
 .medical-criteria-card table td,
 .compact-medical-table th,
 .compact-medical-table td {
-  padding: 0.45rem 0.4rem !important;
+  padding: 0.28rem 0.25rem !important;
+  text-align: center;
+}
+
+.medical-criteria-card table,
+.compact-medical-table {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
 }
 
 @media (max-width: 639px) {
@@ -113,6 +122,6 @@
   .medical-criteria-card table td,
   .compact-medical-table th,
   .compact-medical-table td {
-    padding: 0.35rem 0.3rem !important;
+    padding: 0.24rem 0.2rem !important;
   }
 }
