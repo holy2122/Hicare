@@ -117,9 +117,15 @@
   table-layout: auto;
 }
 
+/* 진단기준 표는 바깥 테두리 안쪽을 가득 채워 좌우 빈 공간을 없앱니다. */
+.medical-criteria-card table {
+  width: 100%;
+  max-width: none;
+}
+
 /* 이상지질혈증의 LDL·총콜레스테롤·중성지방·HDL 묶음도 표 폭에 맞춥니다. */
 .medical-criteria-card .space-y-3 > div {
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
   margin-inline: auto;
 }
