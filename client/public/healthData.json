@@ -945,11 +945,11 @@
   {
     "id": "heart",
     "name": "뇌심혈관질환",
-    "shortDesc": "심전도 경미한 이상(동성부정맥, 비특이적 ST변화) 또는 심혈관 위험요인",
+    "shortDesc": "평소 뚜렷한 전조 없이 진행될 수 있어 혈압·LDL·당화혈색소 관리와 위험신호 확인이 중요한 질환입니다.",
     "category": "심뇌혈관질환군",
-    "badge": "심전도 경미한 이상/위험군",
-    "normalRangeLabel": "정상: 정상 동율동 심전도(Normal Sinus Rhythm), 흉통 없음",
-    "observationThreshold": "요관찰 기준: 경미한 부정맥 소견(조기수축 등) 또는 다발성 위험요인 동반",
+    "badge": "뇌혈관·심혈관 위험 관리",
+    "normalRangeLabel": "관리 기준: 혈압·LDL 콜레스테롤·당화혈색소를 정기적으로 확인하고 정상 범위를 유지합니다.",
+    "observationThreshold": "주의 기준: 갑작스러운 한쪽 마비·말 어눌함·시야장애 또는 경험 없는 벼락두통이 나타나면 즉시 119에 신고합니다.",
     "urgency": "주의요망",
     "colorTone": {
       "primary": "from-blue-600 to-sky-700",
@@ -961,50 +961,46 @@
     "keywords": [
       {
         "id": "heart-red-flags",
-        "tag": "위험 징후 인지",
-        "title": "심근경색 위험 신호 응급대처",
-        "subtitle": "이상 신호를 알아차려 빠르게 대응합니다.",
-        "shortActionSummary": "가슴 통증과 호흡곤란은 즉시 119입니다.",
+        "tag": "뇌졸중 위험신호 대응",
+        "title": "뇌졸중 신호와 응급대응",
+        "subtitle": "증상이 잠깐 사라져도 즉시 응급대응합니다.",
+        "shortActionSummary": "갑작스런 신호면 즉시 119에 신고하세요.",
         "actionSteps": [
           {
-            "title": "1. 증상 즉시 확인",
-            "desc": "흉통·가슴 압박감·호흡곤란·식은땀·어지러움 또는 목·등·턱·팔 통증을 확인합니다.",
-            "metric": "여성은 메스꺼움도 주의"
+            "title": "1. 갑작스런 신호 확인",
+            "desc": "한쪽 얼굴·팔·다리 마비, 말이 어눌해짐, 한쪽 시야장애가 갑자기 생겼는지 확인합니다. 몇 분 뒤 사라져도 안심하지 않습니다.",
+            "metric": "잠깐 사라져도 응급"
           },
           {
-            "title": "2. 즉시 응급전화",
-            "desc": "심근경색이 의심되면 지체하지 말고 지역 응급구조대에 전화합니다.",
-            "metric": "혼자 운전하지 않기"
+            "title": "2. 119 신고 후 안전하게 대기",
+            "desc": "증상이 의심되면 즉시 119에 신고하고 환자를 편안하게 눕혀 구급대를 기다립니다. 직접 운전하지 않습니다.",
+            "metric": "시간 기록하기"
           },
           {
-            "title": "3. 처방약만 사용",
-            "desc": "알레르기가 없을 때 아스피린은 의료 지침에 따라 사용하고, 처방받은 니트로글리세린만 복용합니다.",
-            "metric": "처방 없는 약 금지"
-          },
-          {
-            "title": "4. CPR·AED 시행",
-            "desc": "환자가 숨을 쉬지 않거나 맥박이 없으면 가슴압박을 시작하고 AED가 있으면 음성 안내에 따릅니다.",
-            "metric": "분당 100회 이상"
+            "title": "3. 금지 행동과 CPR 확인",
+            "desc": "물·음식·우황청심환을 먹이지 말고 손발을 따거나 주무르지 않습니다. 의식과 호흡이 없으면 119 신고와 함께 CPR을 시작합니다.",
+            "metric": "호흡 없으면 CPR"
           }
         ],
         "keyRules": [
-          "심근경색 의심 증상은 자가 판단으로 기다리지 말고 즉시 응급의료체계에 연락하세요."
+          "증상이 정상으로 돌아와도 일과성 허혈 발작일 수 있으므로 기다리지 말고 즉시 119에 신고하세요.",
+          "의식이 있는 환자에게 물·음식·약을 임의로 먹이지 말고, 의식과 호흡이 없으면 CPR과 AED 안내를 따르세요."
         ],
         "evidence": {
-          "paperTitle": "2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain",
-          "journal": "Circulation",
-          "year": 2021,
-          "authors": "Gulati M, Levy PD, Mukherjee D, et al.",
-          "coreSummary": "미국심장학회(AHA/ACC) 흉통 가이드라인은 비전형적 흉통이라도 심혈관 위험요인(고혈압, 이상지질혈증 등)이 있는 환자에서 조기 평가와 응급 대응 프로토콜이 심근경색 사망률을 40% 이상 낮춘다고 명시합니다.",
-          "sourceUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001029",
-          "evidenceGrade": "AHA/ACC Clinical Practice Guideline"
+          "paperTitle": "Guidelines for the Early Management of Patients With Acute Ischemic Stroke",
+          "journal": "Stroke",
+          "year": 2019,
+          "authors": "Powers WJ, Rabinstein AA, Ackerson T, et al.",
+          "coreSummary": "뇌졸중 증상은 발생 시각을 기록하고 가능한 한 빠르게 응급의료체계로 연결해야 하며, 증상이 사라진 일과성 허혈 발작도 후속 뇌졸중 위험 평가가 필요한 응급 상황입니다.",
+          "sourceUrl": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000211",
+          "evidenceGrade": "AHA/ASA Clinical Practice Guideline"
         },
         "video": {
-          "title": "위험 신호",
-          "channel": "Mass General Brigham",
-          "youtubeId": "jouwrfr7_S0",
-          "duration": "약 1분 39초",
-          "summary": "심근경색 의심 증상과 응급전화·아스피린·CPR·AED 대처를 안내합니다.",
+          "title": "뇌졸중 전조증상과 응급대응",
+          "channel": "건강구조대",
+          "youtubeId": "a1ZhicYWdjY",
+          "duration": "영상 가이드",
+          "summary": "뇌졸중은 뚜렷한 전조 없이 발생할 수 있으며, 갑작스러운 마비·언어장애·시야장애와 벼락두통이 나타나면 119 신고와 신속한 대응이 필요하다고 설명합니다.",
           "difficulty": "초급",
           "targetTimePerDay": "증상 발생 시"
         }
