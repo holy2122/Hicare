@@ -385,7 +385,7 @@
     "keywords": [
       {
         "id": "dyslipidemia-diet",
-        "tag": "포화지방/트랜스지방 절제",
+        "tag": "식이습관",
         "title": "포화지방 줄여 LDL 낮추기",
         "subtitle": "포화지방을 줄여 LDL 콜레스테롤을 관리합니다.",
         "shortActionSummary": "포화지방 하루 15g 이하로 줄이세요.",
@@ -446,7 +446,7 @@
       },
       {
         "id": "dyslipidemia-exercise",
-        "tag": "중강도 유산소 150분",
+        "tag": "운동방법",
         "title": "주 150분 유산소 가이드",
         "subtitle": "꾸준한 운동으로 중성지방을 낮춥니다.",
         "shortActionSummary": "주 5회 30분 유산소를 실천하세요.",
@@ -944,7 +944,7 @@
   },
   {
     "id": "heart",
-    "name": "심장질환",
+    "name": "뇌심혈관질환",
     "shortDesc": "심전도 경미한 이상(동성부정맥, 비특이적 ST변화) 또는 심혈관 위험요인",
     "category": "심뇌혈관질환군",
     "badge": "심전도 경미한 이상/위험군",
