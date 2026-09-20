@@ -230,20 +230,20 @@ function ConditionDetailView({
                 <h2 className="text-sm font-extrabold text-emerald-900 sm:text-base">당뇨병 기준 수치 요약</h2>
                 <p className="mt-1 text-xs text-slate-600">공복·식후 2시간 혈당 및 당화혈색소 비교</p>
               </div>
-              <table className="compact-medical-table w-full table-fixed border-collapse text-[10px] leading-relaxed sm:text-xs">
+              <table className="compact-medical-table diabetes-criteria-table w-full table-fixed border-collapse leading-tight">
                 <thead className="bg-slate-50 text-slate-600">
-                  <tr><th className="w-[34%] px-1.5 py-2.5 text-left font-bold sm:px-2">검사 항목</th><th className="w-[42%] px-1.5 py-2.5 text-left font-bold sm:px-2">수치</th><th className="w-[24%] px-1.5 py-2.5 text-left font-bold sm:px-2">진단 결과</th></tr>
+                  <tr><th className="w-[38%] px-1 py-2 text-left font-bold whitespace-nowrap">검사 항목</th><th className="w-[35%] px-1 py-2 text-left font-bold whitespace-nowrap">수치</th><th className="w-[27%] px-1 py-2 text-left font-bold whitespace-nowrap">진단 결과</th></tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-slate-200"><th rowSpan={3} className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">공복혈당<br /><span className="font-normal text-[9px] text-slate-500 sm:text-[10px]">(8시간 이상 공복)</span></th><td className="px-1.5 py-2.5 sm:px-2">100 mg/dL 미만</td><td className="px-1.5 py-2.5 font-semibold text-emerald-700 sm:px-2">정상</td></tr>
-                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1.5 py-2.5 sm:px-2">100~125 mg/dL</td><td className="px-1.5 py-2.5 font-semibold text-amber-700 sm:px-2">당뇨병 전단계</td></tr>
-                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1.5 py-2.5 sm:px-2">126 mg/dL 이상</td><td className="px-1.5 py-2.5 font-semibold text-rose-700 sm:px-2">당뇨병</td></tr>
-                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">식후 2시간 혈당<br /><span className="font-normal text-[9px] text-slate-500 sm:text-[10px]">(포도당 부하 2시간 후)</span></th><td className="px-1.5 py-2.5 sm:px-2">140 mg/dL 미만</td><td className="px-1.5 py-2.5 font-semibold text-emerald-700 sm:px-2">정상</td></tr>
-                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1.5 py-2.5 sm:px-2">140~199 mg/dL</td><td className="px-1.5 py-2.5 font-semibold text-amber-700 sm:px-2">당뇨병 전단계</td></tr>
-                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1.5 py-2.5 sm:px-2">200 mg/dL 이상</td><td className="px-1.5 py-2.5 font-semibold text-rose-700 sm:px-2">당뇨병</td></tr>
-                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1.5 py-2.5 text-left align-top font-bold text-slate-800 sm:px-2">당화혈색소<br /><span className="font-normal text-[9px] text-slate-500 sm:text-[10px]">(HbA1c)</span></th><td className="px-1.5 py-2.5 sm:px-2">5.6% 이하</td><td className="px-1.5 py-2.5 font-semibold text-emerald-700 sm:px-2">정상</td></tr>
-                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1.5 py-2.5 sm:px-2">5.7~6.4%</td><td className="px-1.5 py-2.5 font-semibold text-amber-700 sm:px-2">당뇨병 전단계</td></tr>
-                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1.5 py-2.5 sm:px-2">6.5% 이상</td><td className="px-1.5 py-2.5 font-semibold text-rose-700 sm:px-2">당뇨병</td></tr>
+                  <tr className="border-t border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">공복혈당<br /><span className="font-normal text-[8px] text-slate-500 whitespace-nowrap">(8시간 이상 공복)</span></th><td className="px-1 py-2 whitespace-nowrap">100 mg/dL 미만</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
+                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1 py-2 whitespace-nowrap">100~125 mg/dL</td><td className="px-1 py-2 font-semibold text-amber-700 whitespace-nowrap">당뇨병 전단계</td></tr>
+                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1 py-2 whitespace-nowrap">126 mg/dL 이상</td><td className="px-1 py-2 font-semibold text-rose-700 whitespace-nowrap">당뇨병</td></tr>
+                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">식후 2시간 혈당<br /><span className="font-normal text-[8px] text-slate-500 whitespace-nowrap">(포도당 부하 2시간 후)</span></th><td className="px-1 py-2 whitespace-nowrap">140 mg/dL 미만</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
+                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1 py-2 whitespace-nowrap">140~199 mg/dL</td><td className="px-1 py-2 font-semibold text-amber-700 whitespace-nowrap">당뇨병 전단계</td></tr>
+                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1 py-2 whitespace-nowrap">200 mg/dL 이상</td><td className="px-1 py-2 font-semibold text-rose-700 whitespace-nowrap">당뇨병</td></tr>
+                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">당화혈색소<br /><span className="font-normal text-[8px] text-slate-500 whitespace-nowrap">(HbA1c)</span></th><td className="px-1 py-2 whitespace-nowrap">5.6% 이하</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
+                  <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1 py-2 whitespace-nowrap">5.7~6.4%</td><td className="px-1 py-2 font-semibold text-amber-700 whitespace-nowrap">당뇨병 전단계</td></tr>
+                  <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1 py-2 whitespace-nowrap">6.5% 이상</td><td className="px-1 py-2 font-semibold text-rose-700 whitespace-nowrap">당뇨병</td></tr>
                 </tbody>
               </table>
             </div>

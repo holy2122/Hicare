@@ -4,7 +4,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-DATA_PATH = Path('/home/ubuntu/health-care-guide/client/public/healthData.json')
+DATA_PATH = Path(__file__).resolve().parents[1] / 'client' / 'public' / 'healthData.json'
 
 
 def channel_name(youtube_id: str) -> str | None:
