@@ -117,6 +117,13 @@
   table-layout: auto;
 }
 
+/* 이상지질혈증의 LDL·총콜레스테롤·중성지방·HDL 묶음도 표 폭에 맞춥니다. */
+.medical-criteria-card .space-y-3 > div {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
 @media (max-width: 639px) {
   .medical-criteria-card table th,
   .medical-criteria-card table td,
