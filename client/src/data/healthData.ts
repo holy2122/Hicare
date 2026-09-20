@@ -36,6 +36,7 @@ export interface HealthKeywordTopic {
   keyRules: string[];
   evidence: MedicalEvidence;
   video: VideoGuide;
+  additionalVideos?: VideoGuide[];
 }
 
 export interface HealthCondition {

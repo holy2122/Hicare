@@ -370,6 +370,38 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               </p>
             </div>
           </div>
+
+          {keyword.additionalVideos?.map((video) => (
+            <div key={video.youtubeId} className="space-y-4 border-t border-slate-200 pt-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900">{video.title}</h3>
+                  <p className="text-xs sm:text-sm text-slate-500">채널: {video.channel}</p>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold">
+                  <span className="px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 border border-teal-200">난이도: {video.difficulty}</span>
+                  <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 flex items-center gap-1"><Clock className="w-3 h-3" />{video.duration}</span>
+                  <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200">권장: {video.targetTimePerDay}</span>
+                </div>
+              </div>
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-xl border border-slate-800">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1${video.startSeconds ? `&start=${video.startSeconds}` : ""}`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
+                <PlayCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wide mb-0.5">추가 영상 안내</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{video.summary}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

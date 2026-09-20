@@ -284,7 +284,18 @@
           "summary": "채소·단백질을 먼저 먹고 15분 뒤 탄수화물을 절반으로 줄이는 식사법입니다.",
           "difficulty": "초급",
           "targetTimePerDay": "매 끼니 적용"
-        }
+        },
+        "additionalVideos": [
+          {
+            "title": "당뇨 식이관리 참고 영상",
+            "channel": "제공 영상",
+            "youtubeId": "FihLathwM3Y",
+            "duration": "영상 가이드",
+            "summary": "당뇨병 식이관리를 위한 추가 참고 영상입니다.",
+            "difficulty": "초급",
+            "targetTimePerDay": "참고 시청"
+          }
+        ]
       },
       {
         "id": "diabetes-cgm",
