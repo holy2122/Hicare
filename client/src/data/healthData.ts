@@ -24,6 +24,7 @@ export interface VideoGuide {
   summary: string;
   difficulty: "초급" | "중급" | "고급";
   targetTimePerDay: string;
+  keyPoints?: string[];
 }
 
 export interface HealthKeywordTopic {

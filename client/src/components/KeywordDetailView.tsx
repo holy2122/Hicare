@@ -398,6 +398,16 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                 <div>
                   <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wide mb-0.5">추가 영상 안내</h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{video.summary}</p>
+                  {video.keyPoints?.length ? (
+                    <ul className="mt-3 space-y-2 border-t border-slate-200 pt-3">
+                      {video.keyPoints.slice(0, 3).map((point) => (
+                        <li key={point} className="flex items-start gap-2 text-xs sm:text-sm leading-relaxed text-slate-700">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </div>
               </div>
             </div>
