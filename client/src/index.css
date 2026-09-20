@@ -107,6 +107,7 @@
 .compact-medical-table td {
   padding: 0.28rem 0.25rem !important;
   text-align: center;
+  font-size: 0.95rem;
 }
 
 .medical-criteria-card table,
@@ -136,5 +137,6 @@
   .compact-medical-table th,
   .compact-medical-table td {
     padding: 0.24rem 0.2rem !important;
+    font-size: 0.9rem;
   }
 }

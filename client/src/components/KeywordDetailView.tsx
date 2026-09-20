@@ -6,6 +6,7 @@ import {
   PlayCircle,
   ExternalLink,
   CheckCircle,
+  Check,
   AlertCircle,
   Clock,
   Share2,
@@ -176,15 +177,13 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                           : "border-slate-300 text-transparent group-hover:border-teal-500"
                       }`}
                     >
-                      <CheckCircle className="w-4 h-4 fill-current" />
+                      {isDone && <Check className="w-4 h-4" strokeWidth={3} />}
                     </div>
 
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                         <span
-                          className={`font-bold text-base sm:text-lg ${
-                            isDone ? "line-through text-slate-400" : "text-slate-900"
-                          }`}
+                          className="font-bold text-base sm:text-lg text-slate-900"
                         >
                           {step.title}
                         </span>
@@ -195,9 +194,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                         )}
                       </div>
                       <p
-                        className={`text-sm sm:text-base leading-relaxed ${
-                          isDone ? "text-slate-400" : "text-slate-600"
-                        }`}
+                        className="text-sm sm:text-base leading-relaxed text-slate-600"
                       >
                         {step.desc}
                       </p>
@@ -330,7 +327,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                 {keyword.video.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500">
-                채널: {keyword.video.channel}
+                제공: {keyword.video.channel}
               </p>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold">
@@ -376,7 +373,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-slate-900">{video.title}</h3>
-                  <p className="text-xs sm:text-sm text-slate-500">채널: {video.channel}</p>
+                  <p className="text-xs sm:text-sm text-slate-500">제공: {video.channel}</p>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold">
                   <span className="px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 border border-teal-200">난이도: {video.difficulty}</span>
