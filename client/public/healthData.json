@@ -59,7 +59,7 @@
         },
         "video": {
           "title": "약없이 고혈압 낮추는 방법! 벽스쿼트의 마법",
-          "channel": "부부한의사 · 노원 다담한의원",
+          "channel": "부부한의사",
           "youtubeId": "pDanNfJo_vU",
           "duration": "16분",
           "summary": "벽 스쿼트 2분과 휴식 2분을 4세트 반복하는 고혈압 운동 루틴입니다.",
@@ -105,7 +105,7 @@
         },
         "video": {
           "title": "고혈압 DASH 식이습관 따라하기",
-          "channel": "건강관리 영상 가이드",
+          "channel": "닥터딩요",
           "youtubeId": "dhShgjGZslo",
           "startSeconds": 628,
           "duration": "영상 시청",
@@ -158,7 +158,7 @@
         },
         "video": {
           "title": "정확한 자가혈압 측정법",
-          "channel": "건강 교육 영상",
+          "channel": "닥터딩요",
           "youtubeId": "eQD00GWVA5g",
           "startSeconds": 25,
           "duration": "약 22분",
@@ -231,7 +231,7 @@
         },
         "video": {
           "title": "의자를 활용하여 식후 혈당 잡는 5분 운동",
-          "channel": "당뇨전문 내과클리닉 홈케어",
+          "channel": "건강의학전문채널 하이닥",
           "youtubeId": "kKHxhFA_rr8",
           "duration": "약 5분 37초",
           "summary": "의자를 잡고 스트레칭·스쿼트·뒤로 다리 뻗기·카프레이즈를 순서대로 따라 하세요.",
@@ -344,7 +344,7 @@
         },
         "video": {
           "title": "자가혈당 측정·기록 안내",
-          "channel": "유튜브 영상",
+          "channel": "닥터딩요",
           "youtubeId": "NBumehWoWE4",
           "startSeconds": 27,
           "duration": "영상 가이드",
@@ -355,7 +355,7 @@
         "additionalVideos": [
           {
             "title": "혈당 기록 참고 영상",
-            "channel": "유튜브 영상",
+            "channel": "닥터딩요",
             "youtubeId": "9jGaam5NStQ",
             "duration": "영상 가이드",
             "summary": "혈당 기록과 생활습관 관리를 참고할 수 있는 추가 영상입니다.",
@@ -386,29 +386,24 @@
       {
         "id": "dyslipidemia-diet",
         "tag": "포화지방/트랜스지방 절제",
-        "title": "LDL 낮추는 건강한 지방",
-        "subtitle": "포화지방을 줄여 콜레스테롤을 관리합니다.",
-        "shortActionSummary": "기름진 음식 대신 생선과 견과를 드세요.",
+        "title": "포화지방 줄여 LDL 낮추기",
+        "subtitle": "포화지방을 줄여 LDL 콜레스테롤을 관리합니다.",
+        "shortActionSummary": "포화지방 하루 15g 이하로 줄이세요.",
         "actionSteps": [
           {
-            "title": "1. 나쁜 지방 줄이기",
-            "desc": "트랜스지방은 피하고 버터·코코넛오일·아이스크림 같은 포화지방은 줄입니다.",
-            "metric": "대체가 핵심"
+            "title": "1. 빵·과자·디저트 줄이기",
+            "desc": "앙버터·크루아상·과자·아이스크림·믹스커피처럼 버터·팜유·코코넛유가 들어간 간식을 먼저 줄입니다.",
+            "metric": "숨은 포화지방 확인"
           },
           {
-            "title": "2. 건강한 지방 선택",
-            "desc": "올리브오일·아보카도·아몬드와 연어·호두·아마씨 같은 불포화지방 식품을 선택합니다.",
-            "metric": "식물성·생선 지방"
+            "title": "2. 살코기 부위로 바꾸기",
+            "desc": "삼겹살·차돌박이 대신 안심·등심·뒷다리살과 껍질을 제거한 닭고기를 선택합니다. 조리법보다 부위가 중요합니다.",
+            "metric": "부위 선택 우선"
           },
           {
-            "title": "3. 수용성 식이섬유 늘리기",
-            "desc": "귀리·보리·콩·치아씨드·과일·채소를 식단에 포함하고 물과 함께 섭취합니다.",
-            "metric": "매일 식이섬유"
-          },
-          {
-            "title": "4. 식단 패턴 유지",
-            "desc": "통과일·채소·통곡물 중심의 식단을 유지하고 초가공식품·정제당·동물성 지방을 줄입니다.",
-            "metric": "보충제 임의 복용 금지"
+            "title": "3. 불포화지방으로 대체하기",
+            "desc": "기존 포화지방 식품을 생선·두부·견과류로 바꾸고, 생선은 주 2회 이상 섭취하는 식으로 식단을 구성합니다.",
+            "metric": "더하기보다 바꾸기"
           }
         ],
         "keyRules": [
@@ -424,14 +419,30 @@
           "evidenceGrade": "Cochrane Review (Level 1)"
         },
         "video": {
-          "title": "건강한 지방",
-          "channel": "심장내과 전문의 이상지질혈증 특강",
-          "youtubeId": "t0g6xg_GfAY",
-          "duration": "약 12분 33초",
-          "summary": "포화지방·트랜스지방을 건강한 지방과 식이섬유로 바꾸는 방법입니다.",
+          "title": "음식으로 콜레스테롤 떨어뜨리는 방법 1부",
+          "channel": "닥터딩요",
+          "youtubeId": "c7svGGafLoU",
+          "duration": "영상 가이드",
+          "summary": "LDL을 높이는 포화지방의 원인과 빵·과자·기름진 육류를 줄이는 방법을 설명합니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "매 끼니 적용"
-        }
+          "targetTimePerDay": "식단 선택 시 적용"
+        },
+        "additionalVideos": [
+          {
+            "title": "음식으로 콜레스테롤 떨어뜨리는 방법 2부",
+            "channel": "닥터딩요",
+            "youtubeId": "LbFrj12cQqY",
+            "duration": "영상 가이드",
+            "summary": "생선·두부로 포화지방을 대체하고, 삶고 찌는 조리와 가공식품 줄이기로 콜레스테롤 관리를 실천하는 방법을 소개합니다.",
+            "difficulty": "초급",
+            "targetTimePerDay": "식단 선택 시 적용",
+            "keyPoints": [
+              "기름진 고기 대신 생선과 두부를 선택해 포화지방을 대체하세요.",
+              "빵·과자·아이스크림·가공육과 믹스커피 같은 트랜스지방 식품을 줄이세요.",
+              "달걀 노른자와 크레마 커피 섭취를 조절하고 필터 커피를 활용하세요."
+            ]
+          }
+        ]
       },
       {
         "id": "dyslipidemia-exercise",
@@ -475,7 +486,7 @@
         },
         "video": {
           "title": "유산소 운동",
-          "channel": "국민건강보험공단 건강iN 홈트",
+          "channel": "American Heart Association - Midwest Region",
           "youtubeId": "bR9Rp0FP0FM",
           "duration": "운동 가이드",
           "summary": "주 150분 중강도 운동과 심박수·준비운동·정리운동을 안내합니다.",
@@ -544,7 +555,7 @@
         },
         "video": {
           "title": "금주 실천",
-          "channel": "소화기내과 간전문의 건강강좌",
+          "channel": "Doctor O'Donovan",
           "youtubeId": "53EZ8830nZI",
           "duration": "약 5분 52초",
           "summary": "금주·절주 이유와 시작일, 지원, 유혹 회피 방법을 안내합니다.",
@@ -594,7 +605,7 @@
         },
         "video": {
           "title": "당 줄이기",
-          "channel": "간 질환 클리닉 닥터 토크",
+          "channel": "Dr. Jin W. Sung",
           "youtubeId": "tGfRNIfgPKU",
           "duration": "약 5분 23초",
           "summary": "설탕·과당 음료와 정제 탄수화물을 줄여 간 부담을 낮추는 방법입니다.",
@@ -663,7 +674,7 @@
         },
         "video": {
           "title": "만성콩팥병 식습관과 칼륨 조절",
-          "channel": "건강관리 영상 가이드",
+          "channel": "건강구조대",
           "youtubeId": "ySrzbJV3zeY",
           "duration": "약 16분 55초",
           "summary": "신장 건강 식품, 칼륨 줄이는 조리법, 피해야 할 음식과 보충제 주의를 확인하세요.",
@@ -713,7 +724,7 @@
         },
         "video": {
           "title": "만성콩팥병 피해야 할 식습관",
-          "channel": "건강관리 영상 가이드",
+          "channel": "건강구조대",
           "youtubeId": "ySrzbJV3zeY",
           "duration": "약 16분 55초",
           "summary": "달고 짠 음식, 칼륨이 많은 주스, 과도한 육식과 보충제 과용을 피하는 방법입니다.",
@@ -772,7 +783,7 @@
         },
         "video": {
           "title": "건강검진 폐 X-ray '결핵 흔적' 발견, 위험한 건가요?",
-          "channel": "호흡기내과 전문의 팩트체크",
+          "channel": "Med Man",
           "youtubeId": "bAQTHHS2YVk",
           "duration": "11분 30초",
           "summary": "활동성 결핵과 비활동성 결핵의 차이점 및 꼭 알아야 할 4가지 재발 징후",
@@ -812,7 +823,7 @@
         },
         "video": {
           "title": "기관지와 폐 면역력을 높이는 호흡 재활 운동과 식단",
-          "channel": "국가결핵안심센터 건강정보",
+          "channel": "SilverSneakers",
           "youtubeId": "3ojB9kC6354",
           "duration": "9분 45초",
           "summary": "흉곽 확장 심호흡 스트레칭과 폐 건강을 돕는 필수 항산화 식품",
@@ -876,7 +887,7 @@
         },
         "video": {
           "title": "내장지방만 쏙 빼는 Zone 2 유산소의 과학과 홈트레이닝",
-          "channel": "스포츠의학 전문의 피트니스 랩",
+          "channel": "Exercise For Health",
           "youtubeId": "zZlS_TRdXHM",
           "duration": "15분 30초",
           "summary": "관절에 충격을 주지 않으면서 복부 내장지방을 가장 빠르게 태우는 걷기 테크닉",
@@ -921,7 +932,7 @@
         },
         "video": {
           "title": "굶지 않고 뱃살 빼는 12:12 식사법과 현실적인 직장인 식단",
-          "channel": "가정의학과 비만클리닉 솔루션",
+          "channel": "Global Academy NIA",
           "youtubeId": "Rwlw51j2jPI",
           "duration": "13분 40초",
           "summary": "점심 구내식당 이용법, 회식 대처 요령과 정체기 극복 팁",
@@ -990,7 +1001,7 @@
         },
         "video": {
           "title": "위험 신호",
-          "channel": "대한심장학회 심혈관 바로알기",
+          "channel": "Mass General Brigham",
           "youtubeId": "jouwrfr7_S0",
           "duration": "약 1분 39초",
           "summary": "심근경색 의심 증상과 응급전화·아스피린·CPR·AED 대처를 안내합니다.",
@@ -1035,7 +1046,7 @@
         },
         "video": {
           "title": "심장이 약한 분들을 위한 무리 없는 20분 심장 튼튼 걷기 운동",
-          "channel": "심장재활클리닉 피지컬 테라피",
+          "channel": "SNUOGA",
           "youtubeId": "dQjrDqEhkfE",
           "duration": "21분 00초",
           "summary": "맥박을 손목으로 직접 재며 안전 구간 내에서 운동하는 심장 보호 홈트",
