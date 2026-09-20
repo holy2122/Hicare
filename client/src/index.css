@@ -100,6 +100,14 @@
                     radial-gradient(at 50% 90%, rgba(56, 189, 248, 0.08) 0px, transparent 50%);
 }
 
+/* 01·02 카드는 내부 콘텐츠에 맞춰 줄이고, 작은 화면에서는 폭을 넘지 않게 합니다. */
+.medical-criteria-card,
+#keyword-section {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
 /* 기준 설명표 공통 규칙: 모바일에서도 내용 사이의 불필요한 여백을 최소화합니다. */
 .medical-criteria-card table th,
 .medical-criteria-card table td,
