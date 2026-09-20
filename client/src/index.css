@@ -111,7 +111,7 @@
 
 .medical-criteria-card table,
 .compact-medical-table {
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
   margin-inline: auto;
   table-layout: auto;
