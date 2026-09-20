@@ -304,7 +304,7 @@
       },
       {
         "id": "diabetes-cgm",
-        "tag": "생활습관 로그",
+        "tag": "생활습관 기록",
         "title": "자가혈당 측정·기록",
         "subtitle": "기록으로 생활습관과 혈당을 함께 봅니다.",
         "shortActionSummary": "7시간 숙면과 혈당 기록을 실천하세요.",
@@ -343,14 +343,26 @@
           "evidenceGrade": "AHA Scientific Statement"
         },
         "video": {
-          "title": "혈당 기록",
-          "channel": "명의가 들려주는 혈당이야기",
-          "youtubeId": "zOT0VmadmcE",
-          "duration": "약 5분 13초",
-          "summary": "자가혈당 측정과 기록, 채혈침 안전 폐기까지 확인하세요.",
+          "title": "자가혈당 측정·기록 안내",
+          "channel": "유튜브 영상",
+          "youtubeId": "NBumehWoWE4",
+          "startSeconds": 27,
+          "duration": "영상 가이드",
+          "summary": "식사와 생활습관에 따른 혈당을 측정하고 기록하는 방법을 안내합니다.",
           "difficulty": "초급",
           "targetTimePerDay": "측정 시 기록"
-        }
+        },
+        "additionalVideos": [
+          {
+            "title": "혈당 기록 참고 영상",
+            "channel": "유튜브 영상",
+            "youtubeId": "9jGaam5NStQ",
+            "duration": "영상 가이드",
+            "summary": "혈당 기록과 생활습관 관리를 참고할 수 있는 추가 영상입니다.",
+            "difficulty": "초급",
+            "targetTimePerDay": "참고 시청"
+          }
+        ]
       }
     ]
   },
