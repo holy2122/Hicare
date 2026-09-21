@@ -81,6 +81,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: clip;
+  }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -131,6 +137,31 @@
   margin-inline: auto;
 }
 
+/* 고혈압 기준표는 모바일에서도 분류·수축기·이완기 열을 서로 밀착해 한 줄로 표시합니다. */
+.hypertension-criteria-table {
+  table-layout: fixed;
+  width: 100% !important;
+}
+
+.hypertension-criteria-table th,
+.hypertension-criteria-table td {
+  white-space: nowrap;
+  padding-inline: 0.12rem !important;
+  letter-spacing: -0.035em;
+}
+
+.hypertension-criteria-table th:first-child,
+.hypertension-criteria-table td:first-child {
+  width: 42%;
+}
+
+.hypertension-criteria-table th:nth-child(2),
+.hypertension-criteria-table td:nth-child(2),
+.hypertension-criteria-table th:nth-child(3),
+.hypertension-criteria-table td:nth-child(3) {
+  width: 29%;
+}
+
 @media (max-width: 639px) {
   .medical-criteria-card table th,
   .medical-criteria-card table td,
@@ -138,5 +169,11 @@
   .compact-medical-table td {
     padding: 0.24rem 0.2rem !important;
     font-size: 0.82rem;
+  }
+
+  .hypertension-criteria-table th,
+  .hypertension-criteria-table td {
+    font-size: 0.68rem;
+    padding-block: 0.28rem !important;
   }
 }

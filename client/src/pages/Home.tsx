@@ -204,7 +204,7 @@ function ConditionDetailView({
                 <p className="mt-1 text-xs text-slate-600">수축기·이완기 혈압 측정값 비교</p>
               </div>
               <div>
-                <table className="compact-medical-table w-full table-fixed border-collapse text-left text-[11px] sm:text-xs">
+                <table className="compact-medical-table hypertension-criteria-table w-full table-fixed border-collapse text-left text-[11px] sm:text-xs">
                   <thead className="bg-slate-50 text-slate-600">
                     <tr>
                       <th className="w-[30%] px-1.5 py-2.5 font-bold sm:px-2">구분</th>
