@@ -15,6 +15,12 @@ export interface MedicalEvidence {
   sampleSizeOrMethod?: string;
 }
 
+export interface VideoTimelineItem {
+  label: string;
+  time: string;
+  seconds: number;
+}
+
 export interface VideoGuide {
   title: string;
   channel: string;
@@ -25,6 +31,7 @@ export interface VideoGuide {
   difficulty: "초급" | "중급" | "고급";
   targetTimePerDay: string;
   keyPoints?: string[];
+  timeline?: VideoTimelineItem[];
 }
 
 export interface HealthKeywordTopic {

@@ -36,6 +36,8 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [timelineStart, setTimelineStart] = useState<number | undefined>(keyword.video.startSeconds);
+  const [timelineAutoplay, setTimelineAutoplay] = useState(false);
 
   const toggleStep = (idx: number) => {
     setCompletedSteps((prev) =>
@@ -348,12 +350,37 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-xl border border-slate-800">
             <iframe
               className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube-nocookie.com/embed/${keyword.video.youtubeId}?rel=0&modestbranding=1${keyword.video.startSeconds ? `&start=${keyword.video.startSeconds}` : ""}`}
+              src={`https://www.youtube-nocookie.com/embed/${keyword.video.youtubeId}?rel=0&modestbranding=1${timelineStart ? `&start=${timelineStart}` : ""}${timelineAutoplay ? "&autoplay=1" : ""}`}
               title={keyword.video.title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
           </div>
+          {keyword.video.timeline?.length ? (
+            <div className="rounded-xl border border-teal-100 bg-teal-50/60 p-3 sm:p-4">
+              <div className="mb-2 flex items-center gap-2 text-xs font-extrabold text-teal-900 sm:text-sm">
+                <Clock className="h-4 w-4 text-teal-600" />
+                영상 타임라인
+                <span className="font-normal text-teal-700">원하는 구간을 누르면 해당 시간부터 재생됩니다.</span>
+              </div>
+              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {keyword.video.timeline.map((item) => (
+                  <button
+                    key={`${item.seconds}-${item.label}`}
+                    type="button"
+                    onClick={() => {
+                      setTimelineStart(item.seconds);
+                      setTimelineAutoplay(true);
+                    }}
+                    className="flex min-w-0 items-center gap-2 rounded-lg border border-white/80 bg-white px-2.5 py-2 text-left text-xs text-slate-700 shadow-sm transition hover:border-teal-300 hover:text-teal-800 active:scale-[0.99]"
+                  >
+                    <span className="shrink-0 rounded-md bg-teal-100 px-1.5 py-0.5 font-bold tabular-nums text-teal-800">{item.time}</span>
+                    <span className="truncate">{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {/* Video Summary Description */}
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
