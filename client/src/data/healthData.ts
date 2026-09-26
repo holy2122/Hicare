@@ -19,6 +19,7 @@ export interface VideoTimelineItem {
   label: string;
   time: string;
   seconds: number;
+  section?: string;
 }
 
 export interface VideoGuide {

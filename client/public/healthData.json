@@ -193,6 +193,92 @@
           "channel": "닥터딩요",
           "youtubeId": "eQD00GWVA5g",
           "startSeconds": 25,
+          "timeline": [
+            {
+              "section": "혈압 측정 핵심 요약",
+              "label": "혈압 측정 방법 요약",
+              "time": "24:24",
+              "seconds": 1464
+            },
+            {
+              "section": "혈압 측정 핵심 요약",
+              "label": "세 줄 요약",
+              "time": "25:32",
+              "seconds": 1532
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "잴 때마다 다른 이유",
+              "time": "00:25",
+              "seconds": 25
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "가장 정확한 혈압 측정법",
+              "time": "02:12",
+              "seconds": 132
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "정확도 병원 vs 가정",
+              "time": "03:06",
+              "seconds": 186
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "혈압계의 종류",
+              "time": "04:39",
+              "seconds": 279
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "혈압 전 준비",
+              "time": "05:52",
+              "seconds": 352
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "혈압계 커프 선택",
+              "time": "07:24",
+              "seconds": 444
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "혈압계 감는 법",
+              "time": "08:58",
+              "seconds": 538
+            },
+            {
+              "section": "정확한 혈압 측정법",
+              "label": "혈압 측정 중 주의 사항",
+              "time": "11:06",
+              "seconds": 666
+            },
+            {
+              "section": "가정혈압 측정과 활용",
+              "label": "가정 혈압 적응증",
+              "time": "16:33",
+              "seconds": 993
+            },
+            {
+              "section": "가정혈압 측정과 활용",
+              "label": "가정혈압계 선택",
+              "time": "17:44",
+              "seconds": 1064
+            },
+            {
+              "section": "가정혈압 측정과 활용",
+              "label": "가정 혈압 측정법",
+              "time": "19:35",
+              "seconds": 1175
+            },
+            {
+              "section": "가정혈압 측정과 활용",
+              "label": "24시간 활동 혈압",
+              "time": "22:17",
+              "seconds": 1337
+            }
+          ],
           "duration": "약 22분",
           "summary": "커프 착용, 심장 높이 자세, 아침·저녁 2회 측정과 평균 기록법을 따라 하세요.",
           "difficulty": "초급",

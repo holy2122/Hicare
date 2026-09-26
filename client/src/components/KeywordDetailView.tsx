@@ -42,6 +42,13 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
 
   const timelineStorageKey = `hicare-timeline-${condition.id}-${keyword.id}`;
   const timelineItems = keyword.video.timeline ?? [];
+  const timelineGroups = timelineItems.reduce<Array<{ title: string; items: typeof timelineItems }>>((groups, item) => {
+    const title = item.section ?? "영상 타임라인";
+    const existing = groups.find((group) => group.title === title);
+    if (existing) existing.items.push(item);
+    else groups.push({ title, items: [item] });
+    return groups;
+  }, []);
   const additionalVideos = keyword.additionalVideos ?? [];
   const additionalShorts = additionalVideos.filter((video) => video.format === "short");
   const additionalFullVideos = additionalVideos.filter((video) => video.format !== "short");
@@ -400,43 +407,50 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                 <div className="h-full rounded-full bg-teal-500 transition-all duration-300" style={{ width: `${timelineProgress}%` }} />
               </div>
               <p className="mb-2 text-xs text-teal-700">시간을 누르면 해당 구간부터 재생됩니다. 시청을 마친 뒤 체크하세요.</p>
-              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                {timelineItems.map((item) => {
-                  const isTimelineDone = completedTimeline.includes(item.seconds);
-                  return (
-                  <button
-                    key={`${item.seconds}-${item.label}`}
-                    type="button"
-                    onClick={() => {
-                      setTimelineStart(item.seconds);
-                      setTimelineAutoplay(true);
-                    }}
-                    className={`flex min-w-0 items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-xs shadow-sm transition active:scale-[0.99] ${
-                      isTimelineDone
-                        ? "border-teal-300 bg-teal-100/80 text-teal-900"
-                        : "border-white/80 bg-white text-slate-700 hover:border-teal-300 hover:text-teal-800"
-                    }`}
-                  >
-                    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${isTimelineDone ? "border-teal-600 bg-teal-600 text-white" : "border-slate-300 bg-white text-transparent"}`}>
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                    </span>
-                    <span className="shrink-0 rounded-md bg-teal-100 px-1.5 py-0.5 font-bold tabular-nums text-teal-800">{item.time}</span>
-                    <span className="min-w-0 flex-1 truncate">{item.label}</span>
-                    <span
-                      role="checkbox"
-                      aria-checked={isTimelineDone}
-                      aria-label={`${item.label} 시청 완료 표시`}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        toggleTimelineComplete(item.seconds);
-                      }}
-                      className="shrink-0 rounded-md px-1.5 py-1 font-semibold text-teal-700 hover:bg-white"
-                    >
-                      {isTimelineDone ? "완료" : "체크"}
-                    </span>
-                  </button>
-                  );
-                })}
+              <div className="space-y-3">
+                {timelineGroups.map((group) => (
+                  <div key={group.title} className="rounded-lg border border-teal-100 bg-white/70 p-2.5">
+                    <h4 className="mb-2 text-xs font-extrabold text-teal-900">{group.title}</h4>
+                    <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                      {group.items.map((item) => {
+                        const isTimelineDone = completedTimeline.includes(item.seconds);
+                        return (
+                          <button
+                            key={`${item.seconds}-${item.label}`}
+                            type="button"
+                            onClick={() => {
+                              setTimelineStart(item.seconds);
+                              setTimelineAutoplay(true);
+                            }}
+                            className={`flex min-w-0 items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-xs shadow-sm transition active:scale-[0.99] ${
+                              isTimelineDone
+                                ? "border-teal-300 bg-teal-100/80 text-teal-900"
+                                : "border-white/80 bg-white text-slate-700 hover:border-teal-300 hover:text-teal-800"
+                            }`}
+                          >
+                            <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${isTimelineDone ? "border-teal-600 bg-teal-600 text-white" : "border-slate-300 bg-white text-transparent"}`}>
+                              <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                            </span>
+                            <span className="shrink-0 rounded-md bg-teal-100 px-1.5 py-0.5 font-bold tabular-nums text-teal-800">{item.time}</span>
+                            <span className="min-w-0 flex-1 truncate">{item.label}</span>
+                            <span
+                              role="checkbox"
+                              aria-checked={isTimelineDone}
+                              aria-label={`${item.label} 시청 완료 표시`}
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                toggleTimelineComplete(item.seconds);
+                              }}
+                              className="shrink-0 rounded-md px-1.5 py-1 font-semibold text-teal-700 hover:bg-white"
+                            >
+                              {isTimelineDone ? "완료" : "체크"}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ) : null}
