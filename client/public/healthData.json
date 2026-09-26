@@ -489,6 +489,23 @@
           "channel": "바른건강",
           "youtubeId": "zIQ-8ovFq1o",
           "format": "full",
+          "timeline": [
+            {
+              "label": "원 그리기 운동",
+              "time": "11:09",
+              "seconds": 669
+            },
+            {
+              "label": "횟수 및 방법",
+              "time": "12:53",
+              "seconds": 773
+            },
+            {
+              "label": "네 방향 운동",
+              "time": "13:19",
+              "seconds": 799
+            }
+          ],
           "duration": "운동 가이드",
           "summary": "고지혈 관리와 혈액순환을 돕는 하루 15분 운동을 안내합니다.",
           "difficulty": "초급",
