@@ -42,6 +42,9 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
 
   const timelineStorageKey = `hicare-timeline-${condition.id}-${keyword.id}`;
   const timelineItems = keyword.video.timeline ?? [];
+  const additionalVideos = keyword.additionalVideos ?? [];
+  const additionalShorts = additionalVideos.filter((video) => video.format === "short");
+  const additionalFullVideos = additionalVideos.filter((video) => video.format !== "short");
   const timelineProgress = timelineItems.length
     ? Math.round((completedTimeline.length / timelineItems.length) * 100)
     : 0;
@@ -451,7 +454,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
             </div>
           </div>
 
-          {keyword.additionalVideos?.map((video) => (
+          {additionalFullVideos.map((video) => (
             <div key={video.youtubeId} className="space-y-4 border-t border-slate-200 pt-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
                 <div>
@@ -492,6 +495,31 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               </div>
             </div>
           ))}
+          {additionalShorts.length ? (
+            <div className="space-y-4 border-t border-slate-200 pt-6">
+              <div>
+                <h3 className="text-base font-bold text-slate-900">짧게 따라 하는 운동 영상</h3>
+                <p className="mt-1 text-xs text-slate-500">두 영상을 한 카드에서 나란히 확인해 보세요.</p>
+              </div>
+              <div className="grid grid-cols-2 gap-3 rounded-2xl border border-teal-100 bg-teal-50/40 p-3 sm:gap-4 sm:p-4">
+                {additionalShorts.map((video) => (
+                  <div key={video.youtubeId} className="min-w-0 rounded-xl border border-white bg-white p-2 shadow-sm sm:p-3">
+                    <h4 className="mb-2 line-clamp-2 min-h-8 text-xs font-bold leading-snug text-slate-900 sm:text-sm">{video.title}</h4>
+                    <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-slate-900">
+                      <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                    <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-slate-600 sm:text-xs">{video.summary}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
 

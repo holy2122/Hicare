@@ -25,6 +25,7 @@ export interface VideoGuide {
   title: string;
   channel: string;
   youtubeId: string;
+  format?: "full" | "short";
   startSeconds?: number;
   duration: string;
   summary: string;
