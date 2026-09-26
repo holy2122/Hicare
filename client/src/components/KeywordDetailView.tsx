@@ -369,9 +369,6 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               </p>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold">
-              <span className="px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 border border-teal-200">
-                난이도: {keyword.video.difficulty}
-              </span>
               <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 flex items-center gap-1">
                 <Clock className="w-3 h-3" />
                 {keyword.video.duration}
@@ -476,7 +473,6 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                   <p className="text-xs sm:text-sm text-slate-500">제공: {video.channel}</p>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold">
-                  <span className="px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 border border-teal-200">난이도: {video.difficulty}</span>
                   <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 flex items-center gap-1"><Clock className="w-3 h-3" />{video.duration}</span>
                   <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200">권장: {video.targetTimePerDay}</span>
                 </div>
