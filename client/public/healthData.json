@@ -108,6 +108,38 @@
           "channel": "닥터딩요",
           "youtubeId": "dhShgjGZslo",
           "startSeconds": 628,
+          "timeline": [
+            {
+              "label": "DASH 소개와 효과",
+              "time": "03:51",
+              "seconds": 231
+            },
+            {
+              "label": "DASH 먹는 법",
+              "time": "07:07",
+              "seconds": 427
+            },
+            {
+              "label": "서양 DASH 식단",
+              "time": "10:28",
+              "seconds": 628
+            },
+            {
+              "label": "한식 DASH 식단",
+              "time": "11:20",
+              "seconds": 680
+            },
+            {
+              "label": "DASH 총정리",
+              "time": "13:19",
+              "seconds": 799
+            },
+            {
+              "label": "세줄요약",
+              "time": "16:44",
+              "seconds": 1004
+            }
+          ],
           "duration": "영상 시청",
           "summary": "칼로리 설정부터 한국형 DASH 식단 구성까지 따라 하세요.",
           "difficulty": "초급",
