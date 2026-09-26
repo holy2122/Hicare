@@ -88,7 +88,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-4 animate-in fade-in-50 duration-300 pb-16">
+    <div className="mx-auto flex w-full max-w-5xl flex-col space-y-4 animate-in fade-in-50 duration-300 pb-16">
       {/* Detail Page Breadcrumb & Header Title */}
       <div className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-xs">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
@@ -145,7 +145,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       {/* ======================================================== */}
       {/* 1. 실천 수칙 및 한 줄 요약 */}
       {/* ======================================================== */}
-      <section className="bg-white rounded-2xl border-2 border-teal-500/80 shadow-md shadow-teal-500/5 overflow-hidden transition-all">
+      <section className="order-2 bg-white rounded-2xl border-2 border-teal-500/80 shadow-md shadow-teal-500/5 overflow-hidden transition-all">
         {/* Section Header */}
         <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -255,7 +255,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       {/* ======================================================== */}
       {/* 2. 학술 논문 및 근거 */}
       {/* ======================================================== */}
-      <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
+      <section className="order-3 bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
         <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -330,7 +330,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       {/* ======================================================== */}
       {/* 3. 영상 시청 및 따라 하기 */}
       {/* ======================================================== */}
-      <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
+      <section className="order-1 bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
         <div className="bg-gradient-to-r from-teal-800 via-cyan-800 to-slate-900 px-6 py-4 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -495,7 +495,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
         </div>
       </section>
 
-      <div className="flex justify-center">
+      <div className="order-4 flex justify-center">
         <button
           onClick={onReturnToViewedCondition}
           className="inline-flex items-center gap-2 rounded-xl border border-teal-300 bg-white px-5 py-3 text-sm font-bold text-teal-800 shadow-sm transition hover:border-teal-500 hover:bg-teal-50 cursor-pointer"
@@ -506,7 +506,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       </div>
 
       {/* Completion & Next Action Banner */}
-      <div className="-mt-2 bg-gradient-to-r from-teal-50 via-cyan-50 to-blue-50 rounded-2xl border border-teal-200 p-4 flex flex-col items-center justify-center gap-3 text-center">
+      <div className="order-5 -mt-2 bg-gradient-to-r from-teal-50 via-cyan-50 to-blue-50 rounded-2xl border border-teal-200 p-4 flex flex-col items-center justify-center gap-3 text-center">
         <div className="w-full">
           <h4 className="text-sm sm:text-base font-bold text-slate-900">
             오늘의 {keyword.tag} 가이드 확인했나요?
