@@ -39,6 +39,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
   const [timelineStart, setTimelineStart] = useState<number | undefined>(keyword.video.startSeconds);
   const [timelineAutoplay, setTimelineAutoplay] = useState(false);
   const [completedTimeline, setCompletedTimeline] = useState<number[]>([]);
+  const [additionalTimelineStarts, setAdditionalTimelineStarts] = useState<Record<string, number | undefined>>({});
 
   const timelineStorageKey = `hicare-timeline-${condition.id}-${keyword.id}`;
   const timelineItems = keyword.video.timeline ?? [];
@@ -480,12 +481,31 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-xl border border-slate-800">
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1${video.startSeconds ? `&start=${video.startSeconds}` : ""}`}
+                  src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1${additionalTimelineStarts[video.youtubeId] ?? video.startSeconds ? `&start=${additionalTimelineStarts[video.youtubeId] ?? video.startSeconds}` : ""}${additionalTimelineStarts[video.youtubeId] !== undefined ? "&autoplay=1" : ""}`}
                   title={video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
               </div>
+              {video.timeline?.length ? (
+                <div className="rounded-xl border border-teal-100 bg-teal-50/60 p-3 sm:p-4">
+                  <h4 className="mb-2 text-xs font-extrabold text-teal-900">영상 타임라인</h4>
+                  <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                    {video.timeline.map((item) => (
+                      <button
+                        key={`${video.youtubeId}-${item.seconds}-${item.label}`}
+                        type="button"
+                        onClick={() => setAdditionalTimelineStarts((previous) => ({ ...previous, [video.youtubeId]: item.seconds }))}
+                        className="flex min-w-0 items-center gap-2 rounded-lg border border-white/80 bg-white px-2.5 py-2 text-left text-xs text-slate-700 shadow-sm transition hover:border-teal-300 hover:text-teal-800 active:scale-[0.99]"
+                      >
+                        <span className="shrink-0 rounded-md bg-teal-100 px-1.5 py-0.5 font-bold tabular-nums text-teal-800">{item.time}</span>
+                        <span className="min-w-0 flex-1 truncate">{item.label}</span>
+                        <PlayCircle className="h-4 w-4 shrink-0 text-teal-600" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
                 <PlayCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
                 <div>
