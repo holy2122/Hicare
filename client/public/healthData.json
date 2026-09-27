@@ -588,7 +588,7 @@
       {
         "id": "dyslipidemia-diet",
         "tag": "식이습관",
-        "title": "포화지방 줄여 LDL 낮추기",
+        "title": "콜레스테롤 낮추기",
         "subtitle": "포화지방을 줄여 LDL 콜레스테롤을 관리합니다.",
         "shortActionSummary": "포화지방 하루 15g 이하로 줄이세요.",
         "actionSteps": [
@@ -627,7 +627,21 @@
           "duration": "영상 가이드",
           "summary": "LDL을 높이는 포화지방의 원인과 빵·과자·기름진 육류를 줄이는 방법을 설명합니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "식단 선택 시 적용"
+          "targetTimePerDay": "식단 선택 시 적용",
+          "timeline": [
+            { "label": "총론(서론)", "time": "01:44", "seconds": 104 },
+            { "label": "콜레스테롤 감소 어려운 이유", "time": "02:36", "seconds": 156 },
+            { "label": "지방 총론", "time": "10:06", "seconds": 606 },
+            { "label": "포화지방", "time": "17:38", "seconds": 1058 },
+            { "label": "빵/케이크/디저트", "time": "20:33", "seconds": 1233 },
+            { "label": "과자/아이스크림", "time": "25:11", "seconds": 1511 },
+            { "label": "면류", "time": "27:10", "seconds": 1630 },
+            { "label": "커피믹스/초콜릿", "time": "28:43", "seconds": 1723 },
+            { "label": "육류", "time": "29:56", "seconds": 1796 },
+            { "label": "삼겹살 먹는 법", "time": "33:12", "seconds": 1992 },
+            { "label": "가공육/햄버거", "time": "36:33", "seconds": 2193 },
+            { "label": "탕류/밥류", "time": "37:19", "seconds": 2239 }
+          ]
         },
         "additionalVideos": [
           {
