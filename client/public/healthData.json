@@ -64,7 +64,11 @@
           "duration": "16분",
           "summary": "벽 스쿼트 2분과 휴식 2분을 4세트 반복하는 고혈압 운동 루틴입니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "16분, 주 3회 격일"
+          "targetTimePerDay": "16분, 주 3회 격일",
+          "timeline": [
+            { "label": "등척성 운동 설명", "time": "01:46", "seconds": 106 },
+            { "label": "벽스쿼트 시작", "time": "02:32", "seconds": 152 }
+          ]
         }
       },
       {
