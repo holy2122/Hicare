@@ -438,7 +438,20 @@
           "duration": "영상 가이드",
           "summary": "채소·단백질을 먼저 먹고 15분 뒤 탄수화물을 절반으로 줄이는 식사법입니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "매 끼니 적용"
+          "targetTimePerDay": "매 끼니 적용",
+          "timeline": [
+            { "label": "시간 간격", "time": "02:19", "seconds": 139 },
+            { "label": "원리", "time": "04:20", "seconds": 260 },
+            { "label": "인크레틴", "time": "05:41", "seconds": 341 },
+            { "label": "식단 구성", "time": "13:25", "seconds": 805 },
+            { "label": "거꾸로 식사하는 방법 2가지", "time": "14:15", "seconds": 855 },
+            { "label": "약식 버전", "time": "15:15", "seconds": 915 },
+            { "label": "정식 버전", "time": "18:01", "seconds": 1081 },
+            { "label": "식전 단백질 구성", "time": "19:29", "seconds": 1169 },
+            { "label": "정식 버전 장단점", "time": "26:40", "seconds": 1600 },
+            { "label": "냉면은?", "time": "28:01", "seconds": 1681 },
+            { "label": "세줄요약", "time": "29:20", "seconds": 1760 }
+          ]
         },
         "additionalVideos": [
           {
