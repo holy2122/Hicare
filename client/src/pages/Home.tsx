@@ -4,6 +4,7 @@ import { Navbar } from "../components/Navbar";
 import { ConditionCard } from "../components/ConditionCard";
 import { KeywordTagBar } from "../components/KeywordTagBar";
 import { KeywordDetailView } from "../components/KeywordDetailView";
+import { ConditionAvailability, loadConditionAvailability } from "../lib/conditionStatus";
 import {
   Activity,
   ArrowLeft,
@@ -26,6 +27,7 @@ const CATEGORY_TABS = [
 
 function ListView({
   conditions,
+  availability,
   onSelectCondition,
   searchQuery,
   setSearchQuery,
@@ -33,6 +35,7 @@ function ListView({
   setCategoryFilter,
 }: {
   conditions: HealthCondition[];
+  availability: Record<string, ConditionAvailability>;
   onSelectCondition: (condition: HealthCondition) => void;
   searchQuery: string;
   setSearchQuery: (value: string) => void;
@@ -118,6 +121,7 @@ function ListView({
               <div key={condition.id} id={`condition-card-${condition.id}`}>
                 <ConditionCard
                   condition={condition}
+                  availability={availability[condition.id]}
                   isSelected={false}
                   onSelect={onSelectCondition}
                 />
@@ -348,6 +352,7 @@ function ConditionDetailView({
 
 export default function Home() {
   const [conditions, setConditions] = useState<HealthCondition[]>([]);
+  const [availability, setAvailability] = useState<Record<string, ConditionAvailability>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedCondition, setSelectedCondition] = useState<HealthCondition | null>(null);
@@ -356,9 +361,13 @@ export default function Home() {
 
   useEffect(() => {
     const controller = new AbortController();
-    loadHealthConditions(controller.signal)
-      .then((data) => {
+    Promise.all([
+      loadHealthConditions(controller.signal),
+      loadConditionAvailability(controller.signal),
+    ])
+      .then(([data, statuses]) => {
         setConditions(data);
+        setAvailability(Object.fromEntries(statuses.map((status) => [status.conditionId, status])));
         setLoadError(null);
       })
       .catch((error: unknown) => {
@@ -423,6 +432,7 @@ export default function Home() {
     <div className="min-h-screen bg-slate-50 gradient-mesh">
       <ListView
         conditions={conditions}
+        availability={availability}
         onSelectCondition={setSelectedCondition}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}

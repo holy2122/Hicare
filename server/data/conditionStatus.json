@@ -1,0 +1,43 @@
+[
+  {
+    "conditionId": "hypertension",
+    "isActive": true,
+    "notice": ""
+  },
+  {
+    "conditionId": "diabetes",
+    "isActive": true,
+    "notice": "",
+    "updatedAt": "2026-09-28T10:30:53.022Z"
+  },
+  {
+    "conditionId": "dyslipidemia",
+    "isActive": true,
+    "notice": ""
+  },
+  {
+    "conditionId": "liver",
+    "isActive": true,
+    "notice": ""
+  },
+  {
+    "conditionId": "ckd",
+    "isActive": true,
+    "notice": ""
+  },
+  {
+    "conditionId": "tuberculosis",
+    "isActive": true,
+    "notice": ""
+  },
+  {
+    "conditionId": "obesity",
+    "isActive": true,
+    "notice": ""
+  },
+  {
+    "conditionId": "heart",
+    "isActive": true,
+    "notice": ""
+  }
+]
