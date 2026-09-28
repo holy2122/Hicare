@@ -1,5 +1,15 @@
 [
   {
+    "id": "479db754-fc4e-4bd2-a934-b48ebfb0d820",
+    "conditionId": "diabetes",
+    "adminEmail": "test@example.com",
+    "action": "schedule",
+    "isActive": false,
+    "notice": "10월 오픈 예정",
+    "openDate": "2026-10-15",
+    "changedAt": "2026-09-28T11:11:10.458Z"
+  },
+  {
     "id": "529f6fe9-6af2-4e4a-a2c4-0b3eb3487b29",
     "conditionId": "diabetes",
     "adminEmail": "admin@example.com",
