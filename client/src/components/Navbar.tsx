@@ -1,5 +1,6 @@
 import React from "react";
-import { HeartPulse } from "lucide-react";
+import { HeartPulse, LockKeyhole } from "lucide-react";
+import { Link } from "wouter";
 
 interface NavbarProps {
   onReset: () => void;
@@ -27,6 +28,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             Hi <span className="text-emerald-600">Care</span>
           </span>
         </button>
+        <Link
+          href="/admin"
+          className="inline-flex min-h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 text-xs font-bold text-slate-600 transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700"
+        >
+          <LockKeyhole className="h-3.5 w-3.5" />
+          관리자 로그인
+        </Link>
       </div>
     </header>
   );
