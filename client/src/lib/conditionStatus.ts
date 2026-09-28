@@ -47,6 +47,16 @@ export async function loginAdmin(email: string, password: string): Promise<Admin
   return payload.user;
 }
 
+export async function registerAdmin(email: string, password: string, setupKey: string): Promise<void> {
+  const response = await fetch("/api/admin/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password, setupKey }),
+  });
+  const payload = (await response.json().catch(() => null)) as { message?: string } | null;
+  if (!response.ok) throw new Error(payload?.message ?? "관리자 계정 등록에 실패했습니다.");
+}
+
 export async function loadAdminSession(): Promise<AdminSession | null> {
   const response = await fetch("/api/admin/session", { credentials: "include", cache: "no-store" });
   if (!response.ok) return null;
