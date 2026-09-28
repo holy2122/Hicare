@@ -371,6 +371,15 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const handlePopState = () => {
+      const conditionId = new URLSearchParams(window.location.search).get("condition");
+      setSelectedCondition(conditionId ? conditions.find((condition) => condition.id === conditionId) ?? null : null);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [conditions]);
+
+  useEffect(() => {
     const controller = new AbortController();
     Promise.all([
       loadHealthConditions(controller.signal),
@@ -429,6 +438,12 @@ export default function Home() {
     return <div className="min-h-screen grid place-items-center bg-slate-50 px-6 text-center"><div><p className="font-bold text-slate-900">데이터를 불러오지 못했습니다.</p><p className="mt-2 text-sm text-slate-500">{loadError}</p><button onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white cursor-pointer">다시 시도</button></div></div>;
   }
 
+  const handleSelectCondition = (condition: HealthCondition) => {
+    setSelectedCondition(condition);
+    window.history.pushState({ conditionId: condition.id }, "", `?condition=${encodeURIComponent(condition.id)}`);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  };
+
   if (selectedCondition) {
     return (
       <ConditionDetailView
@@ -445,7 +460,7 @@ export default function Home() {
         conditions={conditions}
         availability={availability}
         isAdminPreview={isAdminPreview}
-        onSelectCondition={setSelectedCondition}
+        onSelectCondition={handleSelectCondition}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         categoryFilter={categoryFilter}
