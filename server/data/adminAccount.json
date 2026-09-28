@@ -1,1 +1,6 @@
-null
+{
+  "email": "owner@example.com",
+  "salt": "d9ee39fbd5dd104e50baa36070588cfd",
+  "passwordHash": "3330b5b9052c8a2228de01a9fe4efc7ac4fb801a18a1b145caab01a4e79f11f7a450645385a040693c6d434f4c4ce3157b946d66e0773393e5a2a849630f2d91",
+  "createdAt": "2026-09-28T11:05:43.961Z"
+}
