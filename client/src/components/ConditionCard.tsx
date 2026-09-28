@@ -1,6 +1,5 @@
 import React from "react";
 import { HealthCondition } from "../data/healthData";
-import { ConditionAvailability } from "../lib/conditionStatus";
 import {
   Gauge,
   Droplets,
@@ -47,18 +46,15 @@ const GlucoseLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 interface ConditionCardProps {
   condition: HealthCondition;
-  availability?: ConditionAvailability;
   isSelected: boolean;
   onSelect: (condition: HealthCondition) => void;
 }
 
 export const ConditionCard: React.FC<ConditionCardProps> = ({
   condition,
-  availability,
   isSelected,
   onSelect,
 }) => {
-  const isActive = availability?.isActive ?? true;
   const getIcon = () => {
     switch (condition.id) {
       case "hypertension":
@@ -84,14 +80,11 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
 
   return (
     <div
-      onClick={() => { if (isActive) onSelect(condition); }}
-      aria-disabled={!isActive}
-      className={`group relative text-left bg-white rounded-2xl p-5 transition-all duration-200 border flex flex-col justify-between ${
+      onClick={() => onSelect(condition)}
+      className={`group relative text-left bg-white rounded-2xl p-5 transition-all duration-200 cursor-pointer border flex flex-col justify-between ${
         isSelected
           ? "border-teal-500 shadow-md shadow-teal-500/10 ring-2 ring-teal-500/20 translate-y-[-2px] bg-gradient-to-b from-teal-50/30 to-white"
-          : isActive
-            ? "border-slate-200/90 cursor-pointer hover:border-teal-400 hover:shadow-md hover:-translate-y-0.5"
-            : "border-slate-200/90 cursor-not-allowed"
+          : "border-slate-200/90 hover:border-teal-400 hover:shadow-md hover:-translate-y-0.5"
       }`}
     >
       <div>
@@ -136,14 +129,6 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
           <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
         </div>
       </div>
-      {!isActive && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-slate-900/45 px-4 text-center backdrop-blur-[1.5px]">
-          <div className="rounded-xl border border-white/60 bg-white/90 px-4 py-3 shadow-lg">
-            <p className="text-xs font-extrabold text-slate-800">오픈 예정</p>
-            <p className="mt-0.5 text-sm font-bold text-slate-700">{availability?.notice || "서비스 준비 중"}</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
