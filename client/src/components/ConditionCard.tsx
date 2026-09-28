@@ -59,6 +59,9 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
   onSelect,
 }) => {
   const isActive = availability?.isActive ?? true;
+  const openDateLabel = availability?.openDate
+    ? `${new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "numeric", day: "numeric" }).format(new Date(`${availability.openDate}T00:00:00`))} 오픈 예정`
+    : availability?.notice || "서비스 준비 중";
   const getIcon = () => {
     switch (condition.id) {
       case "hypertension":
@@ -140,7 +143,7 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
         <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-slate-900/40 px-4 text-center backdrop-blur-[1px]">
           <div className="rounded-xl border border-white/70 bg-white/90 px-4 py-3 shadow-lg">
             <p className="text-xs font-extrabold text-slate-800">오픈 예정</p>
-            <p className="mt-0.5 text-sm font-bold text-slate-700">{availability?.notice || "서비스 준비 중"}</p>
+            <p className="mt-0.5 text-sm font-bold text-slate-700">{openDateLabel}</p>
           </div>
         </div>
       )}

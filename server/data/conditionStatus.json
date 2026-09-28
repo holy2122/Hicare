@@ -2,42 +2,50 @@
   {
     "conditionId": "hypertension",
     "isActive": true,
-    "notice": ""
+    "notice": "",
+    "openDate": null
   },
   {
     "conditionId": "diabetes",
-    "isActive": true,
-    "notice": "",
-    "updatedAt": "2026-09-28T10:30:53.022Z"
+    "isActive": false,
+    "notice": "10월 오픈 예정",
+    "openDate": "2026-10-15",
+    "updatedAt": "2026-09-28T10:34:24.076Z"
   },
   {
     "conditionId": "dyslipidemia",
     "isActive": true,
-    "notice": ""
+    "notice": "",
+    "openDate": null
   },
   {
     "conditionId": "liver",
     "isActive": true,
-    "notice": ""
+    "notice": "",
+    "openDate": null
   },
   {
     "conditionId": "ckd",
     "isActive": true,
-    "notice": ""
+    "notice": "",
+    "openDate": null
   },
   {
     "conditionId": "tuberculosis",
     "isActive": true,
-    "notice": ""
+    "notice": "",
+    "openDate": null
   },
   {
     "conditionId": "obesity",
     "isActive": true,
-    "notice": ""
+    "notice": "",
+    "openDate": null
   },
   {
     "conditionId": "heart",
     "isActive": true,
-    "notice": ""
+    "notice": "",
+    "openDate": null
   }
 ]
