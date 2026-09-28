@@ -4,7 +4,7 @@ import { Navbar } from "../components/Navbar";
 import { ConditionCard } from "../components/ConditionCard";
 import { KeywordTagBar } from "../components/KeywordTagBar";
 import { KeywordDetailView } from "../components/KeywordDetailView";
-import { ConditionAvailability, loadConditionAvailability } from "../lib/conditionStatus";
+import { ConditionAvailability, loadAdminSession, loadConditionAvailability } from "../lib/conditionStatus";
 import {
   Activity,
   ArrowLeft,
@@ -28,6 +28,7 @@ const CATEGORY_TABS = [
 function ListView({
   conditions,
   availability,
+  isAdminPreview,
   onSelectCondition,
   searchQuery,
   setSearchQuery,
@@ -36,6 +37,7 @@ function ListView({
 }: {
   conditions: HealthCondition[];
   availability: Record<string, ConditionAvailability>;
+  isAdminPreview: boolean;
   onSelectCondition: (condition: HealthCondition) => void;
   searchQuery: string;
   setSearchQuery: (value: string) => void;
@@ -122,6 +124,7 @@ function ListView({
                 <ConditionCard
                   condition={condition}
                   availability={availability[condition.id]}
+                  isAdminPreview={isAdminPreview}
                   isSelected={false}
                   onSelect={onSelectCondition}
                 />
@@ -359,6 +362,13 @@ export default function Home() {
   const [selectedCondition, setSelectedCondition] = useState<HealthCondition | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
+  const [isAdminPreview, setIsAdminPreview] = useState(false);
+
+  useEffect(() => {
+    loadAdminSession()
+      .then((session) => setIsAdminPreview(session?.role === "admin"))
+      .catch(() => setIsAdminPreview(false));
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -434,6 +444,7 @@ export default function Home() {
       <ListView
         conditions={conditions}
         availability={availability}
+        isAdminPreview={isAdminPreview}
         onSelectCondition={setSelectedCondition}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
