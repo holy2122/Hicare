@@ -257,7 +257,7 @@ function ConditionDetailView({
             </div>
           )}
           {condition.id === "dyslipidemia" && (
-            <div className="mt-5 rounded-xl border-2 border-sky-400 bg-white p-3 sm:p-4">
+            <div className="lipid-criteria-card mt-5 rounded-xl border-2 border-sky-400 bg-white p-3 sm:p-4">
               <div className="mb-4 border-b border-sky-100 bg-sky-50 px-4 py-3">
                 <h2 className="text-sm font-extrabold text-sky-900 sm:text-base">이상지질혈증 수치 분류</h2>
                 <p className="mt-1 text-xs text-slate-600">2022년 한국지질·동맥경화학회 지침 기준</p>

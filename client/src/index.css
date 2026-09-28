@@ -116,6 +116,12 @@
   font-size: 0.86rem;
 }
 
+.lipid-criteria-card h3,
+.lipid-criteria-card table th,
+.lipid-criteria-card table td {
+  text-align: center !important;
+}
+
 .medical-criteria-card table,
 .compact-medical-table {
   width: fit-content;
