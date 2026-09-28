@@ -1,6 +1,6 @@
 {
-  "email": "me@example.com",
-  "salt": "947b095c566950b946ce5d24c6eefc09",
-  "passwordHash": "c5248869ec86c46f69a5f2e073bf37516e592fd5df3f5c763fc2de0318bee4596c6e67bf01d5de36adf4894805abd66b44b33db85a855204287412ac3516bd32",
-  "createdAt": "2026-09-28T10:41:59.943Z"
+  "email": "setup-test@example.com",
+  "salt": "309581cfc90f55033b9c1c75d65d925b",
+  "passwordHash": "b8155420fdd0423fdc347fc4e6853998760b8bb3d3ab62f498f03b94f7a96b602098a8d27d92c320a986eb7e70c1a580b1cdac156c79ddbdd8cd58d35ce7979b",
+  "createdAt": "2026-09-28T10:48:09.154Z"
 }
