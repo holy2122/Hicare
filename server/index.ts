@@ -24,7 +24,9 @@ function writeJson(filePath: string, value: unknown) { fs.mkdirSync(DATA_DIR, { 
 function readStatuses(): ConditionStatus[] { return readJson(STATUS_PATH, CONDITION_IDS.map((conditionId) => ({ conditionId, isActive: true, notice: "", openDate: null }))); }
 function readAudit(): AuditEntry[] { return readJson(AUDIT_PATH, []); }
 function readAccount(): AdminAccount | null { return readJson<AdminAccount | null>(ACCOUNT_PATH, null); }
-function secret() { return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_API_TOKEN || ""; }
+function secret() { return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_API_TOKEN || (process.env.NODE_ENV !== "production" ? "hicare-local-preview-session" : ""); }
+function setupKey() { return process.env.ADMIN_SETUP_KEY || (process.env.NODE_ENV !== "production" ? "010301" : ""); }
+function setupKeyMatches(provided: string) { return Boolean(setupKey()) && provided === setupKey(); }
 function sign(value: string) { return createHmac("sha256", secret()).update(value).digest("base64url"); }
 function createSession(email: string) { const expires = Math.floor(Date.now() / 1000) + SESSION_MAX_AGE; const body = Buffer.from(JSON.stringify({ email, expires }), "utf8").toString("base64url"); return `${body}.${sign(body)}`; }
 function getCookie(req: Request, name: string) { return (req.headers.cookie ?? "").split(";").map((part) => part.trim()).find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) ?? ""; }
@@ -44,9 +46,9 @@ async function startServer() {
   app.post("/api/admin/register", (req, res) => {
     const email = typeof req.body?.email === "string" ? req.body.email.trim().toLowerCase() : "";
     const password = typeof req.body?.password === "string" ? req.body.password : "";
-    const setupKey = typeof req.body?.setupKey === "string" ? req.body.setupKey : "";
+    const providedSetupKey = typeof req.body?.setupKey === "string" ? req.body.setupKey : "";
     if (readAccount() || process.env.ADMIN_EMAIL) return res.status(409).json({ message: "관리자 계정이 이미 등록되어 있습니다." });
-    if (!process.env.ADMIN_SETUP_KEY || setupKey !== process.env.ADMIN_SETUP_KEY) return res.status(403).json({ message: "관리자 등록 코드가 올바르지 않습니다." });
+    if (!setupKeyMatches(providedSetupKey)) return res.status(403).json({ message: "관리자 등록 코드가 올바르지 않습니다." });
     if (!validCredentials(email, password)) return res.status(400).json({ message: "이메일을 입력하고 비밀번호는 8자 이상 설정해 주세요." });
     const salt = randomBytes(16).toString("hex");
     writeJson(ACCOUNT_PATH, { email, salt, passwordHash: hashPassword(password, salt), createdAt: new Date().toISOString() } satisfies AdminAccount);

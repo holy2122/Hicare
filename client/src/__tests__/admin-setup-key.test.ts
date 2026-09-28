@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 describe("Admin registration setup", () => {
   it("exposes the configured setup key to the Admin registration service", async () => {
     expect(process.env.ADMIN_SETUP_KEY).toBe("010301");
+    expect(process.env.ADMIN_SESSION_SECRET).toBeTruthy();
     const baseUrl = process.env.ADMIN_TEST_BASE_URL ?? "http://127.0.0.1:3105";
     const response = await fetch(`${baseUrl}/api/admin/register`, {
       method: "POST",
@@ -14,5 +15,12 @@ describe("Admin registration setup", () => {
       }),
     });
     expect(response.status).toBe(201);
+    const login = await fetch(`${baseUrl}/api/admin/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: "setup-test@example.com", password: "setup-test-password" }),
+    });
+    expect(login.status).toBe(200);
+    expect(login.headers.get("set-cookie")).toContain("hicare_admin_session=");
   });
 });

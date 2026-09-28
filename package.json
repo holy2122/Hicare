@@ -4,7 +4,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "pnpm build && NODE_ENV=development node dist/index.js",
     "sync:youtube": "python3 scripts/sync_youtube_channels.py",
     "prebuild": "pnpm sync:youtube",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
