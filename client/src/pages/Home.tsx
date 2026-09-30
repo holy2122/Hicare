@@ -5,6 +5,7 @@ import { ConditionCard } from "../components/ConditionCard";
 import { KeywordTagBar } from "../components/KeywordTagBar";
 import { KeywordDetailView } from "../components/KeywordDetailView";
 import { ConditionAvailability, loadAdminSession, loadConditionAvailability } from "../lib/conditionStatus";
+import { trpc } from "../lib/trpc";
 import {
   Activity,
   ArrowLeft,
@@ -153,10 +154,12 @@ function ConditionDetailView({
   condition,
   onBack,
   onReturnToViewedCondition,
+  onGuideOpen,
 }: {
   condition: HealthCondition;
   onBack: () => void;
   onReturnToViewedCondition: () => void;
+  onGuideOpen: (keywordId: string) => void;
 }) {
   const [selectedKeywordId, setSelectedKeywordId] = useState<string | null>(null);
 
@@ -172,6 +175,7 @@ function ConditionDetailView({
 
   const handleSelectKeyword = (keyword: HealthKeywordTopic) => {
     setSelectedKeywordId(keyword.id);
+    onGuideOpen(keyword.id);
     window.setTimeout(() => document.getElementById("final-guide")?.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
   };
 
@@ -363,6 +367,16 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
   const [isAdminPreview, setIsAdminPreview] = useState(false);
+  const activityLog = trpc.activity.log.useMutation();
+  const authUser = trpc.auth.me.useQuery();
+  const [visitLogged, setVisitLogged] = useState(false);
+
+  useEffect(() => {
+    if (authUser.data && !visitLogged) {
+      setVisitLogged(true);
+      activityLog.mutate({ eventType: "page_visit" });
+    }
+  }, [activityLog, authUser.data, visitLogged]);
 
   useEffect(() => {
     loadAdminSession()
@@ -440,6 +454,7 @@ export default function Home() {
 
   const handleSelectCondition = (condition: HealthCondition) => {
     setSelectedCondition(condition);
+    if (authUser.data) activityLog.mutate({ eventType: "condition_open", conditionId: condition.id });
     window.history.pushState({ conditionId: condition.id }, "", `?condition=${encodeURIComponent(condition.id)}`);
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   };
@@ -450,6 +465,9 @@ export default function Home() {
         condition={selectedCondition}
         onBack={handleReturnToInitialList}
         onReturnToViewedCondition={handleReturnToViewedCondition}
+        onGuideOpen={(keywordId) => {
+          if (authUser.data) activityLog.mutate({ eventType: "guide_open", conditionId: selectedCondition.id, keywordId });
+        }}
       />
     );
   }

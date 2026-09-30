@@ -23,6 +23,28 @@ export interface AdminSession {
   email: string;
 }
 
+export interface MemberRecord {
+  id: number;
+  openId: string;
+  name: string | null;
+  email: string | null;
+  role: string;
+  createdAt: string;
+  lastSignedIn: string;
+}
+
+export interface ActivityRecord {
+  id: number;
+  userId: number;
+  eventType: string;
+  conditionId: string | null;
+  keywordId: string | null;
+  metadata: string | null;
+  createdAt: string;
+  email: string | null;
+  name: string | null;
+}
+
 export async function loadConditionAvailability(signal?: AbortSignal): Promise<ConditionAvailability[]> {
   try {
     const response = await fetch("/api/condition-status", { signal, cache: "no-store" });
@@ -84,4 +106,18 @@ export async function loadAdminAudit(): Promise<AdminAuditEntry[]> {
   if (!response.ok) throw new Error("변경 이력을 불러오지 못했습니다.");
   const payload = (await response.json()) as { entries?: AdminAuditEntry[] };
   return payload.entries ?? [];
+}
+
+export async function loadAdminMembers(): Promise<MemberRecord[]> {
+  const response = await fetch("/api/admin/members", { credentials: "include", cache: "no-store" });
+  const body = await response.json();
+  if (!response.ok) throw new Error(body.message ?? "회원 기록을 불러오지 못했습니다.");
+  return body.members ?? [];
+}
+
+export async function loadAdminActivity(): Promise<ActivityRecord[]> {
+  const response = await fetch("/api/admin/activity", { credentials: "include", cache: "no-store" });
+  const body = await response.json();
+  if (!response.ok) throw new Error(body.message ?? "활동 기록을 불러오지 못했습니다.");
+  return body.logs ?? [];
 }

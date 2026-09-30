@@ -1,6 +1,7 @@
 import React from "react";
 import { HeartPulse, LockKeyhole } from "lucide-react";
 import { Link } from "wouter";
+import { startLogin } from "../const";
 
 interface NavbarProps {
   onReset: () => void;
@@ -28,13 +29,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             Hi <span className="text-emerald-600">Care</span>
           </span>
         </button>
-        <Link
-          href="/admin"
-          className="inline-flex min-h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 text-xs font-bold text-slate-600 transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700"
-        >
-          <LockKeyhole className="h-3.5 w-3.5" />
-          관리자 로그인
-        </Link>
+        <div className="flex items-center gap-2">
+          <button type="button" onClick={startLogin} className="inline-flex min-h-9 items-center gap-1.5 rounded-lg bg-teal-700 px-2.5 text-xs font-bold text-white transition hover:bg-teal-800">
+            직원 회원가입·로그인
+          </button>
+          <Link href="/admin" className="inline-flex min-h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 text-xs font-bold text-slate-600 transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700">
+            <LockKeyhole className="h-3.5 w-3.5" /> 관리자
+          </Link>
+        </div>
       </div>
     </header>
   );

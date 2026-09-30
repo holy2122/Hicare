@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { ActivityLog, InsertActivityLog, InsertUser, activityLogs, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -87,6 +87,28 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createActivityLog(log: InsertActivityLog): Promise<ActivityLog | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.insert(activityLogs).values(log);
+  const insertedId = Number(result[0]?.insertId);
+  if (!insertedId) return undefined;
+  const rows = await db.select().from(activityLogs).where(eq(activityLogs.id, insertedId)).limit(1);
+  return rows[0];
+}
+
+export async function listMembers() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select({ id: users.id, openId: users.openId, name: users.name, email: users.email, role: users.role, createdAt: users.createdAt, lastSignedIn: users.lastSignedIn }).from(users).orderBy(desc(users.createdAt));
+}
+
+export async function listActivityLogs(limit = 500) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select({ id: activityLogs.id, userId: activityLogs.userId, eventType: activityLogs.eventType, conditionId: activityLogs.conditionId, keywordId: activityLogs.keywordId, metadata: activityLogs.metadata, createdAt: activityLogs.createdAt, email: users.email, name: users.name }).from(activityLogs).leftJoin(users, eq(activityLogs.userId, users.id)).orderBy(desc(activityLogs.createdAt)).limit(limit);
 }
 
 // TODO: add feature queries here as your schema grows.

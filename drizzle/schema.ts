@@ -51,3 +51,16 @@ export const hicareConditionAudits = mysqlTable("hicare_condition_audits", {
   openDate: timestamp("openDate"),
   changedAt: timestamp("changedAt").notNull(),
 });
+
+export const activityLogs = mysqlTable("hicare_activity_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  eventType: varchar("eventType", { length: 64 }).notNull(),
+  conditionId: varchar("conditionId", { length: 64 }),
+  keywordId: varchar("keywordId", { length: 128 }),
+  metadata: text("metadata"),
+  createdAt: timestamp("createdAt").notNull(),
+});
+
+export type ActivityLog = typeof activityLogs.$inferSelect;
+export type InsertActivityLog = typeof activityLogs.$inferInsert;

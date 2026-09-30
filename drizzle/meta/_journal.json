@@ -8,6 +8,13 @@
       "when": 1790595969471,
       "tag": "0000_massive_hammerhead",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1790751871221,
+      "tag": "0001_fair_fenris",
+      "breakpoints": true
     }
   ]
 }

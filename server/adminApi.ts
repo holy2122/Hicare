@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { databaseEnabled, dbAddAudit, dbReadAccount, dbReadAudit, dbReadStatuses, dbSaveAccount, dbSaveStatus, type DbAdminAccount, type DbAuditEntry, type DbConditionStatus } from "./adminDb";
+import { listActivityLogs, listMembers } from "./db";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataCandidates = [path.resolve(__dirname, "data"), path.resolve(__dirname, "..", "server", "data"), path.resolve(process.cwd(), "server", "data"), path.resolve("/tmp", "hicare-admin-data")];
@@ -113,6 +114,8 @@ export function registerAdminRoutes(app: Express) {
   app.post("/api/admin/logout", (_req, res) => { res.setHeader("Set-Cookie", `${SESSION_COOKIE}=; HttpOnly; Path=/; Max-Age=0; SameSite=Lax`); res.json({ ok: true }); });
   app.get("/api/admin/session", requireAdmin, (_req, res) => res.json({ authenticated: true, role: "admin", email: res.locals.adminEmail }));
   app.get("/api/admin/audit", requireAdmin, async (_req, res) => { try { res.json({ entries: await readAudit() }); } catch { res.status(503).json({ message: "변경 이력을 불러오지 못했습니다." }); } });
+  app.get("/api/admin/members", requireAdmin, async (_req, res) => { try { res.json({ members: await listMembers() }); } catch { res.status(503).json({ message: "회원 기록을 불러오지 못했습니다." }); } });
+  app.get("/api/admin/activity", requireAdmin, async (_req, res) => { try { res.json({ logs: await listActivityLogs() }); } catch { res.status(503).json({ message: "활동 기록을 불러오지 못했습니다." }); } });
   app.put("/api/admin/condition-status/:conditionId", requireAdmin, async (req, res) => {
     const { conditionId } = req.params;
     if (!CONDITION_IDS.includes(conditionId)) return res.status(400).json({ message: "지원하지 않는 질환입니다." });
