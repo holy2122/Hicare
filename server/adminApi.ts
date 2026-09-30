@@ -86,6 +86,8 @@ async function currentAdmin(req: Request) {
 async function requireAdmin(req: Request, res: Response, next: NextFunction) { const email = await currentAdmin(req); if (!email) return res.status(403).json({ message: "Admin 로그인이 필요합니다." }); res.locals.adminEmail = email; return next(); }
 function validDate(value: unknown): value is string | null { return value === null || (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)); }
 function validCredentials(email: unknown, password: unknown) { return typeof email === "string" && email.trim().includes("@") && typeof password === "string" && password.length >= 8; }
+function csvCell(value: unknown) { return `"${String(value ?? "").replace(/"/g, '""')}"`; }
+function csvFileName(prefix: string) { return `${prefix}-${new Date().toISOString().slice(0, 10)}.csv`; }
 
 export function registerAdminRoutes(app: Express) {
   app.get("/api/condition-status", async (_req, res) => { res.setHeader("Cache-Control", "no-store"); try { res.json({ statuses: await readStatuses() }); } catch { res.status(503).json({ message: "상태 저장소를 사용할 수 없습니다." }); } });
@@ -116,6 +118,32 @@ export function registerAdminRoutes(app: Express) {
   app.get("/api/admin/audit", requireAdmin, async (_req, res) => { try { res.json({ entries: await readAudit() }); } catch { res.status(503).json({ message: "변경 이력을 불러오지 못했습니다." }); } });
   app.get("/api/admin/members", requireAdmin, async (_req, res) => { try { res.json({ members: await listMembers() }); } catch { res.status(503).json({ message: "회원 기록을 불러오지 못했습니다." }); } });
   app.get("/api/admin/activity", requireAdmin, async (_req, res) => { try { res.json({ logs: await listActivityLogs() }); } catch { res.status(503).json({ message: "활동 기록을 불러오지 못했습니다." }); } });
+  app.get("/api/admin/export/members", requireAdmin, async (_req, res) => {
+    try {
+      const members = await listMembers();
+      const rows = [
+        ["회원 ID", "이름", "이메일", "가입 방식", "역할", "가입 시각", "최근 로그인"],
+        ...members.map(member => [member.id, member.name, member.email, member.openId.startsWith("local_") ? "Hi Care 자체 가입" : member.openId, member.role, member.createdAt, member.lastSignedIn]),
+      ];
+      const csv = `\uFEFF${rows.map(row => row.map(csvCell).join(",")).join("\r\n")}\r\n`;
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename*=UTF-8''${csvFileName("hicare-members")}`);
+      return res.send(csv);
+    } catch { return res.status(503).json({ message: "회원 데이터를 내보내지 못했습니다." }); }
+  });
+  app.get("/api/admin/export/activity", requireAdmin, async (_req, res) => {
+    try {
+      const logs = await listActivityLogs(100_000);
+      const rows = [
+        ["로그 ID", "회원 ID", "이름", "이메일", "활동 유형", "질환 ID", "가이드 ID", "추가 정보", "활동 시각"],
+        ...logs.map(log => [log.id, log.userId, log.name, log.email, log.eventType, log.conditionId, log.keywordId, log.metadata, log.createdAt]),
+      ];
+      const csv = `\uFEFF${rows.map(row => row.map(csvCell).join(",")).join("\r\n")}\r\n`;
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename*=UTF-8''${csvFileName("hicare-activity-logs")}`);
+      return res.send(csv);
+    } catch { return res.status(503).json({ message: "활동 데이터를 내보내지 못했습니다." }); }
+  });
   app.put("/api/admin/condition-status/:conditionId", requireAdmin, async (req, res) => {
     const { conditionId } = req.params;
     if (!CONDITION_IDS.includes(conditionId)) return res.status(400).json({ message: "지원하지 않는 질환입니다." });

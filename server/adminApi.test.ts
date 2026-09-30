@@ -82,4 +82,9 @@ describe("Admin availability API", () => {
     expect(audit.status).toBe(200);
     expect((await audit.json()).entries[0].conditionId).toBe("diabetes");
   });
+
+  it("rejects member and activity exports without an Admin session", async () => {
+    expect((await request("/api/admin/export/members")).status).toBe(403);
+    expect((await request("/api/admin/export/activity")).status).toBe(403);
+  });
 });

@@ -121,3 +121,23 @@ export async function loadAdminActivity(): Promise<ActivityRecord[]> {
   if (!response.ok) throw new Error(body.message ?? "활동 기록을 불러오지 못했습니다.");
   return body.logs ?? [];
 }
+
+export async function downloadAdminExport(kind: "members" | "activity"): Promise<void> {
+  const response = await fetch(`/api/admin/export/${kind}`, { credentials: "include", cache: "no-store" });
+  if (!response.ok) {
+    const body = await response.json().catch(() => null) as { message?: string } | null;
+    throw new Error(body?.message ?? "Excel 백업 파일을 생성하지 못했습니다.");
+  }
+  const blob = await response.blob();
+  const disposition = response.headers.get("content-disposition") ?? "";
+  const encodedName = disposition.match(/filename\*=UTF-8''([^;]+)/i)?.[1];
+  const filename = encodedName ? decodeURIComponent(encodedName) : `hicare-${kind}.csv`;
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  URL.revokeObjectURL(url);
+}
