@@ -2,6 +2,7 @@ import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { ActivityLog, InsertActivityLog, InsertUser, activityLogs, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
+import { randomBytes, randomUUID, scryptSync, timingSafeEqual } from "crypto";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
@@ -87,6 +88,53 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getUserById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+  return result[0];
+}
+
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  return result[0];
+}
+
+export async function createLocalUser(input: { email: string; password: string; name: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("DATABASE_UNAVAILABLE");
+  const existing = await getUserByEmail(input.email);
+  if (existing) return null;
+  const passwordSalt = randomBytes(16).toString("hex");
+  const passwordHash = scryptSync(input.password, passwordSalt, 64).toString("hex");
+  const values: InsertUser = {
+    openId: `local_${randomUUID()}`,
+    name: input.name,
+    email: input.email,
+    loginMethod: "local",
+    passwordHash,
+    passwordSalt,
+    role: "user",
+    lastSignedIn: new Date(),
+  };
+  const result = await db.insert(users).values(values);
+  const id = Number(result[0]?.insertId);
+  return id ? getUserById(id) : undefined;
+}
+
+export async function authenticateLocalUser(email: string, password: string) {
+  const user = await getUserByEmail(email);
+  if (!user?.passwordHash || !user.passwordSalt) return null;
+  const actual = Buffer.from(scryptSync(password, user.passwordSalt, 64).toString("hex"), "hex");
+  const expected = Buffer.from(user.passwordHash, "hex");
+  if (actual.length !== expected.length || !timingSafeEqual(actual, expected)) return null;
+  const db = await getDb();
+  if (db) await db.update(users).set({ lastSignedIn: new Date() }).where(eq(users.id, user.id));
+  return getUserById(user.id);
 }
 
 export async function createActivityLog(log: InsertActivityLog): Promise<ActivityLog | undefined> {
