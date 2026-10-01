@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { HeartPulse, LockKeyhole } from "lucide-react";
+import React from "react";
+import { HeartPulse } from "lucide-react";
 import { Link } from "wouter";
-import { LocalAuthDialog } from "./LocalAuthDialog";
-import { trpc } from "../lib/trpc";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface NavbarProps {
   onReset: () => void;
@@ -17,10 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   setSearchQuery,
   selectedConditionId,
 }) => {
-  const [authOpen, setAuthOpen] = useState(false);
-  const authUser = trpc.auth.me.useQuery();
-  const utils = trpc.useUtils();
-  const logout = trpc.auth.logout.useMutation({ onSuccess: () => utils.auth.me.setData(undefined, null) });
+  const { session, profile, isAdmin, signOut } = useAuth();
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-slate-200/80 shadow-xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
@@ -34,22 +30,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             Hi <span className="text-emerald-600">Care</span>
           </span>
         </button>
-        <div className="flex items-center gap-2">
-          {authUser.data ? (
-            <button type="button" onClick={() => logout.mutate()} className="inline-flex min-h-9 items-center gap-1.5 rounded-lg bg-teal-700 px-2.5 text-xs font-bold text-white transition hover:bg-teal-800">
-              {authUser.data.name || authUser.data.email || "직원"} · 로그아웃
-            </button>
+        <div className="flex items-center gap-2 text-xs font-bold">
+          {session ? (
+            <>
+              <span className="hidden max-w-[140px] truncate text-slate-500 sm:inline">{profile?.name || session.user.email}</span>
+              {isAdmin && <Link href="/admin" className="rounded-lg border border-teal-200 bg-teal-50 px-2.5 py-1.5 text-teal-700">관리자</Link>}
+              <button onClick={signOut} className="rounded-lg border border-slate-200 px-2.5 py-1.5 text-slate-600 hover:bg-slate-100 cursor-pointer">로그아웃</button>
+            </>
           ) : (
-            <button type="button" onClick={() => setAuthOpen(true)} className="inline-flex min-h-9 items-center gap-1.5 rounded-lg bg-teal-700 px-2.5 text-xs font-bold text-white transition hover:bg-teal-800">
-              직원 회원가입·로그인
-            </button>
+            <Link href="/login" className="rounded-lg bg-teal-700 px-3 py-1.5 text-white hover:bg-teal-800">로그인</Link>
           )}
-          <Link href="/admin" className="inline-flex min-h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 text-xs font-bold text-slate-600 transition hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700">
-            <LockKeyhole className="h-3.5 w-3.5" /> 관리자
-          </Link>
         </div>
       </div>
-      {authOpen && <LocalAuthDialog onClose={() => setAuthOpen(false)} />}
     </header>
   );
 };

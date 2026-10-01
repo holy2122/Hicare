@@ -64,11 +64,7 @@
           "duration": "16분",
           "summary": "벽 스쿼트 2분과 휴식 2분을 4세트 반복하는 고혈압 운동 루틴입니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "16분, 주 3회 격일",
-          "timeline": [
-            { "label": "등척성 운동 설명", "time": "01:46", "seconds": 106 },
-            { "label": "벽스쿼트 시작", "time": "02:32", "seconds": 152 }
-          ]
+          "targetTimePerDay": "16분, 주 3회 격일"
         }
       },
       {
@@ -112,38 +108,6 @@
           "channel": "닥터딩요",
           "youtubeId": "dhShgjGZslo",
           "startSeconds": 628,
-          "timeline": [
-            {
-              "label": "DASH 소개와 효과",
-              "time": "03:51",
-              "seconds": 231
-            },
-            {
-              "label": "DASH 먹는 법",
-              "time": "07:07",
-              "seconds": 427
-            },
-            {
-              "label": "서양 DASH 식단",
-              "time": "10:28",
-              "seconds": 628
-            },
-            {
-              "label": "한식 DASH 식단",
-              "time": "11:20",
-              "seconds": 680
-            },
-            {
-              "label": "DASH 총정리",
-              "time": "13:19",
-              "seconds": 799
-            },
-            {
-              "label": "세줄요약",
-              "time": "16:44",
-              "seconds": 1004
-            }
-          ],
           "duration": "영상 시청",
           "summary": "칼로리 설정부터 한국형 DASH 식단 구성까지 따라 하세요.",
           "difficulty": "초급",
@@ -197,92 +161,6 @@
           "channel": "닥터딩요",
           "youtubeId": "eQD00GWVA5g",
           "startSeconds": 25,
-          "timeline": [
-            {
-              "section": "혈압 측정 핵심 요약",
-              "label": "혈압 측정 방법 요약",
-              "time": "24:24",
-              "seconds": 1464
-            },
-            {
-              "section": "혈압 측정 핵심 요약",
-              "label": "세 줄 요약",
-              "time": "25:32",
-              "seconds": 1532
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "잴 때마다 다른 이유",
-              "time": "00:25",
-              "seconds": 25
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "가장 정확한 혈압 측정법",
-              "time": "02:12",
-              "seconds": 132
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "정확도 병원 vs 가정",
-              "time": "03:06",
-              "seconds": 186
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "혈압계의 종류",
-              "time": "04:39",
-              "seconds": 279
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "혈압 전 준비",
-              "time": "05:52",
-              "seconds": 352
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "혈압계 커프 선택",
-              "time": "07:24",
-              "seconds": 444
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "혈압계 감는 법",
-              "time": "08:58",
-              "seconds": 538
-            },
-            {
-              "section": "정확한 혈압 측정법",
-              "label": "혈압 측정 중 주의 사항",
-              "time": "11:06",
-              "seconds": 666
-            },
-            {
-              "section": "가정혈압 측정과 활용",
-              "label": "가정 혈압 적응증",
-              "time": "16:33",
-              "seconds": 993
-            },
-            {
-              "section": "가정혈압 측정과 활용",
-              "label": "가정혈압계 선택",
-              "time": "17:44",
-              "seconds": 1064
-            },
-            {
-              "section": "가정혈압 측정과 활용",
-              "label": "가정 혈압 측정법",
-              "time": "19:35",
-              "seconds": 1175
-            },
-            {
-              "section": "가정혈압 측정과 활용",
-              "label": "24시간 활동 혈압",
-              "time": "22:17",
-              "seconds": 1337
-            }
-          ],
           "duration": "약 22분",
           "summary": "커프 착용, 심장 높이 자세, 아침·저녁 2회 측정과 평균 기록법을 따라 하세요.",
           "difficulty": "초급",
@@ -358,44 +236,7 @@
           "duration": "약 5분 37초",
           "summary": "의자를 잡고 스트레칭·스쿼트·뒤로 다리 뻗기·카프레이즈를 순서대로 따라 하세요.",
           "difficulty": "초급",
-          "targetTimePerDay": "식후 5분 루틴",
-          "timeline": [
-            {
-              "label": "허벅지 앞 스트레칭",
-              "time": "00:18",
-              "seconds": 18
-            },
-            {
-              "label": "종아리 스트레칭",
-              "time": "01:02",
-              "seconds": 62
-            },
-            {
-              "label": "스쿼트",
-              "time": "01:47",
-              "seconds": 107
-            },
-            {
-              "label": "둔근 운동",
-              "time": "02:39",
-              "seconds": 159
-            },
-            {
-              "label": "종아리 운동",
-              "time": "03:39",
-              "seconds": 219
-            },
-            {
-              "label": "햄스트링 스트레칭",
-              "time": "04:28",
-              "seconds": 268
-            },
-            {
-              "label": "운동 마무리",
-              "time": "05:17",
-              "seconds": 317
-            }
-          ]
+          "targetTimePerDay": "식후 5분 루틴"
         }
       },
       {
@@ -442,20 +283,7 @@
           "duration": "영상 가이드",
           "summary": "채소·단백질을 먼저 먹고 15분 뒤 탄수화물을 절반으로 줄이는 식사법입니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "매 끼니 적용",
-          "timeline": [
-            { "label": "시간 간격", "time": "02:19", "seconds": 139 },
-            { "label": "원리", "time": "04:20", "seconds": 260 },
-            { "label": "인크레틴", "time": "05:41", "seconds": 341 },
-            { "label": "식단 구성", "time": "13:25", "seconds": 805 },
-            { "label": "거꾸로 식사하는 방법 2가지", "time": "14:15", "seconds": 855 },
-            { "label": "약식 버전", "time": "15:15", "seconds": 915 },
-            { "label": "정식 버전", "time": "18:01", "seconds": 1081 },
-            { "label": "식전 단백질 구성", "time": "19:29", "seconds": 1169 },
-            { "label": "정식 버전 장단점", "time": "26:40", "seconds": 1600 },
-            { "label": "냉면은?", "time": "28:01", "seconds": 1681 },
-            { "label": "세줄요약", "time": "29:20", "seconds": 1760 }
-          ]
+          "targetTimePerDay": "매 끼니 적용"
         },
         "additionalVideos": [
           {
@@ -466,53 +294,6 @@
             "summary": "아침 식사의 구성·시간·양과 점심 혈당을 돕는 두 번째 식사 현상을 설명합니다.",
             "difficulty": "초급",
             "targetTimePerDay": "참고 시청",
-            "timeline": [
-              {
-                "label": "조식과 당뇨 연관성",
-                "time": "00:55",
-                "seconds": 55
-              },
-              {
-                "label": "조식의 양",
-                "time": "06:04",
-                "seconds": 364
-              },
-              {
-                "label": "두 번째 식사 현상",
-                "time": "09:39",
-                "seconds": 579
-              },
-              {
-                "label": "당뇨에 나쁜 아침 식사",
-                "time": "15:03",
-                "seconds": 903
-              },
-              {
-                "label": "조식 식사 시간",
-                "time": "18:09",
-                "seconds": 1089
-              },
-              {
-                "label": "조식 전후 운동",
-                "time": "20:38",
-                "seconds": 1238
-              },
-              {
-                "label": "당뇨 아침 식사 결론",
-                "time": "22:20",
-                "seconds": 1340
-              },
-              {
-                "label": "당뇨에 좋은 아침 식사",
-                "time": "24:06",
-                "seconds": 1446
-              },
-              {
-                "label": "세줄요약",
-                "time": "29:16",
-                "seconds": 1756
-              }
-            ],
             "keyPoints": [
               "아침에 단백질과 복합 탄수화물을 함께 챙겨 드세요.",
               "아침을 든든하게 먹는 만큼 점심·저녁 양을 줄여 하루 총열량을 유지하세요.",
@@ -569,17 +350,7 @@
           "duration": "영상 가이드",
           "summary": "식사와 생활습관에 따른 혈당을 측정하고 기록하는 방법을 안내합니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "측정 시 기록",
-          "timeline": [
-            { "label": "자가혈당을 측정해야 하는 이유", "time": "00:27", "seconds": 27 },
-            { "label": "자가혈당 측정 시간", "time": "02:20", "seconds": 140 },
-            { "label": "혈당을 잘못 측정하는 경우", "time": "06:48", "seconds": 408 },
-            { "label": "환자의 신체상황에 따른 혈당 오류", "time": "09:19", "seconds": 559 },
-            { "label": "기계에 따른 자가혈당 오류", "time": "12:42", "seconds": 762 },
-            { "label": "피가 나지 않을 경우", "time": "13:56", "seconds": 836 },
-            { "label": "통증이 심한 경우", "time": "15:23", "seconds": 923 },
-            { "label": "자가혈당 측정의 의의", "time": "18:06", "seconds": 1086 }
-          ]
+          "targetTimePerDay": "측정 시 기록"
         },
         "additionalVideos": [
           {
@@ -589,21 +360,7 @@
             "duration": "영상 가이드",
             "summary": "혈당 기록과 생활습관 관리를 참고할 수 있는 추가 영상입니다.",
             "difficulty": "초급",
-            "targetTimePerDay": "참고 시청",
-            "timeline": [
-              { "label": "세줄요약", "time": "24:24", "seconds": 1464 },
-              { "label": "들어가는 말", "time": "00:00", "seconds": 0 },
-              { "label": "당뇨 전단계의 개요", "time": "01:08", "seconds": 68 },
-              { "label": "대사증후군", "time": "02:04", "seconds": 124 },
-              { "label": "당뇨 전단계의 정의", "time": "05:30", "seconds": 330 },
-              { "label": "당뇨 완화의 조건", "time": "06:42", "seconds": 402 },
-              { "label": "포도당 자극 초기 인슐린 반응", "time": "07:24", "seconds": 444 },
-              { "label": "당뇨 예방법(가이드라인)", "time": "10:51", "seconds": 651 },
-              { "label": "당뇨 전단계의 약물치료", "time": "11:15", "seconds": 675 },
-              { "label": "당뇨 예방법 결론 총정리", "time": "14:01", "seconds": 841 },
-              { "label": "마른 당뇨", "time": "15:32", "seconds": 932 },
-              { "label": "당뇨 예방법을 지킬 수 있는 방법", "time": "16:06", "seconds": 966 }
-            ]
+            "targetTimePerDay": "참고 시청"
           }
         ]
       }
@@ -629,7 +386,7 @@
       {
         "id": "dyslipidemia-diet",
         "tag": "식이습관",
-        "title": "콜레스테롤 낮추기",
+        "title": "포화지방 줄여 LDL 낮추기",
         "subtitle": "포화지방을 줄여 LDL 콜레스테롤을 관리합니다.",
         "shortActionSummary": "포화지방 하루 15g 이하로 줄이세요.",
         "actionSteps": [
@@ -668,21 +425,7 @@
           "duration": "영상 가이드",
           "summary": "LDL을 높이는 포화지방의 원인과 빵·과자·기름진 육류를 줄이는 방법을 설명합니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "식단 선택 시 적용",
-          "timeline": [
-            { "label": "총론(서론)", "time": "01:44", "seconds": 104 },
-            { "label": "콜레스테롤 감소 어려운 이유", "time": "02:36", "seconds": 156 },
-            { "label": "지방 총론", "time": "10:06", "seconds": 606 },
-            { "label": "포화지방", "time": "17:38", "seconds": 1058 },
-            { "label": "빵/케이크/디저트", "time": "20:33", "seconds": 1233 },
-            { "label": "과자/아이스크림", "time": "25:11", "seconds": 1511 },
-            { "label": "면류", "time": "27:10", "seconds": 1630 },
-            { "label": "커피믹스/초콜릿", "time": "28:43", "seconds": 1723 },
-            { "label": "육류", "time": "29:56", "seconds": 1796 },
-            { "label": "삼겹살 먹는 법", "time": "33:12", "seconds": 1992 },
-            { "label": "가공육/햄버거", "time": "36:33", "seconds": 2193 },
-            { "label": "탕류/밥류", "time": "37:19", "seconds": 2239 }
-          ]
+          "targetTimePerDay": "식단 선택 시 적용"
         },
         "additionalVideos": [
           {
@@ -693,83 +436,10 @@
             "summary": "생선·두부로 포화지방을 대체하고, 삶고 찌는 조리와 가공식품 줄이기로 콜레스테롤 관리를 실천하는 방법을 소개합니다.",
             "difficulty": "초급",
             "targetTimePerDay": "식단 선택 시 적용",
-            "timeline": [
-              {
-                "label": "추천 식단",
-                "time": "37:46",
-                "seconds": 2266
-              },
-              {
-                "label": "총정리",
-                "time": "40:21",
-                "seconds": 2421
-              },
-              {
-                "label": "세줄요약",
-                "time": "42:09",
-                "seconds": 2529
-              }
-            ],
             "keyPoints": [
               "기름진 고기 대신 생선과 두부를 선택해 포화지방을 대체하세요.",
               "빵·과자·아이스크림·가공육과 믹스커피 같은 트랜스지방 식품을 줄이세요.",
               "달걀 노른자와 크레마 커피 섭취를 조절하고 필터 커피를 활용하세요."
-            ]
-          },
-          {
-            "title": "고지혈증 환자를 위한 건강한 빵 선택법",
-            "channel": "닥터딩요",
-            "youtubeId": "X0gn7vBPGr0",
-            "format": "full",
-            "duration": "영상 가이드",
-            "summary": "고지혈증 환자가 빵을 고를 때 확인할 조건과 재료, 제품별 선택 기준을 설명합니다.",
-            "targetTimePerDay": "식품 선택 시 참고",
-            "timeline": [
-              {
-                "label": "원리",
-                "time": "01:34",
-                "seconds": 94
-              },
-              {
-                "label": "좋은 빵 4가지 조건",
-                "time": "02:40",
-                "seconds": 160
-              },
-              {
-                "label": "포화지방 낮은 빵",
-                "time": "04:12",
-                "seconds": 252
-              },
-              {
-                "label": "귀리·통밀 논문비교",
-                "time": "08:15",
-                "seconds": 495
-              },
-              {
-                "label": "고지혈증 빵 티어",
-                "time": "13:51",
-                "seconds": 831
-              },
-              {
-                "label": "만들 경우 재료 선택법",
-                "time": "17:41",
-                "seconds": 1061
-              },
-              {
-                "label": "시판 제품 5종 비교",
-                "time": "18:31",
-                "seconds": 1111
-              },
-              {
-                "label": "햄버거·샌드위치 속 재료 티어",
-                "time": "26:02",
-                "seconds": 1562
-              },
-              {
-                "label": "세줄요약",
-                "time": "28:19",
-                "seconds": 1699
-              }
             ]
           }
         ]
@@ -815,54 +485,14 @@
           "evidenceGrade": "대한지질동맥경화학회 공식 지침"
         },
         "video": {
-          "title": "하루 15분 혈관 지방 태우는 운동",
-          "channel": "바른건강",
-          "youtubeId": "zIQ-8ovFq1o",
-          "format": "full",
-          "timeline": [
-            {
-              "label": "원 그리기 운동",
-              "time": "11:09",
-              "seconds": 669
-            },
-            {
-              "label": "횟수 및 방법",
-              "time": "12:53",
-              "seconds": 773
-            },
-            {
-              "label": "네 방향 운동",
-              "time": "13:19",
-              "seconds": 799
-            }
-          ],
+          "title": "유산소 운동",
+          "channel": "American Heart Association - Midwest Region",
+          "youtubeId": "bR9Rp0FP0FM",
           "duration": "운동 가이드",
-          "summary": "고지혈 관리와 혈액순환을 돕는 하루 15분 운동을 안내합니다.",
+          "summary": "주 150분 중강도 운동과 심박수·준비운동·정리운동을 안내합니다.",
           "difficulty": "초급",
-          "targetTimePerDay": "하루 15분"
-        },
-        "additionalVideos": [
-          {
-            "title": "고지혈증 잡는 실내 유산소 운동",
-            "channel": "에헤라 티비 : KBS LIFE",
-            "youtubeId": "1uAmlIqq1DU",
-            "format": "short",
-            "duration": "Shorts",
-            "summary": "고지혈증 관리를 위한 간단한 실내 유산소 운동입니다.",
-            "difficulty": "초급",
-            "targetTimePerDay": "짧게 따라하기"
-          },
-          {
-            "title": "고지혈증 물리치는 실내 전신 운동",
-            "channel": "에헤라 티비 : KBS LIFE",
-            "youtubeId": "u_3l3H68R7c",
-            "format": "short",
-            "duration": "Shorts",
-            "summary": "집에서 따라 할 수 있는 간단한 전신 근력운동입니다.",
-            "difficulty": "초급",
-            "targetTimePerDay": "짧게 따라하기"
-          }
-        ]
+          "targetTimePerDay": "주 150분"
+        }
       },
       {
         "id": "dyslipidemia-knowledge",

@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { HealthCondition, HealthKeywordTopic, loadHealthConditions } from "../data/healthData";
 import { Navbar } from "../components/Navbar";
+import { logActivity } from "../lib/activity";
+import { useAuth } from "../contexts/AuthContext";
+import { useLocation } from "wouter";
 import { ConditionCard } from "../components/ConditionCard";
 import { KeywordTagBar } from "../components/KeywordTagBar";
 import { KeywordDetailView } from "../components/KeywordDetailView";
-import { ConditionAvailability, loadAdminSession, loadConditionAvailability } from "../lib/conditionStatus";
-import { trpc } from "../lib/trpc";
 import {
   Activity,
   ArrowLeft,
@@ -28,8 +29,6 @@ const CATEGORY_TABS = [
 
 function ListView({
   conditions,
-  availability,
-  isAdminPreview,
   onSelectCondition,
   searchQuery,
   setSearchQuery,
@@ -37,8 +36,6 @@ function ListView({
   setCategoryFilter,
 }: {
   conditions: HealthCondition[];
-  availability: Record<string, ConditionAvailability>;
-  isAdminPreview: boolean;
   onSelectCondition: (condition: HealthCondition) => void;
   searchQuery: string;
   setSearchQuery: (value: string) => void;
@@ -58,6 +55,14 @@ function ListView({
       return matchCategory && matchesSearch;
     });
   }, [categoryFilter, conditions, searchQuery]);
+
+  // 검색어 입력이 멈추고 1.2초 뒤 한 번만 기록
+  useEffect(() => {
+    const q = searchQuery.trim();
+    if (q.length < 2) return;
+    const t = window.setTimeout(() => logActivity("search", { meta: { q: q.slice(0, 100) } }), 1200);
+    return () => window.clearTimeout(t);
+  }, [searchQuery]);
 
   return (
     <>
@@ -124,8 +129,6 @@ function ListView({
               <div key={condition.id} id={`condition-card-${condition.id}`}>
                 <ConditionCard
                   condition={condition}
-                  availability={availability[condition.id]}
-                  isAdminPreview={isAdminPreview}
                   isSelected={false}
                   onSelect={onSelectCondition}
                 />
@@ -143,8 +146,7 @@ function ListView({
         </section>
       </main>
       <footer className="mt-auto border-t border-slate-200 bg-white/80 px-4 py-7 text-center text-[11px] leading-relaxed text-slate-400">
-        <p>본 서비스는 건강검진 사후관리를 돕기 위한 보조 프로토타입이며, 실제 진단과 치료는 의료진 상담을 통해 결정해야 합니다.</p>
-        <a href="/admin" className="mt-3 inline-block font-bold text-slate-500 underline decoration-slate-300 underline-offset-2 transition hover:text-teal-700">관리자 로그인</a>
+        본 서비스는 건강검진 사후관리를 돕기 위한 보조 프로토타입이며, 실제 진단과 치료는 의료진 상담을 통해 결정해야 합니다.
       </footer>
     </>
   );
@@ -154,12 +156,10 @@ function ConditionDetailView({
   condition,
   onBack,
   onReturnToViewedCondition,
-  onGuideOpen,
 }: {
   condition: HealthCondition;
   onBack: () => void;
   onReturnToViewedCondition: () => void;
-  onGuideOpen: (keywordId: string) => void;
 }) {
   const [selectedKeywordId, setSelectedKeywordId] = useState<string | null>(null);
 
@@ -175,7 +175,6 @@ function ConditionDetailView({
 
   const handleSelectKeyword = (keyword: HealthKeywordTopic) => {
     setSelectedKeywordId(keyword.id);
-    onGuideOpen(keyword.id);
     window.setTimeout(() => document.getElementById("final-guide")?.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
   };
 
@@ -247,13 +246,13 @@ function ConditionDetailView({
                   <tr><th className="w-[38%] px-1 py-2 text-left font-bold whitespace-nowrap">검사 항목</th><th className="w-[35%] px-1 py-2 text-left font-bold whitespace-nowrap">수치</th><th className="w-[27%] px-1 py-2 text-left font-bold whitespace-nowrap">진단 결과</th></tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">공복혈당<br /><span className="font-normal text-[10px] text-slate-500 whitespace-nowrap">(8시간 이상 공복)</span></th><td className="px-1 py-2 whitespace-nowrap">100 mg/dL 미만</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
+                  <tr className="border-t border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">공복혈당<br /><span className="font-normal text-[8px] text-slate-500 whitespace-nowrap">(8시간 이상 공복)</span></th><td className="px-1 py-2 whitespace-nowrap">100 mg/dL 미만</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
                   <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1 py-2 whitespace-nowrap">100~125 mg/dL</td><td className="px-1 py-2 font-semibold text-amber-700 whitespace-nowrap">당뇨병 전단계</td></tr>
                   <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1 py-2 whitespace-nowrap">126 mg/dL 이상</td><td className="px-1 py-2 font-semibold text-rose-700 whitespace-nowrap">당뇨병</td></tr>
-                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">식후 2시간 혈당<br /><span className="font-normal text-[10px] text-slate-500 whitespace-nowrap">(포도당 섭취 2시간 후)</span></th><td className="px-1 py-2 whitespace-nowrap">140 mg/dL 미만</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
+                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">식후 2시간 혈당<br /><span className="font-normal text-[8px] text-slate-500 whitespace-nowrap">(포도당 부하 2시간 후)</span></th><td className="px-1 py-2 whitespace-nowrap">140 mg/dL 미만</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
                   <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1 py-2 whitespace-nowrap">140~199 mg/dL</td><td className="px-1 py-2 font-semibold text-amber-700 whitespace-nowrap">당뇨병 전단계</td></tr>
                   <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1 py-2 whitespace-nowrap">200 mg/dL 이상</td><td className="px-1 py-2 font-semibold text-rose-700 whitespace-nowrap">당뇨병</td></tr>
-                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">당화혈색소<br /><span className="font-normal text-[10px] text-slate-500 whitespace-nowrap">(HbA1c)</span></th><td className="px-1 py-2 whitespace-nowrap">5.6% 이하</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
+                  <tr className="border-t-2 border-slate-200"><th rowSpan={3} className="px-1 py-2 text-left align-top font-bold text-slate-800 whitespace-nowrap">당화혈색소<br /><span className="font-normal text-[8px] text-slate-500 whitespace-nowrap">(HbA1c)</span></th><td className="px-1 py-2 whitespace-nowrap">5.6% 이하</td><td className="px-1 py-2 font-semibold text-emerald-700 whitespace-nowrap">정상</td></tr>
                   <tr className="border-t border-slate-100 bg-amber-50/60"><td className="px-1 py-2 whitespace-nowrap">5.7~6.4%</td><td className="px-1 py-2 font-semibold text-amber-700 whitespace-nowrap">당뇨병 전단계</td></tr>
                   <tr className="border-t border-slate-100 bg-rose-50/60"><td className="px-1 py-2 whitespace-nowrap">6.5% 이상</td><td className="px-1 py-2 font-semibold text-rose-700 whitespace-nowrap">당뇨병</td></tr>
                 </tbody>
@@ -261,7 +260,7 @@ function ConditionDetailView({
             </div>
           )}
           {condition.id === "dyslipidemia" && (
-            <div className="lipid-criteria-card mt-5 rounded-xl border-2 border-sky-400 bg-white p-3 sm:p-4">
+            <div className="mt-5 rounded-xl border-2 border-sky-400 bg-white p-3 sm:p-4">
               <div className="mb-4 border-b border-sky-100 bg-sky-50 px-4 py-3">
                 <h2 className="text-sm font-extrabold text-sky-900 sm:text-base">이상지질혈증 수치 분류</h2>
                 <p className="mt-1 text-xs text-slate-600">2022년 한국지질·동맥경화학회 지침 기준</p>
@@ -359,49 +358,27 @@ function ConditionDetailView({
 }
 
 export default function Home() {
+  const { session, loading: authLoading } = useAuth();
+  const [, navigate] = useLocation();
+  const userId = session?.user.id;
   const [conditions, setConditions] = useState<HealthCondition[]>([]);
-  const [availability, setAvailability] = useState<Record<string, ConditionAvailability>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedCondition, setSelectedCondition] = useState<HealthCondition | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("ALL");
-  const [isAdminPreview, setIsAdminPreview] = useState(false);
-  const activityLog = trpc.activity.log.useMutation();
-  const authUser = trpc.auth.me.useQuery();
-  const [visitLogged, setVisitLogged] = useState(false);
 
   useEffect(() => {
-    if (authUser.data && !visitLogged) {
-      setVisitLogged(true);
-      activityLog.mutate({ eventType: "page_visit" });
+    if (authLoading) return;
+    if (!userId) {
+      navigate("/login");
+      return;
     }
-  }, [activityLog, authUser.data, visitLogged]);
-
-  useEffect(() => {
-    loadAdminSession()
-      .then((session) => setIsAdminPreview(session?.role === "admin"))
-      .catch(() => setIsAdminPreview(false));
-  }, []);
-
-  useEffect(() => {
-    const handlePopState = () => {
-      const conditionId = new URLSearchParams(window.location.search).get("condition");
-      setSelectedCondition(conditionId ? conditions.find((condition) => condition.id === conditionId) ?? null : null);
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [conditions]);
-
-  useEffect(() => {
+    setIsLoading(true);
     const controller = new AbortController();
-    Promise.all([
-      loadHealthConditions(controller.signal),
-      loadConditionAvailability(controller.signal),
-    ])
-      .then(([data, statuses]) => {
+    loadHealthConditions(controller.signal)
+      .then((data) => {
         setConditions(data);
-        setAvailability(Object.fromEntries(statuses.map((status) => [status.conditionId, status])));
         setLoadError(null);
       })
       .catch((error: unknown) => {
@@ -410,7 +387,7 @@ export default function Home() {
       })
       .finally(() => setIsLoading(false));
     return () => controller.abort();
-  }, []);
+  }, [authLoading, userId, navigate]);
 
   useEffect(() => {
     const conditionId = new URLSearchParams(window.location.search).get("condition");
@@ -444,6 +421,10 @@ export default function Home() {
     }, 0);
   };
 
+  if (authLoading || !userId) {
+    return <div className="min-h-screen grid place-items-center bg-slate-50 text-sm font-semibold text-slate-600">로그인 상태를 확인하는 중입니다…</div>;
+  }
+
   if (isLoading) {
     return <div className="min-h-screen grid place-items-center bg-slate-50 text-sm font-semibold text-slate-600">건강관리 데이터를 불러오는 중입니다…</div>;
   }
@@ -452,22 +433,12 @@ export default function Home() {
     return <div className="min-h-screen grid place-items-center bg-slate-50 px-6 text-center"><div><p className="font-bold text-slate-900">데이터를 불러오지 못했습니다.</p><p className="mt-2 text-sm text-slate-500">{loadError}</p><button onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white cursor-pointer">다시 시도</button></div></div>;
   }
 
-  const handleSelectCondition = (condition: HealthCondition) => {
-    setSelectedCondition(condition);
-    if (authUser.data) activityLog.mutate({ eventType: "condition_open", conditionId: condition.id });
-    window.history.pushState({ conditionId: condition.id }, "", `?condition=${encodeURIComponent(condition.id)}`);
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  };
-
   if (selectedCondition) {
     return (
       <ConditionDetailView
         condition={selectedCondition}
         onBack={handleReturnToInitialList}
         onReturnToViewedCondition={handleReturnToViewedCondition}
-        onGuideOpen={(keywordId) => {
-          if (authUser.data) activityLog.mutate({ eventType: "guide_open", conditionId: selectedCondition.id, keywordId });
-        }}
       />
     );
   }
@@ -476,9 +447,10 @@ export default function Home() {
     <div className="min-h-screen bg-slate-50 gradient-mesh">
       <ListView
         conditions={conditions}
-        availability={availability}
-        isAdminPreview={isAdminPreview}
-        onSelectCondition={handleSelectCondition}
+        onSelectCondition={(c) => {
+          setSelectedCondition(c);
+          logActivity("view_condition", { conditionId: c.id });
+        }}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         categoryFilter={categoryFilter}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HealthCondition, HealthKeywordTopic } from "../data/healthData";
 import {
   Compass,
@@ -21,6 +21,7 @@ import {
   X,
 } from "lucide-react";
 import { toast } from "sonner";
+import { logActivity } from "../lib/activity";
 
 interface KeywordDetailViewProps {
   condition: HealthCondition;
@@ -38,20 +39,40 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [timelineStart, setTimelineStart] = useState<number | undefined>(keyword.video.startSeconds);
   const [timelineAutoplay, setTimelineAutoplay] = useState(false);
-  const [additionalTimelineStarts, setAdditionalTimelineStarts] = useState<Record<string, number | undefined>>({});
+  const [completedTimeline, setCompletedTimeline] = useState<number[]>([]);
 
+  useEffect(() => {
+    logActivity("view_keyword", { conditionId: condition.id, keywordId: keyword.id });
+  }, [condition.id, keyword.id]);
+
+  const timelineStorageKey = `hicare-timeline-${condition.id}-${keyword.id}`;
   const timelineItems = keyword.video.timeline ?? [];
-  const timelineGroups = timelineItems.reduce<Array<{ title: string; items: typeof timelineItems }>>((groups, item) => {
-    const title = item.section ?? "영상 타임라인";
-    const existing = groups.find((group) => group.title === title);
-    if (existing) existing.items.push(item);
-    else groups.push({ title, items: [item] });
-    return groups;
-  }, []);
-  const additionalVideos = keyword.additionalVideos ?? [];
-  const additionalShorts = additionalVideos.filter((video) => video.format === "short");
-  const additionalFullVideos = additionalVideos.filter((video) => video.format !== "short");
+  const timelineProgress = timelineItems.length
+    ? Math.round((completedTimeline.length / timelineItems.length) * 100)
+    : 0;
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(timelineStorageKey);
+      setCompletedTimeline(saved ? JSON.parse(saved) : []);
+    } catch {
+      setCompletedTimeline([]);
+    }
+  }, [timelineStorageKey]);
+
+  const toggleTimelineComplete = (seconds: number) => {
+    logActivity("timeline_check", { conditionId: condition.id, keywordId: keyword.id, meta: { seconds, done: !completedTimeline.includes(seconds) } });
+    setCompletedTimeline((previous) => {
+      const next = previous.includes(seconds)
+        ? previous.filter((value) => value !== seconds)
+        : [...previous, seconds];
+      window.localStorage.setItem(timelineStorageKey, JSON.stringify(next));
+      return next;
+    });
+  };
+
   const toggleStep = (idx: number) => {
+    logActivity("step_check", { conditionId: condition.id, keywordId: keyword.id, meta: { idx, done: !completedSteps.includes(idx) } });
     setCompletedSteps((prev) =>
       prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
     );
@@ -66,6 +87,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
 
   const handleBookmark = () => {
     setIsBookmarked(!isBookmarked);
+    logActivity("bookmark", { conditionId: condition.id, keywordId: keyword.id, meta: { on: !isBookmarked } });
     toast(isBookmarked ? "북마크가 해제되었습니다." : "가이드가 보관함에 저장되었습니다.");
   };
 
@@ -74,7 +96,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col space-y-4 animate-in fade-in-50 duration-300 pb-16">
+    <div className="w-full max-w-5xl mx-auto space-y-4 animate-in fade-in-50 duration-300 pb-16">
       {/* Detail Page Breadcrumb & Header Title */}
       <div className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-xs">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
@@ -131,7 +153,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       {/* ======================================================== */}
       {/* 1. 실천 수칙 및 한 줄 요약 */}
       {/* ======================================================== */}
-      <section className="order-2 bg-white rounded-2xl border-2 border-teal-500/80 shadow-md shadow-teal-500/5 overflow-hidden transition-all">
+      <section className="bg-white rounded-2xl border-2 border-teal-500/80 shadow-md shadow-teal-500/5 overflow-hidden transition-all">
         {/* Section Header */}
         <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -241,7 +263,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       {/* ======================================================== */}
       {/* 2. 학술 논문 및 근거 */}
       {/* ======================================================== */}
-      <section className="order-3 bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
+      <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
         <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -316,7 +338,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       {/* ======================================================== */}
       {/* 3. 영상 시청 및 따라 하기 */}
       {/* ======================================================== */}
-      <section className="order-1 bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
+      <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
         <div className="bg-gradient-to-r from-teal-800 via-cyan-800 to-slate-900 px-6 py-4 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -345,6 +367,9 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               </p>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold">
+              <span className="px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 border border-teal-200">
+                난이도: {keyword.video.difficulty}
+              </span>
               <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 flex items-center gap-1">
                 <Clock className="w-3 h-3" />
                 {keyword.video.duration}
@@ -367,36 +392,56 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
           </div>
           {timelineItems.length ? (
             <div className="rounded-xl border border-teal-100 bg-teal-50/60 p-3 sm:p-4">
-              <div className="mb-3 flex items-center gap-2 text-xs sm:text-sm">
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
                 <div className="flex items-center gap-2 font-extrabold text-teal-900">
                   <Clock className="h-4 w-4 text-teal-600" />
                   영상 타임라인
                 </div>
+                <span className="font-semibold text-teal-700">
+                  시청 완료 {completedTimeline.length}/{timelineItems.length} ({timelineProgress}%)
+                </span>
               </div>
-              <p className="mb-2 text-xs text-teal-700">시간을 누르면 해당 구간부터 재생됩니다.</p>
-              <div className="space-y-3">
-                {timelineGroups.map((group) => (
-                  <div key={group.title} className="rounded-lg border border-teal-100 bg-white/70 p-2.5">
-                    <h4 className="mb-2 text-xs font-extrabold text-teal-900">{group.title}</h4>
-                    <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                      {group.items.map((item) => (
-                          <button
-                            key={`${item.seconds}-${item.label}`}
-                            type="button"
-                            onClick={() => {
-                              setTimelineStart(item.seconds);
-                              setTimelineAutoplay(true);
-                            }}
-                            className="flex min-w-0 items-center gap-2 rounded-lg border border-white/80 bg-white px-2.5 py-2 text-left text-xs text-slate-700 shadow-sm transition hover:border-teal-300 hover:text-teal-800 active:scale-[0.99]"
-                          >
-                            <span className="shrink-0 rounded-md bg-teal-100 px-1.5 py-0.5 font-bold tabular-nums text-teal-800">{item.time}</span>
-                            <span className="min-w-0 flex-1 truncate">{item.label}</span>
-                            <PlayCircle className="h-4 w-4 shrink-0 text-teal-600" />
-                          </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+              <div className="mb-3 h-2 overflow-hidden rounded-full bg-white/80" aria-label={`영상 시청 진행률 ${timelineProgress}%`}>
+                <div className="h-full rounded-full bg-teal-500 transition-all duration-300" style={{ width: `${timelineProgress}%` }} />
+              </div>
+              <p className="mb-2 text-xs text-teal-700">시간을 누르면 해당 구간부터 재생됩니다. 시청을 마친 뒤 체크하세요.</p>
+              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {timelineItems.map((item) => {
+                  const isTimelineDone = completedTimeline.includes(item.seconds);
+                  return (
+                  <button
+                    key={`${item.seconds}-${item.label}`}
+                    type="button"
+                    onClick={() => {
+                      setTimelineStart(item.seconds);
+                      setTimelineAutoplay(true);
+                    }}
+                    className={`flex min-w-0 items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-xs shadow-sm transition active:scale-[0.99] ${
+                      isTimelineDone
+                        ? "border-teal-300 bg-teal-100/80 text-teal-900"
+                        : "border-white/80 bg-white text-slate-700 hover:border-teal-300 hover:text-teal-800"
+                    }`}
+                  >
+                    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${isTimelineDone ? "border-teal-600 bg-teal-600 text-white" : "border-slate-300 bg-white text-transparent"}`}>
+                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                    </span>
+                    <span className="shrink-0 rounded-md bg-teal-100 px-1.5 py-0.5 font-bold tabular-nums text-teal-800">{item.time}</span>
+                    <span className="min-w-0 flex-1 truncate">{item.label}</span>
+                    <span
+                      role="checkbox"
+                      aria-checked={isTimelineDone}
+                      aria-label={`${item.label} 시청 완료 표시`}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        toggleTimelineComplete(item.seconds);
+                      }}
+                      className="shrink-0 rounded-md px-1.5 py-1 font-semibold text-teal-700 hover:bg-white"
+                    >
+                      {isTimelineDone ? "완료" : "체크"}
+                    </span>
+                  </button>
+                  );
+                })}
               </div>
             </div>
           ) : null}
@@ -414,7 +459,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
             </div>
           </div>
 
-          {additionalFullVideos.map((video) => (
+          {keyword.additionalVideos?.map((video) => (
             <div key={video.youtubeId} className="space-y-4 border-t border-slate-200 pt-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
                 <div>
@@ -422,6 +467,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
                   <p className="text-xs sm:text-sm text-slate-500">제공: {video.channel}</p>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold">
+                  <span className="px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 border border-teal-200">난이도: {video.difficulty}</span>
                   <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 flex items-center gap-1"><Clock className="w-3 h-3" />{video.duration}</span>
                   <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200">권장: {video.targetTimePerDay}</span>
                 </div>
@@ -429,31 +475,12 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-xl border border-slate-800">
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1${additionalTimelineStarts[video.youtubeId] ?? video.startSeconds ? `&start=${additionalTimelineStarts[video.youtubeId] ?? video.startSeconds}` : ""}${additionalTimelineStarts[video.youtubeId] !== undefined ? "&autoplay=1" : ""}`}
+                  src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1${video.startSeconds ? `&start=${video.startSeconds}` : ""}`}
                   title={video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
               </div>
-              {video.timeline?.length ? (
-                <div className="rounded-xl border border-teal-100 bg-teal-50/60 p-3 sm:p-4">
-                  <h4 className="mb-2 text-xs font-extrabold text-teal-900">영상 타임라인</h4>
-                  <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                    {video.timeline.map((item) => (
-                      <button
-                        key={`${video.youtubeId}-${item.seconds}-${item.label}`}
-                        type="button"
-                        onClick={() => setAdditionalTimelineStarts((previous) => ({ ...previous, [video.youtubeId]: item.seconds }))}
-                        className="flex min-w-0 items-center gap-2 rounded-lg border border-white/80 bg-white px-2.5 py-2 text-left text-xs text-slate-700 shadow-sm transition hover:border-teal-300 hover:text-teal-800 active:scale-[0.99]"
-                      >
-                        <span className="shrink-0 rounded-md bg-teal-100 px-1.5 py-0.5 font-bold tabular-nums text-teal-800">{item.time}</span>
-                        <span className="min-w-0 flex-1 truncate">{item.label}</span>
-                        <PlayCircle className="h-4 w-4 shrink-0 text-teal-600" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
                 <PlayCircle className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
                 <div>
@@ -473,35 +500,10 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               </div>
             </div>
           ))}
-          {additionalShorts.length ? (
-            <div className="space-y-4 border-t border-slate-200 pt-6">
-              <div>
-                <h3 className="text-base font-bold text-slate-900">짧게 따라 하는 운동 영상</h3>
-                <p className="mt-1 text-xs text-slate-500">두 영상을 한 카드에서 나란히 확인해 보세요.</p>
-              </div>
-              <div className="grid grid-cols-2 gap-3 rounded-2xl border border-teal-100 bg-teal-50/40 p-3 sm:gap-4 sm:p-4">
-                {additionalShorts.map((video) => (
-                  <div key={video.youtubeId} className="min-w-0 rounded-xl border border-white bg-white p-2 shadow-sm sm:p-3">
-                    <h4 className="mb-2 line-clamp-2 min-h-8 text-xs font-bold leading-snug text-slate-900 sm:text-sm">{video.title}</h4>
-                    <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-slate-900">
-                      <iframe
-                        className="absolute inset-0 h-full w-full"
-                        src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
-                        title={video.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      />
-                    </div>
-                    <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-slate-600 sm:text-xs">{video.summary}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
         </div>
       </section>
 
-      <div className="order-4 flex justify-center">
+      <div className="flex justify-center">
         <button
           onClick={onReturnToViewedCondition}
           className="inline-flex items-center gap-2 rounded-xl border border-teal-300 bg-white px-5 py-3 text-sm font-bold text-teal-800 shadow-sm transition hover:border-teal-500 hover:bg-teal-50 cursor-pointer"
@@ -512,7 +514,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       </div>
 
       {/* Completion & Next Action Banner */}
-      <div className="order-5 -mt-2 bg-gradient-to-r from-teal-50 via-cyan-50 to-blue-50 rounded-2xl border border-teal-200 p-4 flex flex-col items-center justify-center gap-3 text-center">
+      <div className="-mt-2 bg-gradient-to-r from-teal-50 via-cyan-50 to-blue-50 rounded-2xl border border-teal-200 p-4 flex flex-col items-center justify-center gap-3 text-center">
         <div className="w-full">
           <h4 className="text-sm sm:text-base font-bold text-slate-900">
             오늘의 {keyword.tag} 가이드 확인했나요?

@@ -1,6 +1,5 @@
 import React from "react";
 import { HealthCondition } from "../data/healthData";
-import { ConditionAvailability } from "../lib/conditionStatus";
 import {
   Gauge,
   Droplets,
@@ -47,24 +46,15 @@ const GlucoseLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 interface ConditionCardProps {
   condition: HealthCondition;
-  availability?: ConditionAvailability;
-  isAdminPreview?: boolean;
   isSelected: boolean;
   onSelect: (condition: HealthCondition) => void;
 }
 
 export const ConditionCard: React.FC<ConditionCardProps> = ({
   condition,
-  availability,
-  isAdminPreview = false,
   isSelected,
   onSelect,
 }) => {
-  const isActive = availability?.isActive ?? true;
-  const canOpen = isActive || isAdminPreview;
-  const openDateLabel = availability?.openDate
-    ? `${new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "numeric", day: "numeric" }).format(new Date(`${availability.openDate}T00:00:00`))} 오픈 예정`
-    : availability?.notice || "서비스 준비 중";
   const getIcon = () => {
     switch (condition.id) {
       case "hypertension":
@@ -90,14 +80,11 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
 
   return (
     <div
-      onClick={() => { if (canOpen) onSelect(condition); }}
-      aria-disabled={!canOpen}
-      className={`group relative text-left bg-white rounded-2xl p-5 transition-all duration-200 border flex flex-col justify-between ${
+      onClick={() => onSelect(condition)}
+      className={`group relative text-left bg-white rounded-2xl p-5 transition-all duration-200 cursor-pointer border flex flex-col justify-between ${
         isSelected
           ? "border-teal-500 shadow-md shadow-teal-500/10 ring-2 ring-teal-500/20 translate-y-[-2px] bg-gradient-to-b from-teal-50/30 to-white"
-          : canOpen
-            ? "border-slate-200/90 cursor-pointer hover:border-teal-400 hover:shadow-md hover:-translate-y-0.5"
-            : "border-slate-200/90 cursor-not-allowed"
+          : "border-slate-200/90 hover:border-teal-400 hover:shadow-md hover:-translate-y-0.5"
       }`}
     >
       <div>
@@ -142,15 +129,6 @@ export const ConditionCard: React.FC<ConditionCardProps> = ({
           <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
         </div>
       </div>
-      {!isActive && (
-        <div className={`absolute inset-0 z-10 flex items-center justify-center rounded-2xl px-4 text-center backdrop-blur-[1px] ${isAdminPreview ? "bg-slate-900/20" : "bg-slate-900/40"}`}>
-          <div className="rounded-xl border border-white/70 bg-white/90 px-4 py-3 shadow-lg">
-            <p className="text-xs font-extrabold text-slate-800">{isAdminPreview ? "관리자 미리보기" : "오픈 예정"}</p>
-            <p className="mt-0.5 text-sm font-bold text-slate-700">{openDateLabel}</p>
-            {isAdminPreview && <p className="mt-1 text-[10px] font-semibold text-teal-700">클릭하여 내용 확인</p>}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -1,67 +1,157 @@
-import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, CalendarDays, Download, History, LockKeyhole, LogOut, Save, ShieldCheck } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "wouter";
-import { loadHealthConditions, HealthCondition } from "../data/healthData";
-import { ActivityRecord, AdminAuditEntry, ConditionAvailability, MemberRecord, downloadAdminExport, loadAdminActivity, loadAdminAudit, loadAdminMembers, loadAdminSession, loadConditionAvailability, loginAdmin, logoutAdmin, registerAdmin, saveConditionAvailability } from "../lib/conditionStatus";
+import { ArrowLeft, RefreshCw } from "lucide-react";
+import { toast } from "sonner";
+import { useAuth, type Profile } from "@/contexts/AuthContext";
+import { supabase } from "@/lib/supabase";
+import { logActivity } from "@/lib/activity";
 
-const DEFAULT_NOTICE = "서비스 준비 중";
-const formatDate = (date: string | null) => date ? new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric" }).format(new Date(`${date}T00:00:00`)) : "";
-const formatDateTime = (value: string) => new Intl.DateTimeFormat("ko-KR", { dateStyle: "short", timeStyle: "short" }).format(new Date(value));
+interface Log {
+  id: number;
+  action: string;
+  condition_id: string | null;
+  keyword_id: string | null;
+  meta: Record<string, unknown> | null;
+  created_at: string;
+  profiles: { email: string | null } | null;
+}
+
+const fmt = (s: string) => new Date(s).toLocaleString("ko-KR");
 
 export default function Admin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [setupKey, setSetupKey] = useState("");
-  const [registerMode, setRegisterMode] = useState(false);
-  const [sessionEmail, setSessionEmail] = useState<string | null>(null);
-  const [conditions, setConditions] = useState<HealthCondition[]>([]);
-  const [drafts, setDrafts] = useState<Record<string, ConditionAvailability>>({});
-  const [saved, setSaved] = useState<Record<string, ConditionAvailability>>({});
-  const [audit, setAudit] = useState<AdminAuditEntry[]>([]);
-  const [members, setMembers] = useState<MemberRecord[]>([]);
-  const [activity, setActivity] = useState<ActivityRecord[]>([]);
-  const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const { profile, loading, isAdmin } = useAuth();
+  const [tab, setTab] = useState<"users" | "logs">("users");
+  const [users, setUsers] = useState<Profile[]>([]);
+  const [logs, setLogs] = useState<Log[]>([]);
+  const [busyId, setBusyId] = useState<string | null>(null);
+  const [fetching, setFetching] = useState(false);
 
-  async function loadAdminData() {
-    const [healthConditions, statuses, entries, memberRows, activityRows] = await Promise.all([loadHealthConditions(), loadConditionAvailability(), loadAdminAudit(), loadAdminMembers(), loadAdminActivity()]);
-    const byId = Object.fromEntries(statuses.map((status) => [status.conditionId, status]));
-    setConditions(healthConditions); setDrafts(byId); setSaved(byId); setAudit(entries); setMembers(memberRows); setActivity(activityRows);
-  }
-  useEffect(() => { void (async () => { try { const current = await loadAdminSession(); if (current) { setSessionEmail(current.email); await loadAdminData(); } } catch { setSessionEmail(null); } })(); }, []);
+  const load = useCallback(async () => {
+    setFetching(true);
+    const [u, l] = await Promise.all([
+      supabase.from("profiles").select("*").order("created_at", { ascending: false }),
+      supabase
+        .from("activity_logs")
+        .select("id,action,condition_id,keyword_id,meta,created_at,profiles(email)")
+        .order("created_at", { ascending: false })
+        .limit(200),
+    ]);
+    if (u.error || l.error) toast.error("데이터를 불러오지 못했습니다.");
+    setUsers((u.data as Profile[]) ?? []);
+    setLogs((l.data as unknown as Log[]) ?? []);
+    setFetching(false);
+  }, []);
 
-  async function submitAuth() {
-    setBusy(true); setMessage(null);
-    try {
-      if (registerMode) {
-        await registerAdmin(email.trim(), password, setupKey.trim());
-        setRegisterMode(false); setSetupKey(""); setMessage("계정 등록이 완료되었습니다. 같은 이메일과 비밀번호로 로그인해 주세요.");
-      } else {
-        const current = await loginAdmin(email.trim(), password); setSessionEmail(current.email); setPassword(""); await loadAdminData();
-      }
-    } catch (error) { setMessage(error instanceof Error ? error.message : registerMode ? "계정 등록에 실패했습니다." : "관리자 로그인에 실패했습니다."); }
-    finally { setBusy(false); }
-  }
-  const rows = useMemo(() => conditions.map((condition) => drafts[condition.id]).filter(Boolean), [conditions, drafts]);
-  const update = (id: string, patch: Partial<ConditionAvailability>) => setDrafts((current) => ({ ...current, [id]: { ...current[id], ...patch } }));
-  async function save(id: string) {
-    const draft = drafts[id]; if (!draft) return;
-    setBusy(true); setMessage(null);
-    try { const next = await saveConditionAvailability({ conditionId: id, isActive: draft.isActive, notice: draft.notice.trim() || DEFAULT_NOTICE, openDate: draft.isActive ? null : draft.openDate }); setDrafts((current) => ({ ...current, [id]: next })); setSaved((current) => ({ ...current, [id]: next })); setAudit(await loadAdminAudit()); setMessage(`${conditions.find((item) => item.id === id)?.name} 상태를 저장했습니다.`); }
-    catch (error) { setMessage(error instanceof Error ? error.message : "저장에 실패했습니다."); }
-    finally { setBusy(false); }
-  }
-  async function logout() { await logoutAdmin(); setSessionEmail(null); setConditions([]); setDrafts({}); setSaved({}); setAudit([]); setMembers([]); setActivity([]); }
-  async function exportData(kind: "members" | "activity") { setBusy(true); setMessage(null); try { await downloadAdminExport(kind); setMessage(kind === "members" ? "회원 백업 파일을 다운로드했습니다." : "활동 로그 백업 파일을 다운로드했습니다."); } catch (error) { setMessage(error instanceof Error ? error.message : "백업 파일을 다운로드하지 못했습니다."); } finally { setBusy(false); } }
+  useEffect(() => {
+    if (isAdmin) load();
+  }, [isAdmin, load]);
 
-  const eventLabel = (eventType: string) => ({ page_visit: "홈 방문", condition_open: "질환 열람", guide_open: "가이드 열람" }[eventType] ?? eventType);
-  const conditionLabel = (id: string | null) => conditions.find((item) => item.id === id)?.name ?? id ?? "홈";
+  const update = async (u: Profile, patch: Partial<Pick<Profile, "role" | "status">>) => {
+    const label = patch.status
+      ? patch.status === "suspended" ? "이용 정지" : "정지 해제"
+      : patch.role === "admin" ? "관리자 지정" : "관리자 해제";
+    if (!window.confirm(`${u.email} 계정을 "${label}" 하시겠습니까?`)) return;
+    setBusyId(u.id);
+    const { data, error } = await supabase.from("profiles").update(patch).eq("id", u.id).select();
+    if (error || !data?.length) {
+      toast.error("변경에 실패했습니다. 권한을 확인해 주세요.");
+    } else {
+      setUsers((prev) => prev.map((x) => (x.id === u.id ? { ...x, ...patch } : x)));
+      toast.success(`${label} 완료`);
+      logActivity(patch.status ? "admin_set_status" : "admin_set_role", { meta: { target: u.id, email: u.email, ...patch } });
+    }
+    setBusyId(null);
+  };
 
-  if (!sessionEmail) return <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900"><div className="mx-auto max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"><div className="mb-5 flex items-center gap-3"><div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-50 text-teal-700"><LockKeyhole className="h-5 w-5" /></div><div><p className="text-xs font-bold uppercase tracking-widest text-teal-700">Hi Care Admin</p><h1 className="text-xl font-extrabold">{registerMode ? "내 관리자 계정 등록" : "관리자 로그인"}</h1></div></div>{registerMode ? <div className="mb-5 rounded-xl bg-amber-50 px-3 py-3 text-xs leading-relaxed text-amber-800"><strong>처음 한 번만 등록</strong><br />운영자가 제공한 관리자 등록 코드를 입력하면 내 이메일과 비밀번호가 관리자 계정으로 저장됩니다.</div> : <p className="mb-5 text-sm leading-relaxed text-slate-600">등록된 관리자 계정으로 로그인하면 질환 카드 공개 상태를 변경할 수 있습니다.</p>}<label className="block text-sm font-bold text-slate-700" htmlFor="admin-email">내 이메일</label><input id="admin-email" type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" placeholder="me@example.com" /><label className="mt-4 block text-sm font-bold text-slate-700" htmlFor="admin-password">비밀번호 <span className="font-normal text-slate-400">(8자 이상)</span></label><input id="admin-password" type="password" autoComplete={registerMode ? "new-password" : "current-password"} value={password} onChange={(event) => setPassword(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") void submitAuth(); }} className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" placeholder="비밀번호" />{registerMode && <><label className="mt-4 block text-sm font-bold text-slate-700" htmlFor="setup-key">관리자 등록 코드</label><input id="setup-key" type="password" value={setupKey} onChange={(event) => setSetupKey(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") void submitAuth(); }} className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" placeholder="운영자가 전달한 등록 코드" /></>}{message && <p className="mt-3 rounded-xl bg-teal-50 px-3 py-2 text-sm font-semibold text-teal-800">{message}</p>}<button disabled={busy} onClick={() => void submitAuth()} className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white hover:bg-teal-700 disabled:opacity-60"><ShieldCheck className="h-4 w-4" />{busy ? "처리 중…" : registerMode ? "내 계정 등록" : "Admin 로그인"}</button><button type="button" onClick={() => { setRegisterMode(!registerMode); setMessage(null); }} className="mt-3 w-full text-sm font-bold text-teal-700 hover:underline">{registerMode ? "이미 계정이 있어요 · 로그인" : "내 관리자 계정 처음 등록하기"}</button><Link href="/" className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-teal-700 hover:underline"><ArrowLeft className="h-4 w-4" />홈으로 돌아가기</Link></div></main>;
+  if (loading) return <div className="min-h-screen grid place-items-center text-sm text-slate-500">확인 중…</div>;
+  if (!isAdmin)
+    return (
+      <div className="min-h-screen grid place-items-center px-6 text-center">
+        <div>
+          <p className="font-bold text-slate-900">관리자만 접근할 수 있습니다.</p>
+          <Link href={profile ? "/" : "/login"} className="mt-3 inline-block text-sm font-bold text-teal-700 underline">
+            {profile ? "홈으로" : "로그인하기"}
+          </Link>
+        </div>
+      </div>
+    );
 
-  return <main className="min-h-screen bg-slate-50 px-4 py-7 text-slate-900 sm:px-6 sm:py-10"><div className="mx-auto max-w-5xl"><div className="mb-6 flex flex-col gap-4 rounded-3xl border border-teal-100 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-7"><div><div className="mb-2 inline-flex items-center gap-2 rounded-full bg-teal-50 px-3 py-1 text-xs font-bold text-teal-800"><ShieldCheck className="h-3.5 w-3.5" />Admin 전용 · {sessionEmail}</div><h1 className="text-2xl font-extrabold">질환 카드 공개 상태 관리</h1><p className="mt-1 text-sm text-slate-500">사용 방법: 토글을 끄고 → 안내 문구·오픈 예정일 입력 → 저장</p></div><div className="flex gap-2"><Link href="/" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-bold text-slate-700 hover:border-teal-300 hover:text-teal-700"><ArrowLeft className="h-4 w-4" />사이트 보기</Link><button onClick={() => void logout()} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-bold text-slate-700 hover:border-rose-300 hover:text-rose-700"><LogOut className="h-4 w-4" />로그아웃</button></div></div>{message && <p className="mb-4 rounded-xl bg-teal-50 px-4 py-3 text-sm font-bold text-teal-800">{message}</p>}
-  <section className="mb-6 grid gap-4 sm:grid-cols-2"><div className="rounded-2xl border border-teal-100 bg-white p-5 shadow-sm"><p className="text-xs font-bold text-teal-700">가입 회원</p><p className="mt-2 text-3xl font-extrabold">{members.length}명</p><p className="mt-1 text-xs text-slate-500">Hi Care 자체 가입이 완료된 직원 계정</p></div><div className="rounded-2xl border border-sky-100 bg-white p-5 shadow-sm"><p className="text-xs font-bold text-sky-700">기록된 활동</p><p className="mt-2 text-3xl font-extrabold">{activity.length}건</p><p className="mt-1 text-xs text-slate-500">홈 방문·질환 열람·가이드 열람</p></div></section>
-  <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"><div className="mb-4 flex flex-wrap items-center justify-between gap-3"><h2 className="font-extrabold">직원 회원가입 기록</h2><button type="button" disabled={busy} onClick={() => void exportData("members")} className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-teal-700 px-3 text-sm font-bold text-white hover:bg-teal-800 disabled:cursor-not-allowed disabled:opacity-60"><Download className="h-4 w-4" />회원 Excel 다운로드</button></div>{members.length === 0 ? <p className="text-sm text-slate-500">아직 가입한 직원이 없습니다.</p> : <div className="overflow-x-auto"><table className="w-full min-w-[620px] text-left text-sm"><thead className="border-b border-slate-200 text-xs text-slate-500"><tr><th className="px-2 py-2">이름</th><th className="px-2 py-2">이메일</th><th className="px-2 py-2">가입 시각</th><th className="px-2 py-2">최근 로그인</th></tr></thead><tbody>{members.map((member) => <tr key={member.id} className="border-b border-slate-100 last:border-0"><td className="px-2 py-2 font-bold">{member.name || "이름 미제공"}</td><td className="px-2 py-2">{member.email || "이메일 미제공"}</td><td className="px-2 py-2 text-slate-500">{formatDateTime(member.createdAt)}</td><td className="px-2 py-2 text-slate-500">{formatDateTime(member.lastSignedIn)}</td></tr>)}</tbody></table></div>}</section>
-  <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"><div className="mb-4 flex flex-wrap items-center justify-between gap-3"><h2 className="font-extrabold">직원 활동 기록</h2><button type="button" disabled={busy} onClick={() => void exportData("activity")} className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-sky-700 px-3 text-sm font-bold text-white hover:bg-sky-800 disabled:cursor-not-allowed disabled:opacity-60"><Download className="h-4 w-4" />활동 로그 Excel 다운로드</button></div>{activity.length === 0 ? <p className="text-sm text-slate-500">아직 활동 기록이 없습니다. 직원이 로그인한 뒤 사이트를 이용하면 기록됩니다.</p> : <div className="overflow-x-auto"><table className="w-full min-w-[700px] text-left text-sm"><thead className="border-b border-slate-200 text-xs text-slate-500"><tr><th className="px-2 py-2">시간</th><th className="px-2 py-2">직원</th><th className="px-2 py-2">활동</th><th className="px-2 py-2">질환</th><th className="px-2 py-2">가이드 ID</th></tr></thead><tbody>{activity.map((entry) => <tr key={entry.id} className="border-b border-slate-100 last:border-0"><td className="px-2 py-2 text-slate-500">{formatDateTime(entry.createdAt)}</td><td className="px-2 py-2">{entry.name || entry.email || `회원 ${entry.userId}`}</td><td className="px-2 py-2 font-bold">{eventLabel(entry.eventType)}</td><td className="px-2 py-2">{conditionLabel(entry.conditionId)}</td><td className="px-2 py-2 text-xs text-slate-500">{entry.keywordId || "-"}</td></tr>)}</tbody></table></div>}</section>
-  <div className="space-y-3">{rows.map((draft) => { const condition = conditions.find((item) => item.id === draft.conditionId); if (!condition) return null; const dirty = JSON.stringify(saved[draft.conditionId]) !== JSON.stringify(draft); return <section key={draft.conditionId} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"><div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><h2 className="font-extrabold">{condition.name}</h2><p className="mt-1 text-xs text-slate-500">현재 상태: {draft.isActive ? "활성화" : draft.openDate ? `${formatDate(draft.openDate)} 오픈 예정` : "오픈 예정"}</p></div><div className="flex items-center gap-3"><span className={`text-sm font-bold ${draft.isActive ? "text-teal-700" : "text-slate-500"}`}>{draft.isActive ? "활성화" : "비활성화"}</span><button type="button" role="switch" aria-checked={draft.isActive} onClick={() => update(draft.conditionId, { isActive: !draft.isActive, openDate: !draft.isActive ? draft.openDate : null })} className={`relative h-7 w-12 rounded-full transition ${draft.isActive ? "bg-teal-600" : "bg-slate-300"}`}><span className={`absolute top-1 h-5 w-5 rounded-full bg-white shadow transition ${draft.isActive ? "left-6" : "left-1"}`} /></button></div></div>{!draft.isActive && <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto_auto]"><input value={draft.notice} onChange={(event) => update(draft.conditionId, { notice: event.target.value })} placeholder={DEFAULT_NOTICE} maxLength={40} className="min-h-11 rounded-xl border border-slate-200 px-3 text-sm outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" /><label className="flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"><CalendarDays className="h-4 w-4 text-teal-600" /><span className="sr-only">오픈 예정일</span><input type="date" value={draft.openDate ?? ""} onChange={(event) => update(draft.conditionId, { openDate: event.target.value || null })} className="bg-transparent outline-none" /></label><button disabled={busy || !dirty} onClick={() => void save(draft.conditionId)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 text-sm font-bold text-white hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-50"><Save className="h-4 w-4" />저장</button></div>}{draft.isActive && <button disabled={busy || !dirty} onClick={() => void save(draft.conditionId)} className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-xl border border-slate-200 px-3 text-sm font-bold text-slate-700 hover:border-teal-300 hover:text-teal-700 disabled:cursor-not-allowed disabled:opacity-50"><Save className="h-4 w-4" />활성 상태 저장</button>}</section>; })}</div><section className="mt-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"><div className="mb-4 flex items-center gap-2"><History className="h-5 w-5 text-teal-600" /><h2 className="font-extrabold">관리자 변경 이력</h2></div>{audit.length === 0 ? <p className="text-sm text-slate-500">아직 변경 이력이 없습니다.</p> : <div className="overflow-x-auto"><table className="w-full min-w-[640px] text-left text-sm"><thead className="border-b border-slate-200 text-xs text-slate-500"><tr><th className="px-2 py-2">변경 시간</th><th className="px-2 py-2">관리자</th><th className="px-2 py-2">질환</th><th className="px-2 py-2">변경</th><th className="px-2 py-2">오픈 예정일</th><th className="px-2 py-2">안내 문구</th></tr></thead><tbody>{audit.map((entry) => <tr key={entry.id} className="border-b border-slate-100 last:border-0"><td className="px-2 py-2 text-slate-500">{formatDateTime(entry.changedAt)}</td><td className="px-2 py-2">{entry.adminEmail}</td><td className="px-2 py-2 font-bold">{conditions.find((item) => item.id === entry.conditionId)?.name ?? entry.conditionId}</td><td className="px-2 py-2">{entry.isActive ? "활성화" : "비활성화"}</td><td className="px-2 py-2">{formatDate(entry.openDate) || "-"}</td><td className="max-w-[220px] truncate px-2 py-2">{entry.notice || "-"}</td></tr>)}</tbody></table></div>}</section></div></main>;
+  const th = "px-3 py-2 text-left text-xs font-bold text-slate-500 whitespace-nowrap";
+  const td = "px-3 py-2 text-xs text-slate-700 whitespace-nowrap";
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <header className="border-b border-slate-200 bg-white">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+          <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-teal-700">
+            <ArrowLeft className="h-4 w-4" /> 사이트로
+          </Link>
+          <h1 className="text-sm font-extrabold text-slate-900">Hi Care 관리자</h1>
+          <button onClick={load} disabled={fetching} className="inline-flex items-center gap-1 text-xs font-bold text-teal-700 cursor-pointer disabled:opacity-50">
+            <RefreshCw className={`h-3.5 w-3.5 ${fetching ? "animate-spin" : ""}`} /> 새로고침
+          </button>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-6xl px-4 py-6">
+        <div className="mb-4 flex gap-2">
+          {([["users", `회원 (${users.length})`], ["logs", `활동 로그 (최근 ${logs.length})`]] as const).map(([id, label]) => (
+            <button key={id} onClick={() => setTab(id)} className={`rounded-xl border px-3.5 py-2 text-xs font-bold cursor-pointer ${tab === id ? "border-slate-900 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-600"}`}>
+              {label}
+            </button>
+          ))}
+        </div>
+
+        <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white">
+          {tab === "users" ? (
+            <table className="w-full">
+              <thead className="bg-slate-50"><tr>
+                <th className={th}>이메일</th><th className={th}>이름</th><th className={th}>가입일</th><th className={th}>권한</th><th className={th}>상태</th><th className={th}>관리</th>
+              </tr></thead>
+              <tbody>
+                {users.map((u) => {
+                  const self = u.id === profile?.id;
+                  return (
+                    <tr key={u.id} className="border-t border-slate-100">
+                      <td className={td}>{u.email}</td>
+                      <td className={td}>{u.name || "-"}</td>
+                      <td className={td}>{fmt(u.created_at)}</td>
+                      <td className={td}>{u.role === "admin" ? "관리자" : "일반"}</td>
+                      <td className={`${td} font-bold ${u.status === "active" ? "text-emerald-700" : "text-rose-600"}`}>{u.status === "active" ? "정상" : "정지"}</td>
+                      <td className={`${td} space-x-1.5`}>
+                        <button disabled={self || busyId === u.id} onClick={() => update(u, { status: u.status === "active" ? "suspended" : "active" })} className="rounded-lg border border-slate-200 px-2 py-1 font-bold hover:bg-slate-50 disabled:opacity-40 cursor-pointer">
+                          {u.status === "active" ? "정지" : "해제"}
+                        </button>
+                        <button disabled={self || busyId === u.id} onClick={() => update(u, { role: u.role === "admin" ? "user" : "admin" })} className="rounded-lg border border-slate-200 px-2 py-1 font-bold hover:bg-slate-50 disabled:opacity-40 cursor-pointer">
+                          {u.role === "admin" ? "관리자 해제" : "관리자 지정"}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <table className="w-full">
+              <thead className="bg-slate-50"><tr>
+                <th className={th}>시각</th><th className={th}>회원</th><th className={th}>활동</th><th className={th}>질환</th><th className={th}>키워드</th><th className={th}>상세</th>
+              </tr></thead>
+              <tbody>
+                {logs.map((l) => (
+                  <tr key={l.id} className="border-t border-slate-100">
+                    <td className={td}>{fmt(l.created_at)}</td>
+                    <td className={td}>{l.profiles?.email ?? "(삭제됨)"}</td>
+                    <td className={`${td} font-bold`}>{l.action}</td>
+                    <td className={td}>{l.condition_id ?? "-"}</td>
+                    <td className={td}>{l.keyword_id ?? "-"}</td>
+                    <td className={`${td} max-w-[240px] truncate`}>{l.meta ? JSON.stringify(l.meta) : "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </main>
+    </div>
+  );
 }

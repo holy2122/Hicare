@@ -1,3 +1,5 @@
+import { supabase } from "../lib/supabase";
+
 export interface ActionGuideStep {
   title: string;
   desc: string;
@@ -19,14 +21,12 @@ export interface VideoTimelineItem {
   label: string;
   time: string;
   seconds: number;
-  section?: string;
 }
 
 export interface VideoGuide {
   title: string;
   channel: string;
   youtubeId: string;
-  format?: "full" | "short";
   startSeconds?: number;
   duration: string;
   summary: string;
@@ -68,18 +68,18 @@ export interface HealthCondition {
   keywords: HealthKeywordTopic[];
 }
 
-export const HEALTH_DATA_URL = "/healthData.json";
-
 export async function loadHealthConditions(signal?: AbortSignal): Promise<HealthCondition[]> {
-  const response = await fetch(`${HEALTH_DATA_URL}?v=${Date.now()}`, { signal, cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`건강관리 데이터 로딩 실패: ${response.status}`);
-  }
+  let query = supabase.from("health_content").select("data").eq("id", "main");
+  if (signal) query = query.abortSignal(signal);
+  const { data, error } = await query.maybeSingle();
 
-  const data: unknown = await response.json();
-  if (!Array.isArray(data) || data.length !== 8) {
-    throw new Error("healthData.json은 8개의 질환 데이터를 포함해야 합니다.");
-  }
+  if (signal?.aborted) throw new DOMException("aborted", "AbortError");
+  if (error) throw new Error(`건강관리 데이터 로딩 실패: ${error.message}`);
+  if (!data) throw new Error("콘텐츠가 아직 등록되지 않았거나 접근 권한이 없습니다.");
 
-  return data as HealthCondition[];
+  const list: unknown = data.data;
+  if (!Array.isArray(list) || list.length !== 8) {
+    throw new Error("건강관리 콘텐츠는 8개의 질환 데이터를 포함해야 합니다.");
+  }
+  return list as HealthCondition[];
 }
