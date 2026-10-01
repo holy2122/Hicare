@@ -144,3 +144,16 @@ create policy content_admin_write on public.health_content for all
 
 -- ▼ 이제 사이트의 "관리자 회원가입"에서 관리자 코드를 입력하면 바로 관리자가 됩니다.
 --   (수동으로 지정하고 싶다면: update public.profiles set role = 'admin' where email = '내이메일@example.com';)
+
+-- ─────────────────────────────────────────────────────────────
+-- 로그인 오류 정리 (여러 번 실행해도 안전)
+-- 1) 이메일 인증을 쓰지 않으므로, 예전에 가입해 인증 대기 중인 계정도 모두 인증 완료 처리
+--    ("Email not confirmed" 로그인 오류 방지)
+update auth.users set email_confirmed_at = now() where email_confirmed_at is null;
+
+-- 2) 가입은 됐는데 profiles 행이 없는 계정 복구
+--    (profiles 가 없으면 RLS 때문에 콘텐츠를 못 읽고 로그인 후 오류가 납니다)
+insert into public.profiles (id, email, name)
+select u.id, u.email, coalesce(u.raw_user_meta_data->>'name', '')
+from auth.users u
+where not exists (select 1 from public.profiles p where p.id = u.id);
