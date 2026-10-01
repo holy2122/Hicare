@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { appRouter } from "./routers";
 import { COOKIE_NAME } from "../shared/const";
+import { LOCAL_SESSION_COOKIE } from "./_core/localAuth";
 import type { TrpcContext } from "./_core/context";
 
 type CookieCall = {
@@ -52,7 +53,7 @@ describe("auth.logout", () => {
 
     expect(result).toEqual({ success: true });
     expect(clearedCookies).toHaveLength(2);
-    expect(clearedCookies.map(cookie => cookie.name)).toEqual(expect.arrayContaining([COOKIE_NAME, "hicare_user_session"]));
+    expect(clearedCookies.map(cookie => cookie.name)).toEqual(expect.arrayContaining([COOKIE_NAME, LOCAL_SESSION_COOKIE]));
     expect(clearedCookies.find(cookie => cookie.name === COOKIE_NAME)?.options).toMatchObject({
       maxAge: -1,
       secure: true,

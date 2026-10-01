@@ -13,7 +13,7 @@ export async function createContext(
 ): Promise<TrpcContext> {
   let user: User | null = null;
 
-  user = await getLocalUser(opts.req);
+  user = await getLocalUser(opts.req, opts.res);
 
   return {
     req: opts.req,

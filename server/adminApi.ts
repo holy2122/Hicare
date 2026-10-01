@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { databaseEnabled, dbAddAudit, dbReadAccount, dbReadAudit, dbReadStatuses, dbSaveAccount, dbSaveStatus, type DbAdminAccount, type DbAuditEntry, type DbConditionStatus } from "./adminDb";
 import { listActivityLogs, listMembers } from "./db";
+import { insertSupabaseAudit, listSupabaseActivityLogs, listSupabaseAudits, listSupabaseMembers, listSupabaseStatuses, upsertSupabaseStatus } from "./supabaseClient";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataCandidates = [path.resolve(__dirname, "data"), path.resolve(__dirname, "..", "server", "data"), path.resolve(process.cwd(), "server", "data"), path.resolve("/tmp", "hicare-admin-data")];
@@ -29,11 +30,13 @@ function readJson<T>(filePath: string, fallback: T): T { try { return JSON.parse
 function persistJson(filePath: string, value: unknown) { try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8"); } catch (error) { console.warn(`[Hi Care Admin] Could not persist ${path.basename(filePath)}`, error instanceof Error ? error.message : error); } }
 
 async function readStatuses() {
+  if (process.env.SUPABASE_SERVICE_ROLE_KEY) return (await listSupabaseStatuses()).map(item => ({ conditionId: String(item.condition_id), isActive: Boolean(item.is_active), notice: String(item.notice ?? ""), openDate: item.open_date ? String(item.open_date).slice(0, 10) : null, updatedAt: item.updated_at ? String(item.updated_at) : undefined }));
   if (databaseEnabled()) return dbReadStatuses();
   if (!runtimeStatuses) runtimeStatuses = readJson(STATUS_PATH, defaultStatuses());
   return runtimeStatuses;
 }
 async function saveStatus(value: ConditionStatus) {
+  if (process.env.SUPABASE_SERVICE_ROLE_KEY) return upsertSupabaseStatus(value);
   if (databaseEnabled()) return dbSaveStatus(value);
   const statuses = await readStatuses();
   const index = statuses.findIndex((item) => item.conditionId === value.conditionId);
@@ -42,11 +45,13 @@ async function saveStatus(value: ConditionStatus) {
   persistJson(STATUS_PATH, statuses);
 }
 async function readAudit() {
+  if (process.env.SUPABASE_SERVICE_ROLE_KEY) return (await listSupabaseAudits()).map(item => ({ id: String(item.id), conditionId: String(item.condition_id), adminEmail: String(item.admin_email), action: item.action === "activate" ? "activate" : "schedule", isActive: Boolean(item.is_active), notice: String(item.notice ?? ""), openDate: item.open_date ? String(item.open_date).slice(0, 10) : null, changedAt: String(item.changed_at) }));
   if (databaseEnabled()) return dbReadAudit();
   if (!runtimeAudit) runtimeAudit = readJson<AuditEntry[]>(AUDIT_PATH, []);
   return runtimeAudit;
 }
 async function saveAudit(value: AuditEntry) {
+  if (process.env.SUPABASE_SERVICE_ROLE_KEY) return insertSupabaseAudit(value);
   if (databaseEnabled()) return dbAddAudit(value);
   runtimeAudit = value ? [value, ...(runtimeAudit ?? [])].slice(0, 200) : runtimeAudit;
   persistJson(AUDIT_PATH, runtimeAudit);
@@ -116,11 +121,11 @@ export function registerAdminRoutes(app: Express) {
   app.post("/api/admin/logout", (_req, res) => { res.setHeader("Set-Cookie", `${SESSION_COOKIE}=; HttpOnly; Path=/; Max-Age=0; SameSite=Lax`); res.json({ ok: true }); });
   app.get("/api/admin/session", requireAdmin, (_req, res) => res.json({ authenticated: true, role: "admin", email: res.locals.adminEmail }));
   app.get("/api/admin/audit", requireAdmin, async (_req, res) => { try { res.json({ entries: await readAudit() }); } catch { res.status(503).json({ message: "변경 이력을 불러오지 못했습니다." }); } });
-  app.get("/api/admin/members", requireAdmin, async (_req, res) => { try { res.json({ members: await listMembers() }); } catch { res.status(503).json({ message: "회원 기록을 불러오지 못했습니다." }); } });
-  app.get("/api/admin/activity", requireAdmin, async (_req, res) => { try { res.json({ logs: await listActivityLogs() }); } catch { res.status(503).json({ message: "활동 기록을 불러오지 못했습니다." }); } });
+  app.get("/api/admin/members", requireAdmin, async (_req, res) => { try { res.json({ members: process.env.SUPABASE_SERVICE_ROLE_KEY ? await listSupabaseMembers() : await listMembers() }); } catch { res.status(503).json({ message: "회원 기록을 불러오지 못했습니다." }); } });
+  app.get("/api/admin/activity", requireAdmin, async (_req, res) => { try { res.json({ logs: process.env.SUPABASE_SERVICE_ROLE_KEY ? await listSupabaseActivityLogs() : await listActivityLogs() }); } catch { res.status(503).json({ message: "활동 기록을 불러오지 못했습니다." }); } });
   app.get("/api/admin/export/members", requireAdmin, async (_req, res) => {
     try {
-      const members = await listMembers();
+      const members = process.env.SUPABASE_SERVICE_ROLE_KEY ? await listSupabaseMembers() : await listMembers();
       const rows = [
         ["회원 ID", "이름", "이메일", "가입 방식", "역할", "가입 시각", "최근 로그인"],
         ...members.map(member => [member.id, member.name, member.email, member.openId.startsWith("local_") ? "Hi Care 자체 가입" : member.openId, member.role, member.createdAt, member.lastSignedIn]),
@@ -133,7 +138,7 @@ export function registerAdminRoutes(app: Express) {
   });
   app.get("/api/admin/export/activity", requireAdmin, async (_req, res) => {
     try {
-      const logs = await listActivityLogs(100_000);
+      const logs = process.env.SUPABASE_SERVICE_ROLE_KEY ? await listSupabaseActivityLogs(100_000) : await listActivityLogs(100_000);
       const rows = [
         ["로그 ID", "회원 ID", "이름", "이메일", "활동 유형", "질환 ID", "가이드 ID", "추가 정보", "활동 시각"],
         ...logs.map(log => [log.id, log.userId, log.name, log.email, log.eventType, log.conditionId, log.keywordId, log.metadata, log.createdAt]),

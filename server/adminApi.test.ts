@@ -7,6 +7,7 @@ import { registerAdminRoutes } from "./adminApi";
 let server: http.Server;
 let baseUrl = "";
 let originalAccount = "";
+let originalSupabaseKey: string | undefined;
 
 async function request(path: string, init?: RequestInit) {
   return fetch(`${baseUrl}${path}`, init);
@@ -16,6 +17,8 @@ describe("Admin availability API", () => {
   beforeAll(async () => {
     process.env.ADMIN_SETUP_KEY = "010301";
     process.env.ADMIN_SESSION_SECRET = "vitest-admin-session-secret";
+    originalSupabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    delete process.env.SUPABASE_SERVICE_ROLE_KEY;
     originalAccount = fs.readFileSync(new URL("./data/adminAccount.json", import.meta.url), "utf8");
     fs.writeFileSync(new URL("./data/adminAccount.json", import.meta.url), "null\n");
 
@@ -30,6 +33,7 @@ describe("Admin availability API", () => {
   });
 
   afterAll(async () => {
+    if (originalSupabaseKey) process.env.SUPABASE_SERVICE_ROLE_KEY = originalSupabaseKey;
     fs.writeFileSync(new URL("./data/adminAccount.json", import.meta.url), originalAccount);
     await new Promise<void>((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));
   });

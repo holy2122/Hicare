@@ -159,8 +159,13 @@ create index if not exists hicare_activity_logs_condition_idx
 -- -----------------------------------------------------------------------------
 
 -- SECURITY DEFINER prevents the admin check from recursively evaluating the
--- users SELECT policy. Keep search_path locked to trusted schemas.
-create or replace function public.is_hicare_admin()
+-- users SELECT policy. The private schema keeps these helpers out of the
+-- Supabase REST RPC surface.
+create schema if not exists private;
+revoke all on schema private from public;
+grant usage on schema private to authenticated, service_role;
+
+create or replace function private.is_hicare_admin()
 returns boolean
 language sql
 stable
@@ -175,7 +180,7 @@ as $$
   );
 $$;
 
-create or replace function public.current_hicare_user_id()
+create or replace function private.current_hicare_user_id()
 returns bigint
 language sql
 stable
@@ -188,10 +193,10 @@ as $$
   limit 1;
 $$;
 
-revoke all on function public.is_hicare_admin() from public;
-grant execute on function public.is_hicare_admin() to authenticated, service_role;
-revoke all on function public.current_hicare_user_id() from public;
-grant execute on function public.current_hicare_user_id() to authenticated, service_role;
+revoke all on function private.is_hicare_admin() from public;
+grant execute on function private.is_hicare_admin() to authenticated, service_role;
+revoke all on function private.current_hicare_user_id() from public;
+grant execute on function private.current_hicare_user_id() to authenticated, service_role;
 
 -- -----------------------------------------------------------------------------
 -- Enable RLS
@@ -208,34 +213,34 @@ drop policy if exists users_select_self_or_admin on public.users;
 create policy users_select_self_or_admin
 on public.users for select
 to authenticated
-using (auth_user_id = auth.uid() or public.is_hicare_admin());
+using (auth_user_id = auth.uid() or private.is_hicare_admin());
 
 drop policy if exists users_insert_self on public.users;
 create policy users_insert_self
 on public.users for insert
 to authenticated
-with check (auth_user_id = auth.uid() or public.is_hicare_admin());
+with check (auth_user_id = auth.uid() or private.is_hicare_admin());
 
 drop policy if exists users_update_self_or_admin on public.users;
 create policy users_update_self_or_admin
 on public.users for update
 to authenticated
-using (auth_user_id = auth.uid() or public.is_hicare_admin())
-with check (auth_user_id = auth.uid() or public.is_hicare_admin());
+using (auth_user_id = auth.uid() or private.is_hicare_admin())
+with check (auth_user_id = auth.uid() or private.is_hicare_admin());
 
 drop policy if exists users_delete_admin_only on public.users;
 create policy users_delete_admin_only
 on public.users for delete
 to authenticated
-using (public.is_hicare_admin());
+using (private.is_hicare_admin());
 
 -- The legacy admin credential table is never readable by ordinary members.
 drop policy if exists admin_accounts_admin_only on public.hicare_admin_accounts;
 create policy admin_accounts_admin_only
 on public.hicare_admin_accounts for all
 to authenticated
-using (public.is_hicare_admin())
-with check (public.is_hicare_admin());
+using (private.is_hicare_admin())
+with check (private.is_hicare_admin());
 
 -- Disease availability is public read; only an authenticated Hi Care admin can edit.
 drop policy if exists condition_statuses_public_read on public.hicare_condition_statuses;
@@ -248,16 +253,16 @@ drop policy if exists condition_statuses_admin_write on public.hicare_condition_
 create policy condition_statuses_admin_write
 on public.hicare_condition_statuses for all
 to authenticated
-using (public.is_hicare_admin())
-with check (public.is_hicare_admin());
+using (private.is_hicare_admin())
+with check (private.is_hicare_admin());
 
 -- Admin audit history is private to admins.
 drop policy if exists condition_audits_admin_only on public.hicare_condition_audits;
 create policy condition_audits_admin_only
 on public.hicare_condition_audits for all
 to authenticated
-using (public.is_hicare_admin())
-with check (public.is_hicare_admin());
+using (private.is_hicare_admin())
+with check (private.is_hicare_admin());
 
 -- Activity logs: members can create/read only their own records; admins can
 -- read and manage all records. The current server should use service_role for
@@ -266,26 +271,26 @@ drop policy if exists activity_logs_select_self_or_admin on public.hicare_activi
 create policy activity_logs_select_self_or_admin
 on public.hicare_activity_logs for select
 to authenticated
-using (user_id = public.current_hicare_user_id() or public.is_hicare_admin());
+using (user_id = private.current_hicare_user_id() or private.is_hicare_admin());
 
 drop policy if exists activity_logs_insert_self_or_admin on public.hicare_activity_logs;
 create policy activity_logs_insert_self_or_admin
 on public.hicare_activity_logs for insert
 to authenticated
-with check (user_id = public.current_hicare_user_id() or public.is_hicare_admin());
+with check (user_id = private.current_hicare_user_id() or private.is_hicare_admin());
 
 drop policy if exists activity_logs_update_admin_only on public.hicare_activity_logs;
 create policy activity_logs_update_admin_only
 on public.hicare_activity_logs for update
 to authenticated
-using (public.is_hicare_admin())
-with check (public.is_hicare_admin());
+using (private.is_hicare_admin())
+with check (private.is_hicare_admin());
 
 drop policy if exists activity_logs_delete_admin_only on public.hicare_activity_logs;
 create policy activity_logs_delete_admin_only
 on public.hicare_activity_logs for delete
 to authenticated
-using (public.is_hicare_admin());
+using (private.is_hicare_admin());
 
 -- -----------------------------------------------------------------------------
 -- Grants for Supabase client roles
