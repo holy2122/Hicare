@@ -34,20 +34,25 @@ export default function Login() {
       if (!agree) return setMsg({ type: "error", text: "개인정보 수집·이용에 동의해 주세요." });
     }
     setBusy(true);
-    if (mode === "login") {
-      const err = await signIn(email.trim(), password);
-      if (err) setMsg({ type: "error", text: err });
-    } else {
-      const r = await signUp(
-        email.trim(),
-        password,
-        name.trim(),
-        accountType === "admin" ? adminCode.trim() : undefined
-      );
-      if (r.error) setMsg({ type: "error", text: r.error });
-      // 성공하면 세션이 생겨 위의 useEffect 가 자동으로 홈으로 이동시킵니다.
+    try {
+      if (mode === "login") {
+        const err = await signIn(email.trim(), password, accountType);
+        if (err) setMsg({ type: "error", text: err });
+      } else {
+        const r = await signUp(
+          email.trim(),
+          password,
+          name.trim(),
+          accountType === "admin" ? adminCode.trim() : undefined
+        );
+        if (r.error) setMsg({ type: "error", text: r.error });
+        // 성공하면 세션이 생겨 위의 useEffect 가 자동으로 홈으로 이동시킵니다.
+      }
+    } catch {
+      setMsg({ type: "error", text: "처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요." });
+    } finally {
+      setBusy(false);
     }
-    setBusy(false);
   };
 
   return (
@@ -78,11 +83,10 @@ export default function Login() {
         </div>
 
         <form onSubmit={submit} className="space-y-3">
-          {mode === "signup" && (
-            <div className="grid grid-cols-2 gap-2 text-sm font-bold">
+          <div className="grid grid-cols-2 gap-2 text-sm font-bold">
               {([
-                ["user", "이용자 회원가입", User],
-                ["admin", "관리자 회원가입", ShieldCheck],
+                ["user", mode === "login" ? "이용자 로그인" : "이용자 회원가입", User],
+                ["admin", mode === "login" ? "관리자 로그인" : "관리자 회원가입", ShieldCheck],
               ] as const).map(([type, label, Icon]) => (
                 <button
                   key={type}
@@ -98,8 +102,7 @@ export default function Login() {
                   {label}
                 </button>
               ))}
-            </div>
-          )}
+          </div>
           {mode === "signup" && (
             <input className={inputCls} placeholder="이름(닉네임)" value={name} onChange={(e) => setName(e.target.value)} maxLength={30} required />
           )}
@@ -125,7 +128,7 @@ export default function Login() {
           )}
           {msg && <p className={`text-xs font-semibold ${msg.type === "error" ? "text-rose-600" : "text-teal-700"}`}>{msg.text}</p>}
           <button disabled={busy || !supabaseReady} className="w-full rounded-xl bg-teal-700 py-2.5 text-sm font-bold text-white hover:bg-teal-800 disabled:opacity-50 cursor-pointer">
-            {busy ? "처리 중…" : mode === "login" ? "로그인" : accountType === "admin" ? "관리자로 가입하기" : "가입하기"}
+            {busy ? "처리 중…" : mode === "login" ? (accountType === "admin" ? "관리자 로그인" : "이용자 로그인") : accountType === "admin" ? "관리자로 가입하기" : "가입하기"}
           </button>
         </form>
       </div>

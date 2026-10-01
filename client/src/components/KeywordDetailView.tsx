@@ -151,192 +151,7 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 1. 실천 수칙 및 한 줄 요약 */}
-      {/* ======================================================== */}
-      <section className="bg-white rounded-2xl border-2 border-teal-500/80 shadow-md shadow-teal-500/5 overflow-hidden transition-all">
-        {/* Section Header */}
-        <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
-              <Compass className="w-5 h-5 text-teal-100" />
-            </div>
-            <div>
-              <h2 className="text-lg font-bold">실천 수칙 및 한 줄 요약</h2>
-            </div>
-          </div>
-          <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-xs">
-            오늘부터 바로 실천
-          </span>
-        </div>
-
-        <div className="p-6 sm:p-8 space-y-6">
-          {/* Highlight Callout Box: Short intuitive summary */}
-          <div className="p-4 sm:p-5 rounded-xl bg-teal-50/70 border-l-4 border-teal-600 text-slate-800">
-            <div className="flex items-start gap-3">
-              <div>
-                <h4 className="text-xs font-bold uppercase tracking-wide text-teal-800 mb-1">
-                  한 줄 핵심 실천 요약
-                </h4>
-                <p className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
-                  "{keyword.shortActionSummary}"
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Steps Interactive Checklist */}
-          <div>
-            <h4 className="text-sm font-bold text-slate-900 mb-3">
-              <span>단계별 세부 실천 순서</span>
-              <span className="mt-1 block text-xs font-normal text-slate-500">
-                완료한 항목을 클릭해 체크해보세요 ({completedSteps.length}/{keyword.actionSteps.length})
-              </span>
-            </h4>
-
-            <div className="grid gap-3 sm:grid-cols-1">
-              {keyword.actionSteps.map((step, idx) => {
-                const isDone = completedSteps.includes(idx);
-                return (
-                  <div
-                    key={idx}
-                    onClick={() => toggleStep(idx)}
-                    className={`p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3.5 ${
-                      isDone
-                        ? "bg-slate-50 border-teal-300 text-slate-400"
-                        : "bg-white border-slate-200/90 hover:border-teal-400 hover:shadow-xs"
-                    }`}
-                  >
-                    <div
-                      className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 border transition-colors ${
-                        isDone
-                          ? "bg-teal-600 border-teal-600 text-white"
-                          : "border-slate-300 text-transparent group-hover:border-teal-500"
-                      }`}
-                    >
-                      {isDone && <Check className="w-4 h-4" strokeWidth={3} />}
-                    </div>
-
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                        <span
-                          className="font-bold text-base sm:text-lg text-slate-900"
-                        >
-                          {step.title}
-                        </span>
-                        {step.metric && (
-                          <span className="px-2 py-0.5 rounded-md text-sm font-semibold bg-cyan-50 text-cyan-800 border border-cyan-200/60">
-                            {step.metric}
-                          </span>
-                        )}
-                      </div>
-                      <p
-                        className="text-sm sm:text-base leading-relaxed text-slate-600"
-                      >
-                        {step.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Key Safety Rules */}
-          {keyword.keyRules && keyword.keyRules.length > 0 && (
-            <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-sm sm:text-base">
-              <div className="flex items-center gap-2 font-bold mb-1.5 text-amber-950">
-                <AlertCircle className="w-4 h-4 text-amber-600" />
-                <span>안전 주의사항</span>
-              </div>
-              <ul className="list-disc list-inside space-y-1 text-amber-900/90">
-                {keyword.keyRules.map((rule, idx) => (
-                  <li key={idx} className="leading-relaxed">
-                    {rule}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* ======================================================== */}
-      {/* 2. 학술 논문 및 근거 */}
-      {/* ======================================================== */}
-      <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
-        {/* Section Header */}
-        <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
-              <FileText className="w-5 h-5 text-teal-100" />
-            </div>
-            <div>
-              <h2 className="text-lg font-bold">학술 논문 및 근거</h2>
-            </div>
-          </div>
-          <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-xs">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>근거중심의학 (EBM)</span>
-          </span>
-        </div>
-
-        <div className="p-4 sm:p-5 space-y-3">
-          {/* Paper Meta Card */}
-          <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">
-                {keyword.evidence.journal} ({keyword.evidence.year})
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-100 text-teal-800">
-                {keyword.evidence.evidenceGrade}
-              </span>
-              {keyword.evidence.sampleSizeOrMethod && (
-                <span className="px-2 py-0.5 rounded-md text-xs font-medium bg-slate-200 text-slate-700">
-                  {keyword.evidence.sampleSizeOrMethod}
-                </span>
-              )}
-            </div>
-
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug mb-1">
-              {keyword.evidence.paperTitle}
-            </h3>
-            <p className="text-xs text-slate-500 mb-2">
-              저자: {keyword.evidence.authors}
-            </p>
-
-            {/* Core Summary Callout */}
-            <div className="p-3 rounded-lg bg-white border border-blue-200/70 text-slate-800 shadow-2xs">
-              <h4 className="text-xs font-bold text-blue-800 uppercase tracking-wide mb-1 flex items-center gap-1.5">
-                <Award className="w-3.5 h-3.5 text-blue-600" />
-                <span>논문 핵심 요약문 (Clinical Findings)</span>
-              </h4>
-              <p className="text-sm leading-relaxed text-slate-700">
-                {keyword.evidence.coreSummary}
-              </p>
-            </div>
-          </div>
-
-          {/* Hyperlink Button */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
-            <div className="text-xs text-slate-500">
-              * 학술 출처는 PubMed, NEJM, Lancet, 대한의학회 공인 학술지 등 공신력 있는 임상 데이터를 기준으로 추출되었습니다.
-            </div>
-
-            <a
-              href={keyword.evidence.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20 transition-all hover:scale-[1.02] cursor-pointer shrink-0"
-            >
-              <span>원문 논문 및 학술 출처 확인</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ======================================================== */}
-      {/* 3. 영상 시청 및 따라 하기 */}
+      {/* 1. 영상 시청 및 따라 하기 (항상 맨 위) */}
       {/* ======================================================== */}
       <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
         {/* Section Header */}
@@ -500,6 +315,191 @@ export const KeywordDetailView: React.FC<KeywordDetailViewProps> = ({
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 2. 실천 수칙 및 한 줄 요약 */}
+      {/* ======================================================== */}
+      <section className="bg-white rounded-2xl border-2 border-teal-500/80 shadow-md shadow-teal-500/5 overflow-hidden transition-all">
+        {/* Section Header */}
+        <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
+              <Compass className="w-5 h-5 text-teal-100" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold">실천 수칙 및 한 줄 요약</h2>
+            </div>
+          </div>
+          <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-xs">
+            오늘부터 바로 실천
+          </span>
+        </div>
+
+        <div className="p-6 sm:p-8 space-y-6">
+          {/* Highlight Callout Box: Short intuitive summary */}
+          <div className="p-4 sm:p-5 rounded-xl bg-teal-50/70 border-l-4 border-teal-600 text-slate-800">
+            <div className="flex items-start gap-3">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wide text-teal-800 mb-1">
+                  한 줄 핵심 실천 요약
+                </h4>
+                <p className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                  "{keyword.shortActionSummary}"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Steps Interactive Checklist */}
+          <div>
+            <h4 className="text-sm font-bold text-slate-900 mb-3">
+              <span>단계별 세부 실천 순서</span>
+              <span className="mt-1 block text-xs font-normal text-slate-500">
+                완료한 항목을 클릭해 체크해보세요 ({completedSteps.length}/{keyword.actionSteps.length})
+              </span>
+            </h4>
+
+            <div className="grid gap-3 sm:grid-cols-1">
+              {keyword.actionSteps.map((step, idx) => {
+                const isDone = completedSteps.includes(idx);
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => toggleStep(idx)}
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3.5 ${
+                      isDone
+                        ? "bg-slate-50 border-teal-300 text-slate-400"
+                        : "bg-white border-slate-200/90 hover:border-teal-400 hover:shadow-xs"
+                    }`}
+                  >
+                    <div
+                      className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 border transition-colors ${
+                        isDone
+                          ? "bg-teal-600 border-teal-600 text-white"
+                          : "border-slate-300 text-transparent group-hover:border-teal-500"
+                      }`}
+                    >
+                      {isDone && <Check className="w-4 h-4" strokeWidth={3} />}
+                    </div>
+
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <span
+                          className="font-bold text-base sm:text-lg text-slate-900"
+                        >
+                          {step.title}
+                        </span>
+                        {step.metric && (
+                          <span className="px-2 py-0.5 rounded-md text-sm font-semibold bg-cyan-50 text-cyan-800 border border-cyan-200/60">
+                            {step.metric}
+                          </span>
+                        )}
+                      </div>
+                      <p
+                        className="text-sm sm:text-base leading-relaxed text-slate-600"
+                      >
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Key Safety Rules */}
+          {keyword.keyRules && keyword.keyRules.length > 0 && (
+            <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-sm sm:text-base">
+              <div className="flex items-center gap-2 font-bold mb-1.5 text-amber-950">
+                <AlertCircle className="w-4 h-4 text-amber-600" />
+                <span>안전 주의사항</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1 text-amber-900/90">
+                {keyword.keyRules.map((rule, idx) => (
+                  <li key={idx} className="leading-relaxed">
+                    {rule}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 3. 학술 논문 및 근거 */}
+      {/* ======================================================== */}
+      <section className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
+        {/* Section Header */}
+        <div className="bg-gradient-to-r from-teal-700 via-teal-600 to-cyan-600 px-6 py-4 text-white flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-teal-100" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold">학술 논문 및 근거</h2>
+            </div>
+          </div>
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-xs">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>근거중심의학 (EBM)</span>
+          </span>
+        </div>
+
+        <div className="p-4 sm:p-5 space-y-3">
+          {/* Paper Meta Card */}
+          <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">
+                {keyword.evidence.journal} ({keyword.evidence.year})
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-100 text-teal-800">
+                {keyword.evidence.evidenceGrade}
+              </span>
+              {keyword.evidence.sampleSizeOrMethod && (
+                <span className="px-2 py-0.5 rounded-md text-xs font-medium bg-slate-200 text-slate-700">
+                  {keyword.evidence.sampleSizeOrMethod}
+                </span>
+              )}
+            </div>
+
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug mb-1">
+              {keyword.evidence.paperTitle}
+            </h3>
+            <p className="text-xs text-slate-500 mb-2">
+              저자: {keyword.evidence.authors}
+            </p>
+
+            {/* Core Summary Callout */}
+            <div className="p-3 rounded-lg bg-white border border-blue-200/70 text-slate-800 shadow-2xs">
+              <h4 className="text-xs font-bold text-blue-800 uppercase tracking-wide mb-1 flex items-center gap-1.5">
+                <Award className="w-3.5 h-3.5 text-blue-600" />
+                <span>논문 핵심 요약문 (Clinical Findings)</span>
+              </h4>
+              <p className="text-sm leading-relaxed text-slate-700">
+                {keyword.evidence.coreSummary}
+              </p>
+            </div>
+          </div>
+
+          {/* Hyperlink Button */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+            <div className="text-xs text-slate-500">
+              * 학술 출처는 PubMed, NEJM, Lancet, 대한의학회 공인 학술지 등 공신력 있는 임상 데이터를 기준으로 추출되었습니다.
+            </div>
+
+            <a
+              href={keyword.evidence.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20 transition-all hover:scale-[1.02] cursor-pointer shrink-0"
+            >
+              <span>원문 논문 및 학술 출처 확인</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
